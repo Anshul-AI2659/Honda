@@ -17,4 +17,8 @@ export const string = {
     subTitle: 'Enter the code sent to number',
     buttonText: 'VERIFY',
   },
+  ProductDetailPage:{
+    lessDescription:'Experience unparalleled power with the Honda EU70is Portable Generator. Its robust 4-stroke GX390 engine, coupled with advanced Electronic Fuelasds...',
+    moreDescription:'Experience unparalleled power with the Honda EU70is Portable Generator. Its robust 4-stroke GX390 engine, coupled with advanced Electronic Fuel-Injection and sine-wave inverter technology, guarantees smooth, high-quality power delivery. With a maximum output of 7kVA and a rated output of 5.5kVA, its perfect for heavy-duty commercial and domestic use. Enjoy easy operation with a push-button starter and a quiet triple chamber low tune muffler. Plus, benefit from improved fuel consumption, easier maintenance, and enhanced performance. Trust the EU70is to meet all your electricity needs with precision and reliability.'
+  },
 };

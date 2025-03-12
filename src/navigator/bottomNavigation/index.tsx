@@ -11,7 +11,7 @@ import Training from './screens/training';
 
 // Utils
 import {BottomTabParamList} from '../../utils/types';
-import {vh} from '../../utils/dimension';
+import {vh, vw} from '../../utils/dimension';
 import {Colors} from '../../utils/colors';
 
 //Assets
@@ -109,10 +109,10 @@ const BottomNavigation = () => {
         headerShown: false,
         tabBarShowLabel: true,
         tabBarStyle: {
-          height: vh(90),
+          height: vh(104),
           justifyContent: 'center',
           backgroundColor: Colors.White,
-          paddingTop: vh(10),
+          paddingTop: vh(12),
         },
       })}>
       <Tab.Screen

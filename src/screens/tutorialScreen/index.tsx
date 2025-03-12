@@ -1,5 +1,12 @@
 import React, {useRef, useState} from 'react';
-import {View, Text, Image, ListRenderItem, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  ListRenderItem,
+  FlatList,
+  ImageSourcePropType,
+} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -25,7 +32,7 @@ type TutorialScreenProps = {
 
 type TutorialItem = {
   key: string;
-  image: any;
+  image: ImageSourcePropType;
   title: string;
   description: string;
 };

@@ -134,6 +134,7 @@ const VerifyOtp = ({navigation, route}: VerifyOtpProps) => {
               <ContentHeader
                 headerText={string.VerifyOtp.title}
                 detailText={`${string.VerifyOtp.subTitle} ${phoneNumber}` + '.'}
+                changeNumber
               />
               <OTPInput
                 otpLength={6}

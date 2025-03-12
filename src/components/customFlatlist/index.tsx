@@ -114,7 +114,6 @@ const styles = StyleSheet.create({
   },
   seeMoreText: {
     fontSize: 14,
-    height: vh(16),
     marginRight: vw(8),
     fontWeight: '600',
   },

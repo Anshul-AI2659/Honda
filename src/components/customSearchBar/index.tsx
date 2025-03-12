@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {Icons} from '../../assets';
 import {vh, vw} from '../../utils/dimension';
+import { Colors } from '../../utils/colors';
 
 interface CustomSearchBarProps extends TextInputProps {
   placeholder?: string; // Custom placeholder text
@@ -27,8 +28,8 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({
       <TextInput
         style={styles.searchInput}
         placeholder={placeholder}
-        selectionColor={'#9DA7C4'}
-        placeholderTextColor={'#9DA7C4'}
+        selectionColor={Colors.inActiveTab}
+        placeholderTextColor={Colors.inActiveTab}
       />
     </View>
   );
@@ -39,12 +40,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#D4DAEA',
+    borderColor: Colors.tutorialInactiveDot,
     borderRadius: 16,
     paddingHorizontal: 10,
     marginHorizontal: vw(20),
     marginBottom: vh(16),
-    backgroundColor: '#F3F6FA',
+    backgroundColor: Colors.lightGrey,
   },
   searchIcon: {
     width: vw(20),
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     paddingLeft: vw(10),
     fontSize: 16,
-    color: '#000',
+    color: Colors.Black,
   },
 });
 

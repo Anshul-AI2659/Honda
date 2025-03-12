@@ -5,9 +5,11 @@ import {
   TouchableOpacity,
   StyleSheet,
   ImageSourcePropType,
+  Text,
 } from 'react-native';
 import {Icons, Images} from '../../assets';
 import {vh, vw} from '../../utils/dimension';
+import { Colors } from '../../utils/colors';
 
 interface HeaderProps {
   headerStyle?: object;
@@ -23,59 +25,6 @@ interface HeaderProps {
   rightButtonStyle?: object;
   rightIconStyle?: object;
 }
-
-// const CustomHeader = ({
-//   backButton = false,
-//   backIcon,
-//   onBackPress,
-//   headerStyle,
-//   backButtonStyle,
-//   backIconStyle,
-//   headerImgStyle,
-// }: HeaderProps) => {
-//   return (
-//     <View style={[styles.header, headerStyle]}>
-//       {backButton && (
-//         <TouchableOpacity
-//           style={[styles.backButton, backButtonStyle]}
-//           onPress={onBackPress}>
-//           {backIcon && (
-//             <Image source={backIcon} style={[styles.backIcon, backIconStyle]} />
-//           )}
-//         </TouchableOpacity>
-//       )}
-//       <Image source={Images.logo} style={[styles.headerImg, headerImgStyle]} />
-//     </View>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   header: {
-//     paddingTop: vh(16),
-//     paddingBottom: vh(30),
-//     paddingHorizontal: vw(12),
-//     flexDirection: 'row',
-//   },
-//   headerImg: {
-//     width: vw(131.86),
-//     height: vh(16),
-//     resizeMode: 'contain',
-//     alignSelf: 'center',
-//     flex: 1,
-//   },
-//   backButton: {
-//     padding: vw(10),
-//     borderRadius: 100,
-//     backgroundColor: '#F4F7FF',
-//   },
-//   backIcon: {
-//     width: vw(24), // Adjust size of the back icon
-//     height: vw(24),
-//     resizeMode: 'contain',
-//   },
-// });
-
-// export default CustomHeader;
 
 const CustomHeader = ({
   backButton = false,
@@ -126,23 +75,22 @@ const CustomHeader = ({
 
 const styles = StyleSheet.create({
   header: {
-    paddingTop: vh(16),
-    paddingBottom: vh(30),
-    paddingHorizontal: vw(12),
+    paddingVertical: vh(24),
+    paddingHorizontal: vw(16),
     flexDirection: 'row',
     alignItems: 'center',
   },
   headerImg: {
     width: vw(131.86),
-    height: vh(16),
+    height: vw(16),
     resizeMode: 'contain',
     alignSelf: 'center',
     flex: 1,
   },
   backButton: {
-    padding: vw(10),
+    padding: vw(8),
     borderRadius: 100,
-    backgroundColor: '#F4F7FF',
+    backgroundColor: Colors.headerButton,
   },
   backIcon: {
     width: vw(24),
@@ -150,9 +98,9 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   rightButton: {
-    padding: vw(10),
+    padding: vw(8),
     borderRadius: 100,
-    backgroundColor: '#F4F7FF',
+    backgroundColor: Colors.headerButton,
   },
   rightIcon: {
     width: vw(24),

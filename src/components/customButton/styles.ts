@@ -5,7 +5,7 @@ import {size} from '../../utils/size';
 
 export const styles = StyleSheet.create({
   disabledButton: {
-    backgroundColor: '#F3F6FA',
+    backgroundColor: Colors.lightGrey,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
     fontWeight: '800',
   },
   disabledButtonText: {
-    color: '#656565',
+    color: Colors.greyText,
     fontSize: size.button,
     fontWeight: '800',
   },

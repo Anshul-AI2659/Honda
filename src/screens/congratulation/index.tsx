@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: 16,
     fontWeight: '400',
-    color: '#656565',
+    color: Colors.greyText,
     marginTop: vh(10),
   },
 });

@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
-import { Colors } from '../../utils/colors';
-import { vw,vh } from '../../utils/dimension';
+import {Colors} from '../../utils/colors';
+import {vw, vh} from '../../utils/dimension';
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,11 +9,11 @@ export const styles = StyleSheet.create({
     marginVertical: vh(20),
   },
   input: {
+    width: vw(48),
+    height: vw(56),
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: 16,
     textAlign: 'center',
-    paddingHorizontal: vw(20),
-    paddingVertical: vh(15),
     color: Colors.Black,
     fontSize: 18,
   },

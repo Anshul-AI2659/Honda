@@ -7,8 +7,10 @@ const Colors = {
   tutorialDescription:'#7C8585',
   tutorialInactiveDot:'#D4DAEA',
   red:'red',
-  disableButton:'#E2E2E2',
+  lightGrey:'#F3F6FA',
   greyText:'#656565',
+  placeHolderText:'#8CA2B4',
+  headerButton:'#F4F7FF',
   inActiveTab:'#9DA7C4',
   borderRight:'#D7D7D7',
 };

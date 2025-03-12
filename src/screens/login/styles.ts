@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 
 // Utils
 import {vw, vh} from '../../utils/dimension';
@@ -35,6 +35,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   alertText: {
+    width:vw(326),
+    resizeMode:'contain',
     fontSize: 12,
     fontWeight: '400',
     color: Colors.greyText,
@@ -44,5 +46,10 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
     color: Colors.Black,
     textDecorationLine: 'underline',
+    ...Platform.select({
+      android: {
+        textDecorationLine: 'underline',
+      },
+    }),
   },
 });

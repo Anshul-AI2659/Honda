@@ -1,58 +1,29 @@
 import React, {JSX, useRef} from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
-import CustomButton from '../customButton';
 import {Colors} from '../../utils/colors';
 import {SCREEN_WIDTH, vh, vw} from '../../utils/dimension';
 import {size} from '../../utils/size';
 
 interface CarouselProps {
-  steps: any[];
+  data: any[];
   currentStep: number;
   renderItem: ({item, index}: {item: any; index: number}) => JSX.Element;
-  onNext?: any;
-  onSkip?: any;
   handleScrollEnd: (event: any) => void;
-  showButtons?: boolean;
-  buttonTextNext?: string;
-  buttonTextSkip?: string;
-  buttonTextGetStarted?: string;
   paginationStyle?: object;
   dotStyle?: object;
   activeDotStyle?: object;
   inactiveDotStyle?: object;
-  buttonContainerStyle?: object;
-  getStartedButtonContainerStyle?: object;
-  getStartedButtonStyle?: object;
-  getStartedButtonTextStyle?: object;
-  skipButtonStyle?: object;
-  skipButtonTextStyle?: object;
-  nextButtonStyle?: object;
-  nextButtonTextStyle?: object;
 }
 
 const Carousel: React.FC<CarouselProps> = ({
-  steps,
+  data,
   currentStep,
   renderItem,
-  onNext,
-  onSkip,
   handleScrollEnd,
-  showButtons = true,
-  buttonTextNext = 'Next',
-  buttonTextSkip = 'Skip',
-  buttonTextGetStarted = 'Get Started',
   paginationStyle = {},
   dotStyle = {},
   activeDotStyle = {},
   inactiveDotStyle = {},
-  buttonContainerStyle = {},
-  getStartedButtonContainerStyle = {},
-  getStartedButtonStyle = {},
-  getStartedButtonTextStyle = {},
-  skipButtonStyle = {},
-  skipButtonTextStyle = {},
-  nextButtonStyle = {},
-  nextButtonTextStyle = {},
 }) => {
   const flatListRef = useRef<FlatList>(null);
 
@@ -60,7 +31,7 @@ const Carousel: React.FC<CarouselProps> = ({
     <View>
       <FlatList
         ref={flatListRef}
-        data={steps}
+        data={data}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
         horizontal
@@ -71,7 +42,7 @@ const Carousel: React.FC<CarouselProps> = ({
 
       {/* Fixed Pagination Dots */}
       <View style={[styles.pagination, paginationStyle]}>
-        {steps.map((_, index) => (
+        {data.map((_, index) => (
           <View
             key={index}
             style={[
@@ -84,41 +55,6 @@ const Carousel: React.FC<CarouselProps> = ({
           />
         ))}
       </View>
-
-      {/* Conditionally render buttons if showButtons is true */}
-      {showButtons && (
-        <>
-          {currentStep === steps.length - 1 ? (
-            <View
-              style={[
-                styles.getStartedButtonContainer,
-                getStartedButtonContainerStyle,
-              ]}>
-              <CustomButton
-                buttonText={buttonTextGetStarted}
-                onPress={onNext}
-                buttonStyle={[styles.getStartedButton, getStartedButtonStyle]}
-                textStyle={getStartedButtonTextStyle}
-              />
-            </View>
-          ) : (
-            <View style={[styles.buttonContainer, buttonContainerStyle]}>
-              <CustomButton
-                buttonText={buttonTextSkip}
-                onPress={onSkip}
-                buttonStyle={[styles.skipButton, skipButtonStyle]}
-                textStyle={skipButtonTextStyle}
-              />
-              <CustomButton
-                buttonText={buttonTextNext}
-                onPress={onNext}
-                buttonStyle={[styles.nextButton, nextButtonStyle]}
-                textStyle={nextButtonTextStyle}
-              />
-            </View>
-          )}
-        </>
-      )}
     </View>
   );
 };
@@ -161,8 +97,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: vh(30),
-    marginBottom: vh(20),
+    // marginTop: vh(30),
+    // marginBottom: vh(20),
   },
   dot: {
     width: vw(8),
@@ -202,7 +138,7 @@ const styles = StyleSheet.create({
   skipButton: {
     paddingVertical: vw(14),
     paddingHorizontal: vw(16),
-    backgroundColor: '#fff',
+    backgroundColor: Colors.White,
     alignItems: 'center',
     justifyContent: 'center',
   },

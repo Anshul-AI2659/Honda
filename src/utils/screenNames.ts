@@ -5,7 +5,8 @@ enum ScreenNames {
   Login = 'Login',
   VerifyOtp = 'VerifyOtp',
   Home = 'BottomNavigation',
-  Congratulation = 'Congratulation'
+  Congratulation = 'Congratulation',
+  ProductDetail='ProductDetailPage'
 }
 
 export {ScreenNames};

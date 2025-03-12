@@ -6,7 +6,7 @@ import {Colors} from '../../utils/colors';
 export const styles = StyleSheet.create({
   inputContainer: {
     width: '100%',
-    height:vh(56),
+    height:vw(56),
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: vh(16),
@@ -31,9 +31,9 @@ export const styles = StyleSheet.create({
     fontWeight: '500',
   },
   phoneInputMobile: {
-    width: vw(245),
-    height: vh(54),
-    fontSize: vh(16),
+    width: vw(260),
+    height: vw(54),
+    fontSize: vw(16),
     fontWeight: '500',
     marginLeft: vw(10),
     borderBottomRightRadius: 16,

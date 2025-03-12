@@ -9,6 +9,7 @@ const Icons = {
   seeMore:require('../assets/icons/seeMore.png'),
   search:require('../assets/icons/search.png'),
   congratulation:require('../assets/icons/tick.png'),
+  up:require('../assets/icons/up.png'),
 };
 
 const Images = {

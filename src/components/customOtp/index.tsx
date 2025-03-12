@@ -80,7 +80,7 @@ const OTPInput = ({
                 ? Colors.red
                 : focusedIndex === index
                 ? Colors.primary
-                : '#E1E1E1',
+                : Colors.tutorialInactiveDot,
             },
           ]}
           textAlign="center"

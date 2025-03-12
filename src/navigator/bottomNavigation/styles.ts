@@ -12,6 +12,8 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   tabBarLabel: {
+    width:vw(72.8),
+    textAlign:'center',
     marginTop: vh(8),
   },
   focusedDot: {
