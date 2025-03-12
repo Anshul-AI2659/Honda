@@ -45,7 +45,7 @@ const VerifyOtp = ({navigation, route}: VerifyOtpProps) => {
   const [otp, setOtp] = useState('');
   const [error, setError] = useState('');
   const [attempts, setAttempts] = useState(0);
-  const [timer, setTimer] = useState(30);
+  const [timer, setTimer] = useState(59);
 
   useEffect(() => {
     const checkLoginStatus = async () => {
@@ -150,7 +150,15 @@ const VerifyOtp = ({navigation, route}: VerifyOtpProps) => {
                 <TouchableOpacity onPress={handleResend} disabled={timer > 0}>
                   {timer === 0 ? (
                     <Text style={[styles.resendLink]}>Send code again</Text>
-                  ) : null}
+                  ) : (
+                  <View style={styles.timerContainer}>
+                  <Text style={styles.timerText}>
+                    <Text style={styles.resendText}>Resend Code in </Text>
+                    00:{timer < 10 ? `0${timer}` : timer}s
+                  </Text>
+                </View>
+                  )
+                }
                 </TouchableOpacity>
               </View>
             </View>

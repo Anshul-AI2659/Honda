@@ -47,6 +47,12 @@ export const styles = StyleSheet.create({
   },
   timerText: {
     fontSize: size.description,
+    fontWeight:'600',
     color: Colors.primary,
+  },
+  resendText:{
+    fontSize:size.description,
+    fontWeight:'600',
+    color:'#050507',
   },
 });
