@@ -14,13 +14,12 @@ export type BottomTabParamList = {
 export type StackParamList = {
   SplashScreen: undefined;
   TutorialScreen: undefined;
-  Congratulation:undefined;
   SelectRole: undefined;
-  SignUp: undefined;
   Login: undefined;
-  ForgotPassword: undefined;
   VerifyOtp: {phoneNumber:string};
+  Congratulation:undefined;
   BottomNavigation: undefined;
+  ProductDetailPage:undefined;
 };
 
 export type AppNavigatorParamList = {

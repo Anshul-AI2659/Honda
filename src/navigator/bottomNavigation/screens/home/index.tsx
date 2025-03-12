@@ -32,6 +32,7 @@ import CustomStatusBar from '../../../../components/statusBar';
 import styles from './styles';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {BottomTabParamList} from '../../../../utils/types';
+import { ScreenNames } from '../../../../utils/screenNames';
 
 interface HomeProps {
   navigation: BottomTabNavigationProp<BottomTabParamList>;
@@ -87,6 +88,7 @@ const Home = ({navigation}: HomeProps) => {
     <TouchableOpacity
       style={styles.textHeaderItemContainer}
       activeOpacity={0.5}
+      onPress = {()=>{navigation.navigate(ScreenNames.ProductDetail)}}
       >
       <View style={styles.textHeaderImageContainer}>
         <Image source={item.image} style={styles.textHeaderItemImage} />

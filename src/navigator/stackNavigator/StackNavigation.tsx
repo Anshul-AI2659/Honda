@@ -7,12 +7,13 @@ import {StackParamList} from '../../utils/types';
 
 // Screens
 import SplashScreen from '../../screens/splash';
-import Login from '../../screens/login';
-import VerifyOtp from '../../screens/verifyOtp';
 import TutorialScreen from '../../screens/tutorialScreen';
 import SelectRole from '../../screens/selectRole';
-import BottomNavigation from '../bottomNavigation';
+import Login from '../../screens/login';
+import VerifyOtp from '../../screens/verifyOtp';
 import CongratulationScreen from '../../screens/congratulation';
+import ProductDetailPage from '../../screens/productDetailPage';
+import BottomNavigation from '../bottomNavigation';
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
@@ -29,6 +30,7 @@ const StackNavigation = () => {
         <Stack.Screen name="VerifyOtp" component={VerifyOtp} />
         <Stack.Screen name="BottomNavigation" component={BottomNavigation} />
         <Stack.Screen name="Congratulation" component={CongratulationScreen} />
+        <Stack.Screen name="ProductDetailPage" component={ProductDetailPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );

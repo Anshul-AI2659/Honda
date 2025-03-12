@@ -23,8 +23,17 @@ export const styles = StyleSheet.create({
     justifyContent:'space-between',
     paddingHorizontal: vw(20),
   },
+  getOtpDisableButton:{
+    width:'100%',
+    paddingVertical: vh(16),
+    alignSelf:'center',
+    borderRadius: 16,
+  },
   getOtpButton:{
     width:'100%',
+    paddingVertical: vh(16),
+    alignSelf:'center',
+    borderRadius: 16,
   },
   bottomContainer: {
     marginTop: vh(116),

@@ -9,7 +9,7 @@ import {
   ImageSourcePropType,
 } from 'react-native';
 import {Icons} from '../../assets';
-import {vh, vw} from '../../utils/dimension';
+import {vw} from '../../utils/dimension';
 import {Colors} from '../../utils/colors';
 
 interface CustomFlatListProps {

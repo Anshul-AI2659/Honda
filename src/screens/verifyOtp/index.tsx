@@ -168,6 +168,7 @@ const VerifyOtp = ({navigation, route}: VerifyOtpProps) => {
                 onPress={handleVerifyOTP}
                 buttonStyle={styles.verifyButton}
                 isButtonDisabled={isButtonDisabled}
+                disabledButtonStyle={styles.disableVerifyButton}
               />
             </View>
           </View>

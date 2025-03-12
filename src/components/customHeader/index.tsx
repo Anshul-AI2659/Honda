@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   StyleSheet,
   ImageSourcePropType,
-  Text,
 } from 'react-native';
 import {Icons, Images} from '../../assets';
 import {vh, vw} from '../../utils/dimension';

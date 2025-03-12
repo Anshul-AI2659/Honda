@@ -77,6 +77,7 @@ const Login = ({navigation}: LoginProps) => {
                 buttonText={string.Login.buttonText}
                 onPress={handleLogin}
                 isButtonDisabled={isButtonDisabled}
+                disabledButtonStyle={styles.getOtpDisableButton}
                 buttonStyle={styles.getOtpButton}
               />
               <View style={styles.policyContainer}>

@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   image: {
     width: vw(340),
     height: vw(340),
-    marginTop:vh(16),
+    marginTop: vh(16),
     alignSelf: 'center',
     resizeMode: 'contain',
   },
@@ -40,7 +40,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: vh(32),
-    marginBottom: vh(20),
   },
   dot: {
     width: vw(8),
@@ -50,10 +49,10 @@ export const styles = StyleSheet.create({
   },
   activeDot: {
     backgroundColor: Colors.primary,
-    width:vw(24),
-    height:vw(8),
-    resizeMode:'contain',
-    borderRadius:31,
+    width: vw(24),
+    height: vw(8),
+    resizeMode: 'contain',
+    borderRadius: 31,
   },
   inactiveDot: {
     backgroundColor: Colors.tutorialInactiveDot,
@@ -63,15 +62,15 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: vw(24),
+    marginTop: vh(56),
   },
   nextButton: {
-    width:vh(174),
-    height:vh(52),
-    resizeMode:'contain',
+    width: vw(174),
+    height: vw(52),
     backgroundColor: Colors.primary,
     borderRadius: 16,
     alignItems: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
   },
   nextButtonText: {
     color: Colors.White,
@@ -80,32 +79,31 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   skipButton: {
-    width:vw(121),
-    height:vw(56),
-    backgroundColor:Colors.White,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+    width: vw(93),
+    height: vw(20),
+    marginLeft:vw(14),
+    backgroundColor: Colors.White,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
   },
   skipButtonText: {
     color: Colors.primary,
     fontSize: size.button,
     fontWeight: '700',
   },
-  getStartedButtonContainer:{
-    paddingHorizontal:vw(24),
+  getStartedButtonContainer: {
+    paddingHorizontal: vw(16),
+    marginTop: vh(56),
   },
-  getStartedButton:{
+  getStartedButton: {
+    width: '100%',
+    height: vw(56),
     backgroundColor: Colors.primary,
-    marginHorizontal:vw(24),
-    width:'100%',
-    marginTop:vh(40),
-    paddingVertical: vw(14),
-    paddingHorizontal: vw(27),
     borderRadius: 16,
     alignItems: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
   },
-  getStartedButtonText:{
+  getStartedButtonText: {
     color: Colors.White,
     fontSize: size.button,
     fontWeight: '800',

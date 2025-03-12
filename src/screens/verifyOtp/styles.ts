@@ -28,8 +28,17 @@ export const styles = StyleSheet.create({
     color: Colors.red,
     marginTop: vh(10),
   },
+  disableVerifyButton:{
+    width:'100%',
+    alignSelf: 'center',
+    paddingVertical: vh(16),
+    borderRadius: 16,
+  },
   verifyButton:{
     width:'100%',
+    alignSelf: 'center',
+    paddingVertical: vh(16),
+    borderRadius: 16,
   },
   resendContainer: {
     flexDirection: 'row',
