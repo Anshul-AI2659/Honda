@@ -62,6 +62,6 @@ export const styles = StyleSheet.create({
   resendText:{
     fontSize:size.description,
     fontWeight:'600',
-    color:'#050507',
+    color:Colors.blackText,
   },
 });

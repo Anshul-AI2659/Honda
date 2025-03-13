@@ -181,13 +181,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '400',
     marginTop: vh(8),
-    color: '#7C8585',
+    color: Colors.description,
   },
   textHeaderItemPrice: {
     fontSize: 14,
     fontWeight: '600',
     marginTop: vh(8),
-    color: '#050507',
+    color: Colors.blackText,
   },
 });
 

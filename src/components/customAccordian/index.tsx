@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     letterSpacing: 1,
-    color: '#050507',
+    color: Colors.blackText,
   },
   img: {
     height: vh(24),
@@ -122,11 +122,11 @@ const styles = StyleSheet.create({
   itemFeature: {
     fontSize: 14,
     fontWeight: '400',
-    color: '#050507',
+    color: Colors.blackText,
   },
   itemValue: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#050507',
+    color: Colors.blackText,
   },
 });

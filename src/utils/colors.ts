@@ -1,10 +1,12 @@
 const Colors = {
   Black: '#000',
+  blackText: '#050507',
   White: '#fff',
   primary: '#E41D2D',
   itemBackground:'#F3F6FA80',
   primaryOpacity:'#E41D2D1A',
   tutorialDescription:'#7C8585',
+  description:'#7C8585',
   tutorialInactiveDot:'#D4DAEA',
   red:'red',
   lightGrey:'#F3F6FA',
@@ -12,7 +14,7 @@ const Colors = {
   placeHolderText:'#8CA2B4',
   headerButton:'#F4F7FF',
   inActiveTab:'#9DA7C4',
-  borderRight:'#D7D7D7',
+  border:'#F2F3F3',
 };
 const lightThemeColors = {
   backgroundColor: '#FFFFFF',

@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   productDetail: {
     fontSize: 12,
     fontWeight: '400',
-    color: '#050507',
+    color: Colors.blackText,
   },
   readMore: {
     fontSize: 14,
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   productDescription: {
     fontSize: 14,
     fontWeight: '400',
-    color: '#7C8585',
+    color: Colors.description,
     lineHeight: 22.4,
   },
   allExpandableContainer: {
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: vw(16),
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#F2F3F3',
+    borderColor: Colors.border,
   },
   dealerContainer: {
     flexDirection: 'row',
@@ -87,13 +87,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: vw(16),
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#F2F3F3',
+    borderColor: Colors.border,
   },
   dealer: {
     fontSize: 16,
     fontWeight: '500',
     letterSpacing: 1,
-    color: '#050507',
+    color: Colors.blackText,
   },
   locateDealer: {
     fontSize: 14,
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   alertBanner: {
-    backgroundColor: '#F3F6FA',
+    backgroundColor: Colors.lightGrey,
     borderRadius: 8,
     marginTop: vh(24),
     padding: vw(12),
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   alertTitle: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#050507',
+    color: Colors.blackText,
     marginLeft: vw(8),
   },
   alertDescriptionContainer: {
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   alertDescription: {
     fontSize: 14,
     fontWeight: '400',
-    color: '#7C8585',
+    color: Colors.description,
   },
   footer: {
     width: '100%',
@@ -154,12 +154,12 @@ const styles = StyleSheet.create({
   priceText: {
     fontSize: 20,
     fontWeight: '500',
-    color: '#050507',
+    color: Colors.blackText,
   },
   priceDetailText: {
     fontSize: 12,
     fontWeight: '400',
-    color: '#7C8585',
+    color: Colors.description,
   },
   buyNowButton: {
     width: vw(174),
