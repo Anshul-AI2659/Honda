@@ -10,9 +10,10 @@ const styles = StyleSheet.create({
   header: {
     paddingVertical: vh(15),
   },
-  headerImg: {
-    marginRight: vw(30),
+  backButton: {
+    backgroundColor: Colors.headerButton,
   },
+
   slide: {
     width: SCREEN_WIDTH,
     paddingHorizontal: vw(26),

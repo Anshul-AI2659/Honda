@@ -123,11 +123,9 @@ const VerifyOtp = ({navigation, route}: VerifyOtpProps) => {
         <SafeAreaView style={styles.container}>
           <CustomStatusBar />
           <CustomHeader
-            backButton
-            headerStyle={styles.header}
-            backIcon={Icons.back}
-            onBackPress={navigation.goBack}
-            headerImgStyle={styles.headerImg}
+            leftIcon={Icons.back}
+            onleftPress={navigation.goBack}
+            leftButtonStyle={styles.backButton}
           />
           <View style={styles.subContainer}>
             <View>

@@ -77,11 +77,10 @@ const ProductDetailPage = ({navigation}: ProductDetailPageProps) => {
     <SafeAreaView style={styles.mainContainer}>
       <CustomStatusBar />
       <CustomHeader
-        backButton
-        backIcon={Icons.back}
-        onBackPress={onBackPress}
+        leftIcon={Icons.back}
+        onleftPress={onBackPress}
+        leftButtonStyle={styles.backButton}
         headerStyle={styles.header}
-        headerImgStyle={styles.headerImg}
       />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Carousel

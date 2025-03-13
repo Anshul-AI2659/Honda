@@ -11,6 +11,7 @@ const Icons = {
   congratulation:require('../assets/icons/tick.png'),
   down:require('../assets/icons/down.png'),
   info:require('../assets/icons/info.png'),
+  profile:require('../assets/icons/profile.png'),
 };
 
 const Images = {

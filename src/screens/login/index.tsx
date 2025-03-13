@@ -50,11 +50,9 @@ const Login = ({navigation}: LoginProps) => {
         <SafeAreaView style={styles.mainContainer}>
           <CustomStatusBar />
           <CustomHeader
-            backButton
-            headerStyle={styles.header}
-            backIcon={Icons.back}
-            onBackPress={navigation.goBack}
-            headerImgStyle={styles.headerImg}
+            leftIcon={Icons.back}
+            onleftPress={navigation.goBack}
+            leftButtonStyle={styles.backButton}
           />
           <View style={styles.subContainer}>
             <View>

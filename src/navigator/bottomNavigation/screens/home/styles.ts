@@ -3,6 +3,9 @@ import {Colors} from '../../../../utils/colors';
 import {SCREEN_WIDTH, vh, vw} from '../../../../utils/dimension';
 
 const styles = StyleSheet.create({
+  back: {
+    backgroundColor: 'red',
+  },
   mainContainer: {
     flex: 1,
     backgroundColor: Colors.White,
@@ -12,14 +15,18 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.White,
   },
   header: {
-    paddingTop: vh(10),
-    paddingBottom: vh(20),
+    paddingVertical: vh(12),
+  },
+  profileIcon: {
+    width: vw(40),
+    height: vw(40),
+    resizeMode: 'contain',
+  },
+  notificationButton: {
+    backgroundColor: Colors.headerButton,
   },
   HIPlusHeaderStyle: {
     alignItems: 'flex-end',
-  },
-  headerImg: {
-    marginLeft: vw(30),
   },
   corouselItemContainer: {
     flexDirection: 'row',

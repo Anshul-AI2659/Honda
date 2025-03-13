@@ -9,16 +9,12 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.White,
   },
-  header: {
-    paddingTop: vh(10),
-    paddingBottom: vh(20),
+  backButton:{
+    backgroundColor:Colors.headerButton,
   },
-  headerImg: {
-    marginRight: vw(30),
-  },
-
   subContainer: {
     flex:1,
+    marginTop:vh(20),
     paddingBottom:vh(10),
     justifyContent:'space-between',
     paddingHorizontal: vw(20),

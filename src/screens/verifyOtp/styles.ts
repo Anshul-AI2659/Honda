@@ -3,39 +3,35 @@ import {StyleSheet} from 'react-native';
 // Utils
 import {vh, vw} from '../../utils/dimension';
 import {Colors} from '../../utils/colors';
-import { size } from '../../utils/size';
+import {size} from '../../utils/size';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.White,
   },
+  backButton: {
+    backgroundColor: Colors.headerButton,
+  },
   subContainer: {
-    flex:1,
+    flex: 1,
     paddingHorizontal: vw(20),
-    paddingBottom:vh(20),
-    justifyContent:'space-between',
-  },
-  header: {
-    paddingTop: vh(10),
     paddingBottom: vh(20),
+    marginTop: vh(20),
+    justifyContent: 'space-between',
   },
-  headerImg: {
-    marginRight: vw(30),
-  },
-
   error: {
     color: Colors.red,
     marginTop: vh(10),
   },
-  disableVerifyButton:{
-    width:'100%',
+  disableVerifyButton: {
+    width: '100%',
     alignSelf: 'center',
     paddingVertical: vh(16),
     borderRadius: 16,
   },
-  verifyButton:{
-    width:'100%',
+  verifyButton: {
+    width: '100%',
     alignSelf: 'center',
     paddingVertical: vh(16),
     borderRadius: 16,
@@ -56,12 +52,12 @@ export const styles = StyleSheet.create({
   },
   timerText: {
     fontSize: size.description,
-    fontWeight:'600',
+    fontWeight: '600',
     color: Colors.primary,
   },
-  resendText:{
-    fontSize:size.description,
-    fontWeight:'600',
-    color:Colors.blackText,
+  resendText: {
+    fontSize: size.description,
+    fontWeight: '600',
+    color: Colors.blackText,
   },
 });
