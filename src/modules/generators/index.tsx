@@ -19,7 +19,12 @@ import {normalize, vh, vw} from '../../utils/dimension';
 import CustomSearchBar from '../../components/customSearchBar';
 import CustomFlatList from '../../components/customFlatlist';
 import {NewArrivals} from '../../assets/data';
-import {ROBOTO_BOLD, ROBOTO_MEDIUM, ROBOTO_REGULAR, ROBOTO_SEMIBOLD} from '../../utils/Fonts';
+import {
+  ROBOTO_BOLD,
+  ROBOTO_MEDIUM,
+  ROBOTO_REGULAR,
+  ROBOTO_SEMIBOLD,
+} from '../../utils/Fonts';
 
 interface generatorsProps {
   navigation: StackNavigationProp<StackParamList>;
@@ -69,74 +74,77 @@ const Generators = ({navigation}: generatorsProps) => {
         numColumn={2}
         contentContainerStyle={styles.customFlatListStyle}
         listHeaderComponent={
-            <>
-          <CustomSearchBar
-            placeholder="Search"
-            searchContainerStyle={styles.searchContainer}
-            value={searchText}
-            onChangeText={text => setSearchText(text)}
-            onSearchPress={handleSearchPress}
-          />
-          <ScrollView style={styles.choiceContainer} horizontal showsHorizontalScrollIndicator={false}>
-                <TouchableOpacity
+          <>
+            <CustomSearchBar
+              placeholder="Search"
+              searchContainerStyle={styles.searchContainer}
+              value={searchText}
+              onChangeText={text => setSearchText(text)}
+              onSearchPress={handleSearchPress}
+            />
+            <ScrollView
+              style={styles.choiceContainer}
+              horizontal
+              showsHorizontalScrollIndicator={false}>
+              <TouchableOpacity
+                style={[
+                  styles.Button,
+                  selected === 1 ? styles.selectedButton : null,
+                ]}
+                onPress={() => setSelected(1)}>
+                <Text
                   style={[
-                    styles.Button,
-                    selected === 1 ? styles.selectedButton : null,
-                  ]}
-                  onPress={() => setSelected(1)}>
-                  <Text
-                    style={[
-                      styles.buttonText,
-                      selected === 1 ? styles.selectedButtonText : null,
-                    ]}>
-                    {'All'}
-                  </Text>
-                </TouchableOpacity>
+                    styles.buttonText,
+                    selected === 1 ? styles.selectedButtonText : null,
+                  ]}>
+                  {'All'}
+                </Text>
+              </TouchableOpacity>
 
-                <TouchableOpacity
+              <TouchableOpacity
+                style={[
+                  styles.Button,
+                  selected === 2 ? styles.selectedButton : null,
+                ]}
+                onPress={() => setSelected(2)}>
+                <Text
                   style={[
-                    styles.Button,
-                    selected === 2 ? styles.selectedButton : null,
-                  ]}
-                  onPress={() => setSelected(2)}>
-                  <Text
-                    style={[
-                      styles.buttonText,
-                      selected === 2 ? styles.selectedButtonText : null,
-                    ]}>
-                    {'Inverter'}
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
+                    styles.buttonText,
+                    selected === 2 ? styles.selectedButtonText : null,
+                  ]}>
+                  {'Inverter'}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[
+                  styles.Button,
+                  selected === 3 ? styles.selectedButton : null,
+                ]}
+                onPress={() => setSelected(3)}>
+                <Text
                   style={[
-                    styles.Button,
-                    selected === 3 ? styles.selectedButton : null,
-                  ]}
-                  onPress={() => setSelected(3)}>
-                  <Text
-                    style={[
-                      styles.buttonText,
-                      selected === 3 ? styles.selectedButtonText : null,
-                    ]}>
-                    {'Silent Series'}
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
+                    styles.buttonText,
+                    selected === 3 ? styles.selectedButtonText : null,
+                  ]}>
+                  {'Silent Series'}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[
+                  styles.Button,
+                  selected === 4 ? styles.selectedButton : null,
+                ]}
+                onPress={() => setSelected(4)}>
+                <Text
                   style={[
-                    styles.Button,
-                    selected === 4 ? styles.selectedButton : null,
-                  ]}
-                  onPress={() => setSelected(4)}>
-                  <Text
-                    style={[
-                      styles.buttonText,
-                      selected === 4 ? styles.selectedButtonText : null,
-                    ]}>
-                    {'Handy Series'}
-                  </Text>
-                </TouchableOpacity>
-              </ScrollView>
-              </>
+                    styles.buttonText,
+                    selected === 4 ? styles.selectedButtonText : null,
+                  ]}>
+                  {'Handy Series'}
+                </Text>
+              </TouchableOpacity>
+            </ScrollView>
+          </>
         }
       />
     </SafeAreaView>
@@ -163,20 +171,20 @@ const styles = StyleSheet.create({
   backButton: {
     backgroundColor: Colors.headerButton,
   },
-  searchContainer:{
-    marginHorizontal:vw(8),
+  searchContainer: {
+    marginHorizontal: vw(8),
   },
   choiceContainer: {
     width: '100%',
     marginTop: vh(16),
-    marginBottom:vh(4),
-    paddingHorizontal:vw(4),
+    marginBottom: vh(4),
+    paddingHorizontal: vw(4),
     flexDirection: 'row',
   },
   Button: {
     paddingVertical: vh(10),
-    paddingHorizontal:vw(16),
-    marginHorizontal:vw(4),
+    paddingHorizontal: vw(16),
+    marginHorizontal: vw(4),
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
@@ -193,14 +201,14 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: normalize(14),
-    fontFamily:ROBOTO_MEDIUM,
+    fontFamily: ROBOTO_MEDIUM,
     color: Colors.description,
-    fontWeight:'500',
+    fontWeight: '500',
   },
   selectedButtonText: {
     fontSize: normalize(14),
-    fontFamily:ROBOTO_MEDIUM,
-    fontWeight:'500',
+    fontFamily: ROBOTO_MEDIUM,
+    fontWeight: '500',
     color: Colors.primary,
   },
   customFlatListStyle: {
