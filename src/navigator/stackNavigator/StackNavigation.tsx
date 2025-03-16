@@ -6,13 +6,15 @@ import {NavigationContainer} from '@react-navigation/native';
 import {StackParamList} from '../../utils/types';
 
 // Screens
-import SplashScreen from '../../screens/splash';
-import TutorialScreen from '../../screens/tutorialScreen';
-import SelectRole from '../../screens/selectRole';
-import Login from '../../screens/login';
-import VerifyOtp from '../../screens/verifyOtp';
-import CongratulationScreen from '../../screens/congratulation';
-import ProductDetailPage from '../../screens/productDetailPage';
+import SplashScreen from '../../modules/splash';
+import TutorialScreen from '../../modules/tutorialScreen';
+import SelectRole from '../../modules/auth/selectRole';
+import Login from '../../modules/auth/login';
+import VerifyOtp from '../../modules/auth/verifyOtp';
+import CongratulationScreen from '../../modules/congratulation';
+import ProductDetailPage from '../../modules/productDetailPage';
+import Honda_Category from '../../modules/honda_Category';
+import Generators from '../../modules/generators';
 import BottomNavigation from '../bottomNavigation';
 
 const Stack = createNativeStackNavigator<StackParamList>();
@@ -31,6 +33,8 @@ const StackNavigation = () => {
         <Stack.Screen name="BottomNavigation" component={BottomNavigation} />
         <Stack.Screen name="Congratulation" component={CongratulationScreen} />
         <Stack.Screen name="ProductDetailPage" component={ProductDetailPage} />
+        <Stack.Screen name="Honda_Category" component={Honda_Category} />
+        <Stack.Screen name="Generators" component={Generators} />
       </Stack.Navigator>
     </NavigationContainer>
   );

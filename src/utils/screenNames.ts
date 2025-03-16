@@ -6,7 +6,9 @@ enum ScreenNames {
   VerifyOtp = 'VerifyOtp',
   Home = 'BottomNavigation',
   Congratulation = 'Congratulation',
-  ProductDetail='ProductDetailPage'
+  ProductDetail='ProductDetailPage',
+  honda_Category='Honda_Category',
+  Generators='Generators',
 }
 
 export {ScreenNames};

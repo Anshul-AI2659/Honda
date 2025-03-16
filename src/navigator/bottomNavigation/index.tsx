@@ -3,15 +3,15 @@ import {Image, Text, View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 // Screens
-import More from './screens/more';
-import Home from './screens/home';
-import Category from './screens/category';
-import Promotion from './screens/promotion';
-import Training from './screens/training';
+import More from '../../modules/bottomTabs/more';
+import Home from '../../modules/bottomTabs/home';
+import Category from '../../modules/bottomTabs/category';
+import Promotion from '../../modules/bottomTabs/promotion';
+import Training from '../../modules/bottomTabs/training';
 
 // Utils
 import {BottomTabParamList} from '../../utils/types';
-import {vh, vw} from '../../utils/dimension';
+import {vh} from '../../utils/dimension';
 import {Colors} from '../../utils/colors';
 
 //Assets
@@ -19,6 +19,7 @@ import {Icons} from '../../assets';
 
 //Styles
 import styles from './styles';
+import {ROBOTO_MEDIUM, ROBOTO_SEMIBOLD} from '../../utils/Fonts';
 
 type TabBarIconProps = {
   focused: boolean;
@@ -87,7 +88,10 @@ const TabBarLabelWithDot = ({
     <Text
       style={[
         styles.tabBarLabel,
-        {color: focused ? Colors.primary : Colors.inActiveTab},
+        {
+          color: focused ? Colors.blackText : Colors.inActiveTab,
+          fontFamily: focused ? ROBOTO_SEMIBOLD : ROBOTO_MEDIUM,
+        },
       ]}>
       {label}
     </Text>

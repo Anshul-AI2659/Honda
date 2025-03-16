@@ -13,7 +13,7 @@ const Colors = {
   greyText:'#656565',
   placeHolderText:'#8CA2B4',
   headerButton:'#F4F7FF',
-  inActiveTab:'#9DA7C4',
+  inActiveTab:'#8CA2B4',
   border:'#F2F3F3',
 };
 const lightThemeColors = {

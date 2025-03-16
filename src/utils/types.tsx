@@ -20,6 +20,8 @@ export type StackParamList = {
   Congratulation:undefined;
   BottomNavigation: undefined;
   ProductDetailPage:undefined;
+  Honda_Category:undefined;
+  Generators:undefined;
 };
 
 export type AppNavigatorParamList = {

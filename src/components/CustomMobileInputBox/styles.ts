@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     paddingVertical: vh(8),
     paddingLeft: vw(16),
     paddingRight: vw(12),
-    borderRightColor: Colors.borderRight,
+    borderRightColor: Colors.border,
     alignItems: 'center',
   },
   countryCodeText: {

@@ -1,25 +1,26 @@
-import {Dimensions, PixelRatio} from 'react-native';
-export const SCREEN_WIDTH = Dimensions.get('window').width;
-export const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-export const DESIGN_WIDTH = 375;
-export const DESIGN_HEIGHT = 812;
+import {Dimensions, PixelRatio} from 'react-native';
+
+export const DesignWidth = 412;
+export const DesignHeight = 892;
+export const screenWidth = Dimensions.get('window').width;
+export const screenHeight = Dimensions.get('window').height;
+
+const {width: SCREEN_WIDTH} = Dimensions.get('window');
+const scale = SCREEN_WIDTH / 412;
+
+export function normalize(size: number) {
+  return PixelRatio.roundToNearestPixel(size * scale);
+}
 
 export const vw = (width: number) => {
-  const percent = (width / DESIGN_WIDTH) * 100;
+  let percent = (width / DesignWidth) * 100;
   const elemWidth = parseFloat(percent + '%');
-  return PixelRatio.roundToNearestPixel((SCREEN_WIDTH * elemWidth) / 100);
+  return PixelRatio.roundToNearestPixel((screenWidth * elemWidth) / 100);
 };
 
 export const vh = (height: number) => {
-  const percent = (height / DESIGN_HEIGHT) * 100;
+  let percent = (height / DesignHeight) * 100;
   const elemHeight = parseFloat(percent + '%');
-  return PixelRatio.roundToNearestPixel((SCREEN_HEIGHT * elemHeight) / 100);
-};
-
-export default {
-  vh,
-  vw,
-  SCREEN_WIDTH,
-  SCREEN_HEIGHT,
+  return PixelRatio.roundToNearestPixel((screenHeight * elemHeight) / 100);
 };

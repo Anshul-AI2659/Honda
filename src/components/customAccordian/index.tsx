@@ -4,29 +4,27 @@ import {
   ImageSourcePropType,
   Platform,
   Pressable,
-  StyleSheet,
   Text,
   UIManager,
   View,
   ViewStyle,
 } from 'react-native';
 import React, {JSX, useEffect, useRef} from 'react';
-import {Colors} from '../../utils/colors';
-import {vh} from '../../utils/dimension';
 import {specifications} from '../../assets/data';
+import styles from './styles';
 
 type Props = {
   title: any;
   icon: ImageSourcePropType;
   containerStyle: ViewStyle;
   isExpanded: boolean;
-  onPress: ()=> void;
+  onPress: () => void;
   hiddenView?: () => JSX.Element | undefined;
 };
 
 export const SingleExpandableList = (props: Props) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
-  const {containerStyle = {},  isExpanded, onPress } = props;
+  const {containerStyle = {}, isExpanded, onPress} = props;
 
   if (Platform.OS === 'android') {
     if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -46,8 +44,7 @@ export const SingleExpandableList = (props: Props) => {
   }, [isExpanded]);
 
   return (
-    <View style={[containerStyle,{overflow:'hidden'}
-    ]}>
+    <View style={[containerStyle, {overflow: 'hidden'}]}>
       <Pressable style={styles.mainContainer} onPress={onPress}>
         <Text style={styles.titleText}>{props.title}</Text>
         {props.icon && (
@@ -86,47 +83,3 @@ export const SingleExpandableList = (props: Props) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    backgroundColor: Colors.White,
-    paddingVertical: vh(16),
-    borderRadius: 12,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  titleText: {
-    fontSize: 16,
-    fontWeight: '500',
-    letterSpacing: 1,
-    color: Colors.blackText,
-  },
-  img: {
-    height: vh(24),
-    width: vh(24),
-    tintColor: Colors.Black,
-  },
-  imgContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  listContainer:{
-    marginBottom:vh(8),
-  },
-  itemContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: vh(8),
-  },
-  itemFeature: {
-    fontSize: 14,
-    fontWeight: '400',
-    color: Colors.blackText,
-  },
-  itemValue: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: Colors.blackText,
-  },
-});
