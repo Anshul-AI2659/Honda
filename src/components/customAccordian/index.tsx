@@ -1,5 +1,6 @@
 import {
   Animated,
+  FlatList,
   Image,
   ImageSourcePropType,
   Platform,
@@ -71,13 +72,26 @@ export const SingleExpandableList = (props: Props) => {
         )}
       </Pressable>
       {isExpanded && (
+        // <View style={styles.listContainer}>
+        //   {specifications.map(item => (
+        //     <View key={item.id} style={styles.itemContainer}>
+        //       <Text style={styles.itemFeature}>{item.feature}</Text>
+        //       <Text style={styles.itemValue}>{item.value}</Text>
+        //     </View>
+        //   ))}
+        // </View>
         <View style={styles.listContainer}>
-          {specifications.map(item => (
-            <View key={item.id} style={styles.itemContainer}>
-              <Text style={styles.itemFeature}>{item.feature}</Text>
-              <Text style={styles.itemValue}>{item.value}</Text>
-            </View>
-          ))}
+          <FlatList
+            data={specifications}
+            keyExtractor={item => item.id}
+            renderItem={({item}) => (
+              <View style={styles.itemContainer}>
+                <Text style={styles.itemFeature}>{item.feature}</Text>
+                <Text style={styles.itemValue}>{item.value}</Text>
+              </View>
+            )}
+            horizontal={false}
+          />
         </View>
       )}
     </View>

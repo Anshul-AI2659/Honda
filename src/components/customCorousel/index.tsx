@@ -7,26 +7,28 @@ interface CarouselProps {
   currentStep: number;
   renderItem: ({item, index}: {item: any; index: number}) => JSX.Element;
   handleScrollEnd: (event: any) => void;
+  listContainerStyle?: object;
   paginationStyle?: object;
   dotStyle?: object;
   activeDotStyle?: object;
   inactiveDotStyle?: object;
 }
 
-const Carousel: React.FC<CarouselProps> = ({
+const Carousel = ({
   data,
   currentStep,
   renderItem,
   handleScrollEnd,
+  listContainerStyle,
   paginationStyle = {},
   dotStyle = {},
   activeDotStyle = {},
   inactiveDotStyle = {},
-}) => {
+}: CarouselProps) => {
   const flatListRef = useRef<FlatList>(null);
 
   return (
-    <View>
+    <View style={listContainerStyle}>
       <FlatList
         ref={flatListRef}
         data={data}
@@ -56,7 +58,5 @@ const Carousel: React.FC<CarouselProps> = ({
     </View>
   );
 };
-
-
 
 export default Carousel;

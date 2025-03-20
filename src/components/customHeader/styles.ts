@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {Colors} from '../../utils/colors';
 import {normalize, vh, vw} from '../../utils/dimension';
-import { ROBOTO_MEDIUM } from '../../utils/Fonts';
+import {ROBOTO_MEDIUM} from '../../utils/Fonts';
 
 const styles = StyleSheet.create({
   header: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  backButton: {
+  leftButton: {
     width: vw(40),
     height: vw(40),
     resizeMode: 'contain',
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: Colors.White,
   },
-  backIcon: {
+  leftIcon: {
     width: vw(24),
     height: vw(24),
     resizeMode: 'contain',
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   textHeading: {
     fontSize: normalize(18),
-    fontFamily:ROBOTO_MEDIUM,
+    fontFamily: ROBOTO_MEDIUM,
     fontWeight: '500',
     color: Colors.blackText,
     marginTop: vh(8),

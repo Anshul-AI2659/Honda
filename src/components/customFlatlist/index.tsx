@@ -24,7 +24,7 @@ interface CustomFlatListProps {
   onSeeMorePress?: () => void;
   scrollEnabled?: boolean;
   contentContainerStyle?: object;
-  listHeaderComponent?:React.ComponentType<any> | React.ReactElement | null;
+  listHeaderComponent?: React.ComponentType<any> | React.ReactElement | null;
 }
 
 const CustomFlatList = ({
@@ -41,7 +41,7 @@ const CustomFlatList = ({
   onSeeMorePress,
   scrollEnabled = true,
   contentContainerStyle,
-  listHeaderComponent
+  listHeaderComponent,
 }: CustomFlatListProps) => {
   return (
     <View style={styles.container}>

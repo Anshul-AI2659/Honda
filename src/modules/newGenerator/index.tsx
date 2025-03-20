@@ -34,7 +34,7 @@ interface Item {
   price: string;
 }
 
-const Generators = ({navigation}: generatorsProps) => {
+const NewGenerators = ({navigation}: generatorsProps) => {
   const [searchText, setSearchText] = useState('');
   const [selected, setSelected] = useState(1);
   const [currentData, setCurrentData] = useState(NewArrivalsData);
@@ -97,43 +97,43 @@ const Generators = ({navigation}: generatorsProps) => {
   const handleSearchPress = () => {};
   return (
     <>
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-    <SafeAreaView style={styles.mainContainer}>
-      <CustomHeader
-        headerStyle={styles.header}
-        leftIcon={Icons.back}
-        textHeading="Generators"
-        leftButtonStyle={styles.backButton}
-        onleftPress={navigation.goBack}
-      />
-      <CustomSearchBar
-        placeholder="Search"
-        searchContainerStyle={styles.searchContainer}
-        value={searchText}
-        onChangeText={text => setSearchText(text)}
-        onSearchPress={handleSearchPress}
-      />
-      <View style={styles.choiceContainer}>
-        <CustomFlatList
-          data={buttonData}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
-          horizontal={true}
-          // contentContainerStyle={styles.choiceContainer}
-        />
-      </View>
-      <CustomFlatList
-        data={currentData}
-        renderItem={GeneratorsRenderItem}
-        keyExtractor={item => item.id}
-        horizontal={false}
-        numColumn={2}
-        contentContainerStyle={styles.customFlatListStyle}
-      />
-    </SafeAreaView>
-    </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <SafeAreaView style={styles.mainContainer}>
+          <CustomHeader
+            headerStyle={styles.header}
+            leftIcon={Icons.back}
+            textHeading="Generators"
+            leftButtonStyle={styles.backButton}
+            onleftPress={navigation.goBack}
+          />
+          <CustomSearchBar
+            placeholder="Search"
+            searchContainerStyle={styles.searchContainer}
+            value={searchText}
+            onChangeText={text => setSearchText(text)}
+            onSearchPress={handleSearchPress}
+          />
+          <View style={styles.choiceContainer}>
+            <CustomFlatList
+              data={buttonData}
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
+              horizontal={true}
+              // contentContainerStyle={styles.choiceContainer}
+            />
+          </View>
+          <CustomFlatList
+            data={currentData}
+            renderItem={GeneratorsRenderItem}
+            keyExtractor={item => item.id}
+            horizontal={false}
+            numColumn={2}
+            contentContainerStyle={styles.customFlatListStyle}
+          />
+        </SafeAreaView>
+      </TouchableWithoutFeedback>
     </>
   );
 };
 
-export default Generators;
+export default NewGenerators;

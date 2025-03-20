@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 import {vw, vh, screenWidth} from '../../utils/dimension';
 import {Colors} from '../../utils/colors';
 import {size} from '../../utils/size';
-import { ROBOTO_BOLD, ROBOTO_EXTRABOLD, ROBOTO_REGULAR } from '../../utils/Fonts';
+import {ROBOTO_BOLD, ROBOTO_EXTRABOLD, ROBOTO_REGULAR} from '../../utils/Fonts';
 
 export const styles = StyleSheet.create({
   container: {
@@ -24,14 +24,14 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: size.headerTitle,
-    fontFamily:ROBOTO_BOLD,
+    fontFamily: ROBOTO_BOLD,
     fontWeight: '700',
     color: Colors.Black,
     textAlign: 'center',
   },
   description: {
     fontSize: size.description,
-    fontFamily:ROBOTO_REGULAR,
+    fontFamily: ROBOTO_REGULAR,
     fontWeight: '400',
     color: Colors.tutorialDescription,
     marginTop: vh(12),
@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: vw(24),
-    marginTop: vh(56),
+    marginTop: vh(106),
   },
   nextButton: {
     width: vw(174),
@@ -78,14 +78,14 @@ export const styles = StyleSheet.create({
   nextButtonText: {
     color: Colors.White,
     fontSize: size.button,
-    fontFamily:ROBOTO_EXTRABOLD,
+    fontFamily: ROBOTO_EXTRABOLD,
     fontWeight: '800',
     textAlign: 'center',
   },
   skipButton: {
     width: vw(93),
     height: vw(20),
-    marginLeft:vw(14),
+    marginLeft: vw(14),
     backgroundColor: Colors.White,
     alignItems: 'flex-start',
     justifyContent: 'center',
@@ -93,12 +93,12 @@ export const styles = StyleSheet.create({
   skipButtonText: {
     color: Colors.primary,
     fontSize: size.button,
-    fontFamily:ROBOTO_BOLD,
+    fontFamily: ROBOTO_BOLD,
     fontWeight: '700',
   },
   getStartedButtonContainer: {
     paddingHorizontal: vw(16),
-    marginTop: vh(56),
+    marginTop: vh(106),
   },
   getStartedButton: {
     width: '100%',
@@ -111,7 +111,7 @@ export const styles = StyleSheet.create({
   getStartedButtonText: {
     color: Colors.White,
     fontSize: size.button,
-    fontFamily:ROBOTO_EXTRABOLD,
+    fontFamily: ROBOTO_EXTRABOLD,
     fontWeight: '800',
     textAlign: 'center',
   },

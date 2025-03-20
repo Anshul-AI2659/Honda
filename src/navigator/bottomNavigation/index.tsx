@@ -112,6 +112,7 @@ const BottomNavigation = () => {
       screenOptions={() => ({
         headerShown: false,
         tabBarShowLabel: true,
+        tabBarHideOnKeyboard:true,
         tabBarStyle: {
           height: vh(104),
           justifyContent: 'center',

@@ -40,10 +40,10 @@ const CustomHeader = ({
     <View style={[styles.header, headerStyle]}>
       {/* Left Back Button */}
       <TouchableOpacity
-        style={[styles.backButton, leftButtonStyle]}
+        style={[styles.leftButton, leftButtonStyle]}
         onPress={onleftPress}>
         {leftIcon && (
-          <Image source={leftIcon} style={[styles.backIcon, leftIconStyle]} />
+          <Image source={leftIcon} style={[styles.leftIcon, leftIconStyle]} />
         )}
       </TouchableOpacity>
       {/* Logo */}

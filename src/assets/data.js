@@ -113,7 +113,7 @@ export const HIPlus = [
   },
 ];
 
-export const NewArrivals = [
+export const NewArrivalsData = [
   {
     id: '1',
     number: 'EU70is',
@@ -234,4 +234,17 @@ export const specifications = [
     feature: 'Fuel Type',
     value: 'Unleaded gasoline',
   },
+];
+export const buttonData = [
+  {id: 1, title: 'All'},
+  {id: 2, title: 'Inverter'},
+  {id: 3, title: 'Silent Series'},
+  {id: 4, title: 'Handy Series'},
+];
+
+export const trainingButtonData = [
+  {id: 1, title: 'Sales Talk'},
+  {id: 2, title: 'DIY Videos'},
+  {id: 3, title: 'Service Manuals'},
+  {id: 4, title: 'Parts Catalog'},
 ];

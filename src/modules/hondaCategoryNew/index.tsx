@@ -19,7 +19,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {StackParamList} from '../../utils/types';
 import {ScreenNames} from '../../utils/screenNames';
 
-interface honda_CategoryProps {
+interface newHondaCategoryProps {
   navigation: StackNavigationProp<StackParamList>;
 }
 
@@ -31,7 +31,7 @@ interface Item {
   price: string;
 }
 
-const Honda_Category = ({navigation}: honda_CategoryProps) => {
+const newHondaCategory = ({navigation}: newHondaCategoryProps) => {
   const GeneratorsRenderItem = ({item}: {item: Item}) => (
     <TouchableOpacity
       style={styles.textHeaderItemContainer}
@@ -113,7 +113,7 @@ const Honda_Category = ({navigation}: honda_CategoryProps) => {
           horizontal={true}
           header
           headingText="Generators"
-          onSeeMorePress={() => navigation.navigate(ScreenNames.Generators)}
+          onSeeMorePress={() => navigation.navigate(ScreenNames.NewGenerators)}
           contentContainerStyle={styles.customFlatListStyle}
         />
         <CustomFlatList
@@ -123,6 +123,7 @@ const Honda_Category = ({navigation}: honda_CategoryProps) => {
           horizontal={true}
           header
           headingText="Tillers"
+          onSeeMorePress={() => navigation.navigate(ScreenNames.Tillers)}
           contentContainerStyle={styles.customFlatListStyle}
         />
         <CustomFlatList
@@ -148,4 +149,4 @@ const Honda_Category = ({navigation}: honda_CategoryProps) => {
   );
 };
 
-export default Honda_Category;
+export default newHondaCategory;

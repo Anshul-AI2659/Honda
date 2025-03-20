@@ -8,12 +8,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.White,
   },
-  scrollView: {
-    flex: 1,
-    backgroundColor: Colors.White,
-    paddingHorizontal: vw(8),
-    paddingVertical: vh(20),
-  },
   header: {
     paddingVertical: vh(14),
     borderBottomWidth: 1,
@@ -27,25 +21,24 @@ const styles = StyleSheet.create({
   backButton: {
     backgroundColor: Colors.headerButton,
   },
-  backIcon: {
-    width: vw(24),
-    height: vw(24),
-    resizeMode: 'contain',
+  searchContainer: {
+    marginHorizontal: vw(16),
   },
+
   customFlatListStyle: {
-    marginBottom: vh(36),
-    marginTop: vh(16),
+    paddingHorizontal: vw(8),
   },
   textHeaderItemContainer: {
-    width: vw(140),
-    height: vw(183),
+    width: vw(182),
+    height: vw(215),
     backgroundColor: Colors.White,
     borderRadius: 12,
     marginHorizontal: vw(8),
+    marginVertical: vh(12),
   },
   textHeaderImageContainer: {
-    width: vw(140),
-    height: vw(104),
+    width: vw(182),
+    height: vw(136),
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 12,
@@ -78,5 +71,4 @@ const styles = StyleSheet.create({
     color: Colors.blackText,
   },
 });
-
 export default styles;

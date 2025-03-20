@@ -12,6 +12,12 @@ const Icons = {
   down:require('../assets/icons/down.png'),
   info:require('../assets/icons/info.png'),
   profile:require('../assets/icons/profile.png'),
+  sort:require('../assets/icons/sort.png'),
+  filter:require('../assets/icons/filter.png'),
+  calendar: require('../assets/icons/calendar.png'),
+  notificationBell: require('../assets/icons/notificationBell.png'),
+  notificationOn: require('../assets/icons/notificationOn.png'),
+  notificationOff: require('../assets/icons/notificationOff.png'),
 };
 
 const Images = {

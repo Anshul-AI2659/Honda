@@ -3,9 +3,11 @@ import React, {useState} from 'react';
 import {
   Image,
   ImageSourcePropType,
+  Keyboard,
   ScrollView,
   Text,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -16,7 +18,7 @@ import {
   BestSellingProducts,
   HIPlus,
   Honda,
-  NewArrivals,
+  NewArrivalsData,
   steps,
 } from '../../../assets/data';
 
@@ -33,7 +35,7 @@ import styles from './styles';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {BottomTabParamList} from '../../../utils/types';
 import {ScreenNames} from '../../../utils/screenNames';
-import { vw } from '../../../utils/dimension';
+import {vw} from '../../../utils/dimension';
 
 interface HomeProps {
   navigation: BottomTabNavigationProp<BottomTabParamList>;
@@ -121,6 +123,8 @@ const Home = ({navigation}: HomeProps) => {
   const handleSearchPress = () => {};
 
   return (
+    <>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
     <SafeAreaView style={styles.mainContainer}>
       <CustomStatusBar />
       <ScrollView
@@ -132,6 +136,9 @@ const Home = ({navigation}: HomeProps) => {
           leftIconStyle={styles.profileIcon}
           rightIcon={Icons.notification}
           rightButtonStyle={styles.notificationButton}
+          onRightPress={() => {
+            navigation.navigate(ScreenNames.Notification);
+          }}
         />
         <CustomSearchBar
           placeholder="Search products"
@@ -145,32 +152,33 @@ const Home = ({navigation}: HomeProps) => {
           renderItem={corouselRenderItem}
           handleScrollEnd={handleScrollEnd}
           paginationStyle={styles.pagination}
+          listContainerStyle={styles.corouselList}
         />
-        <View style={{paddingHorizontal:vw(8)}}>
-        <CustomFlatList
-          data={Honda}
-          renderItem={ImageHeaderRenderItem}
-          keyExtractor={item => item.id}
-          horizontal={true}
-          header
-          headerImg={Images.logo}
-          onSeeMorePress={() => {
-            navigation.navigate(ScreenNames.honda_Category);
-          }}
-          contentContainerStyle={styles.customFlatListStyle}
-        />
+        <View style={{paddingHorizontal: vw(8)}}>
+          <CustomFlatList
+            data={Honda}
+            renderItem={ImageHeaderRenderItem}
+            keyExtractor={item => item.id}
+            horizontal={true}
+            header
+            headerImg={Images.logo}
+            onSeeMorePress={() => {
+              navigation.navigate(ScreenNames.honda_Category);
+            }}
+            contentContainerStyle={styles.customFlatListStyle}
+          />
 
-        <CustomFlatList
-          data={HIPlus}
-          renderItem={ImageHeaderRenderItem}
-          keyExtractor={item => item.id}
-          horizontal={true}
-          header
-          headerStyle={styles.HIPlusHeaderStyle}
-          headerImg={Images.HIPlus}
-          headerImgStyle={styles.HIPlusImgStyle}
-          contentContainerStyle={styles.customFlatListStyle}
-        />
+          <CustomFlatList
+            data={HIPlus}
+            renderItem={ImageHeaderRenderItem}
+            keyExtractor={item => item.id}
+            horizontal={true}
+            header
+            headerStyle={styles.HIPlusHeaderStyle}
+            headerImg={Images.HIPlus}
+            headerImgStyle={styles.HIPlusImgStyle}
+            contentContainerStyle={styles.customFlatListStyle}
+          />
         </View>
         <View style={styles.banner}>
           <View style={styles.bannerHeader}>
@@ -191,28 +199,33 @@ const Home = ({navigation}: HomeProps) => {
             </View>
           </View>
         </View>
-        <View style={{paddingHorizontal:vw(8)}}>
-        <CustomFlatList
-          data={NewArrivals}
-          renderItem={newArrivalsRenderItem}
-          keyExtractor={item => item.id}
-          horizontal={true}
-          header
-          headingText="New Arrivals"
-          contentContainerStyle={styles.customFlatListStyle}
-        />
-        <CustomFlatList
-          data={BestSellingProducts}
-          renderItem={bestSellingProductRenderItem}
-          keyExtractor={item => item.id}
-          horizontal={true}
-          header
-          headingText="Best Selling Products"
-          contentContainerStyle={styles.customFlatListStyle}
-        />
+        <View style={{paddingHorizontal: vw(8)}}>
+          <CustomFlatList
+            data={NewArrivalsData}
+            renderItem={newArrivalsRenderItem}
+            keyExtractor={item => item.id}
+            horizontal={true}
+            header
+            onSeeMorePress={() => {
+              navigation.navigate(ScreenNames.NewArrivals);
+            }}
+            headingText="New Arrivals"
+            contentContainerStyle={styles.customFlatListStyle}
+          />
+          <CustomFlatList
+            data={BestSellingProducts}
+            renderItem={bestSellingProductRenderItem}
+            keyExtractor={item => item.id}
+            horizontal={true}
+            header
+            headingText="Best Selling Products"
+            contentContainerStyle={styles.customFlatListStyle}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
+    </TouchableWithoutFeedback>
+    </>
   );
 };
 
