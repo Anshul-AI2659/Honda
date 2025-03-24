@@ -2,17 +2,18 @@ import {StyleSheet} from 'react-native';
 import {vw, vh} from '../../utils/dimension';
 import {size} from '../../utils/size';
 import {Colors} from '../../utils/colors';
+import { ROBOTO_MEDIUM } from '../../utils/Fonts';
 
 export const styles = StyleSheet.create({
   inputContainer: {
-    width: '100%',
-    height:vw(56),
+    paddingVertical:vh(2),
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: vh(16),
+    marginTop: vh(20),
+    marginHorizontal:vw(16),
     borderWidth: 1,
     borderRadius: 16,
-    borderColor: Colors.primary,
+    borderColor: Colors.tutorialInactiveDot,
     backgroundColor: Colors.White,
   },
 
@@ -22,19 +23,18 @@ export const styles = StyleSheet.create({
     paddingVertical: vh(8),
     paddingLeft: vw(16),
     paddingRight: vw(12),
-    borderRightColor: Colors.border,
+    borderRightColor: Colors.tutorialInactiveDot,
     alignItems: 'center',
   },
   countryCodeText: {
     fontSize: vh(16),
-    color: Colors.Black,
-    fontWeight: '500',
+    color: Colors.tutorialDescription,
   },
   phoneInputMobile: {
-    width: vw(260),
-    height: vw(54),
+    width: vh(300),
+    height: vh(52),
     fontSize: vw(16),
-    fontWeight: '500',
+    fontFamily:ROBOTO_MEDIUM,
     marginLeft: vw(10),
     borderBottomRightRadius: 16,
     borderTopRightRadius: 16,

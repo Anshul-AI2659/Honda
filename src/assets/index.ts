@@ -18,6 +18,10 @@ const Icons = {
   notificationBell: require('../assets/icons/notificationBell.png'),
   notificationOn: require('../assets/icons/notificationOn.png'),
   notificationOff: require('../assets/icons/notificationOff.png'),
+  camera: require('../assets/icons/camera.png'),
+  gallery: require('../assets/icons/gallery.png'),
+  delete: require('../assets/icons/delete.png'),
+  changeProfilePhoto: require('../assets/icons/changeProfilePhoto.png'),
 };
 
 const Images = {

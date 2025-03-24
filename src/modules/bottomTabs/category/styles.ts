@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
   notificationButton: {
     backgroundColor: Colors.headerButton,
   },
+  searchContainer:{
+    marginBottom:vh(24),
+  },
   HIPlusHeaderStyle: {
     alignItems: 'flex-end',
   },

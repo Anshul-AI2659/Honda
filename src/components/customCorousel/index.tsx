@@ -14,7 +14,7 @@ interface CarouselProps {
   inactiveDotStyle?: object;
 }
 
-const Carousel = ({
+const CustomCarousel = ({
   data,
   currentStep,
   renderItem,
@@ -59,4 +59,4 @@ const Carousel = ({
   );
 };
 
-export default Carousel;
+export default CustomCarousel;

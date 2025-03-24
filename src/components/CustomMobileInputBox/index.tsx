@@ -27,11 +27,10 @@ interface CustomMobileInputBoxProps {
   label: string;
   phoneNumber: string;
   setPhoneNumber: (text: string) => void;
-  onSelect?: (country: Country) => void;
-  setPickerVisible?: boolean;
   error: boolean;
   setError: (hasError: boolean) => void;
   errorText?: string;
+  autoFocus?:boolean;
 }
 
 const CustomMobileInputBox = ({
@@ -41,6 +40,7 @@ const CustomMobileInputBox = ({
   error,
   setError,
   errorText,
+  autoFocus = false,
 }: CustomMobileInputBoxProps) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(
@@ -86,11 +86,11 @@ const CustomMobileInputBox = ({
           style={styles.phoneInputMobile}
           placeholder={label}
           keyboardType="phone-pad"
-          placeholderTextColor={Colors.placeHolderText}
+          placeholderTextColor={Colors.tutorialDescription}
           maxLength={13}
           value={phoneNumber}
           onChangeText={handlePhoneNumberChange}
-          autoFocus={true}
+          autoFocus={autoFocus}
           selectionColor={Colors.primary}
           underlineColorAndroid="transparent"
         />

@@ -12,11 +12,10 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 
 // Assets
 import {Icons, Images} from '../../../assets';
-import {HIPlus, Honda, steps} from '../../../assets/data';
+import {HIPlus, Honda} from '../../../assets/data';
 
 //Custom Components
 import ContentHeader from '../../../components/customContentHeader';
-import Carousel from '../../../components/customCorousel';
 import CustomFlatList from '../../../components/customFlatlist';
 import CustomHeader from '../../../components/customHeader';
 import CustomStatusBar from '../../../components/statusBar';
@@ -27,6 +26,7 @@ import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {BottomTabParamList} from '../../../utils/types';
 import {ScreenNames} from '../../../utils/screenNames';
 import {vw} from '../../../utils/dimension';
+import CustomSearchBar from '../../../components/customSearchBar';
 
 interface HomeProps {
   navigation: BottomTabNavigationProp<BottomTabParamList>;
@@ -41,32 +41,7 @@ interface Item {
 
 // Main Component
 const Category = ({navigation}: HomeProps) => {
-  const [currentStep, setCurrentStep] = useState(0);
-
-  const handleScrollEnd = (event: {
-    nativeEvent: {contentOffset: {x: number}};
-  }) => {
-    const newIndex = Math.round(
-      event.nativeEvent.contentOffset.x / styles.slide.width,
-    );
-    setCurrentStep(newIndex);
-  };
-
-  const corouselRenderItem = ({item}: {item: Item}) => (
-    <View style={styles.slide}>
-      <View style={styles.corouselItemContainer}>
-        <View style={styles.itemTextContainer}>
-          <ContentHeader
-            headerText="Lorem Ispum"
-            detailText="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
-            headerTextStyle={styles.itemHeaderText}
-            detailTextStyle={styles.itemDetailsText}
-          />
-        </View>
-        <Image source={item.image} style={styles.image} />
-      </View>
-    </View>
-  );
+  const [searchText, setSearchText] = useState('');
 
   const ImageHeaderRenderItem = ({item}: {item: Item}) => (
     <TouchableOpacity style={styles.itemContainer} activeOpacity={0.5}>
@@ -76,30 +51,30 @@ const Category = ({navigation}: HomeProps) => {
       <Text style={styles.itemTitle}>{item.title}</Text>
     </TouchableOpacity>
   );
-
+  const handleSearchPress = () => {};
   return (
     <SafeAreaView style={styles.mainContainer}>
       <CustomStatusBar />
+      <CustomHeader
+        headerStyle={styles.header}
+        leftIcon={Icons.profile}
+        leftIconStyle={styles.profileIcon}
+        rightIcon={Icons.notification}
+        rightButtonStyle={styles.notificationButton}
+        onRightPress={() => {
+          navigation.navigate(ScreenNames.Notification);
+        }}
+      />
+
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}>
-        <CustomHeader
-          headerStyle={styles.header}
-          leftIcon={Icons.profile}
-          leftIconStyle={styles.profileIcon}
-          rightIcon={Icons.notification}
-          rightButtonStyle={styles.notificationButton}
-          onRightPress={() => {
-            navigation.navigate(ScreenNames.Notification);
-          }}
-        />
-        <Carousel
-          data={steps}
-          currentStep={currentStep}
-          renderItem={corouselRenderItem}
-          handleScrollEnd={handleScrollEnd}
-          paginationStyle={styles.pagination}
-          listContainerStyle={styles.corouselList}
+        <CustomSearchBar
+          placeholder="Search products"
+          value={searchText}
+          onChangeText={text => setSearchText(text)}
+          onSearchPress={handleSearchPress} // Search button action
+          searchContainerStyle={styles.searchContainer}
         />
         <View style={{paddingHorizontal: vw(8)}}>
           <CustomFlatList

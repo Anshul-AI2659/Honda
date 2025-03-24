@@ -22,6 +22,7 @@ import Notification from '../../modules/Notification';
 import newHondaCategory from '../../modules/hondaCategoryNew';
 import NewGenerators from '../../modules/newGenerator';
 import Tillers from '../../modules/tillers';
+import Profile from '../../modules/profile';
 const Stack = createNativeStackNavigator<StackParamList>();
 
 const StackNavigation = () => {
@@ -65,6 +66,10 @@ const StackNavigation = () => {
         <Stack.Screen
           name={ScreenNames.Tillers}
           component={Tillers}
+        />
+        <Stack.Screen
+          name={ScreenNames.Profile}
+          component={Profile}
         />
       </Stack.Navigator>
     </NavigationContainer>

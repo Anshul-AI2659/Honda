@@ -1,29 +1,38 @@
 import {StyleSheet} from 'react-native';
-import {vw, vh} from '../../utils/dimension';
+import {vw, vh, normalize} from '../../utils/dimension';
 import {size} from '../../utils/size';
 import {Colors} from '../../utils/colors';
+import { ROBOTO_MEDIUM } from '../../utils/Fonts';
 
 const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginTop: vh(16),
     borderWidth: 1,
+    borderRadius: 10,
     backgroundColor: Colors.White,
-  },
-  textInput:{
-    paddingHorizontal:vw(16),
+    width: '100%',
   },
   iconButton: {
-    width: 55,
+    paddingHorizontal: vw(14),
+    borderColor: Colors.border,
     borderRightWidth: 1,
-    borderWidth: 1,
+    marginRight: vw(4),
   },
   iconStyle: {
     width: vw(20),
     height: vw(20),
     resizeMode: 'contain',
+    tintColor: 'grey',
   },
-
+  phoneInput: {
+    width: '100%',
+    height: vh(56),
+    fontSize: normalize(16),
+    fontFamily:ROBOTO_MEDIUM,
+    color:Colors.blackText,
+  },
   errorContainer: {
     borderColor: 'red',
   },
@@ -33,12 +42,11 @@ const styles = StyleSheet.create({
     marginTop: vw(4),
     textAlign: 'left',
   },
-  eyeImg: {
-    width: vw(24),
-    height: vw(24),
+  calendarImg: {
+    width: vw(22),
+    height: vw(22),
     resizeMode: 'contain',
     tintColor: 'grey',
-    marginTop: vh(7),
   },
 });
 export default styles;

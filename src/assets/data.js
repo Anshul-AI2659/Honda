@@ -248,3 +248,5 @@ export const trainingButtonData = [
   {id: 3, title: 'Service Manuals'},
   {id: 4, title: 'Parts Catalog'},
 ];
+
+export const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];

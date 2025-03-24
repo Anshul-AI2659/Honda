@@ -1,15 +1,16 @@
 import React from 'react';
 import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {vh, vw} from '../../../utils/dimension';
+import {normalize, vh, vw} from '../../../utils/dimension';
 import {size} from '../../../utils/size';
 import {Colors} from '../../../utils/colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ScreenNames} from '../../../utils/screenNames';
-import {BottomTabParamList} from '../../../utils/types';
+import {RootStackParamList} from '../../../utils/types';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
+import { ROBOTO_SEMIBOLD} from '../../../utils/Fonts';
 
 interface MoreProps {
-  navigation: BottomTabNavigationProp<BottomTabParamList>;
+  navigation: BottomTabNavigationProp<RootStackParamList>;
 }
 const More = ({navigation}: MoreProps) => {
   const handleLogout = () => {
@@ -40,11 +41,21 @@ const More = ({navigation}: MoreProps) => {
       {cancelable: true},
     );
   };
+
+  const handleViewProfile = ()=>{
+    navigation.navigate(ScreenNames.Profile);
+  };
   return (
     <View style={styles.mainContainer}>
       <View style={styles.subContainer}>
         <Text style={styles.bodyText}> In Progress......</Text>
       </View>
+      <TouchableOpacity
+        style={styles.logoutButton}
+        activeOpacity={0.7}
+        onPress={handleViewProfile}>
+        <Text style={styles.viewProfileText}>{'View Profile'}</Text>
+      </TouchableOpacity>
       <TouchableOpacity
         style={styles.logoutButton}
         activeOpacity={0.7}
@@ -101,5 +112,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
     color: 'red',
+  },
+  viewProfileText: {
+    fontFamily:ROBOTO_SEMIBOLD,
+    color:Colors.blackText,
+    fontSize:normalize(16),
   },
 });

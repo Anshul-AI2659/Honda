@@ -23,18 +23,14 @@ const styles = StyleSheet.create({
   notificationButton: {
     backgroundColor: Colors.headerButton,
   },
+  searchContainer:{
+    marginBottom:vh(10),
+  },
   HIPlusHeaderStyle: {
     alignItems: 'flex-end',
   },
   corouselList:{
     marginTop:vh(20),
-  },
-  corouselItemContainer: {
-    flexDirection: 'row',
-    backgroundColor: 'red',
-    marginHorizontal: vw(10),
-    paddingVertical: vh(15),
-    borderRadius: 16,
   },
   itemTextContainer: {
     paddingHorizontal: vw(16),

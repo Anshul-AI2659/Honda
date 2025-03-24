@@ -15,6 +15,7 @@ enum ScreenNames {
   NewHondaCategory='NewHondaCategory',
   NewGenerators='NewGenerators',
   Tillers = 'Tillers',
+  Profile = 'Profile',
 }
 
 export {ScreenNames};

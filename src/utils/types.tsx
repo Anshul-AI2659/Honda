@@ -37,9 +37,12 @@ export type StackParamList = {
   [ScreenNames.NewHondaCategory]: undefined;
   [ScreenNames.NewGenerators]:undefined;
   [ScreenNames.Tillers]:undefined;
+  [ScreenNames.Profile]:undefined;
 };
 
-export type AppNavigatorParamList = {
+export type RootStackParamList = {
   BottomTabNavigator: NavigatorScreenParams<BottomTabParamList>;
   StackNavigator: NavigatorScreenParams<StackParamList>;
+  [ScreenNames.RoleSelect]: undefined;
+  [ScreenNames.Profile]:undefined;
 };

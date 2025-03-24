@@ -24,7 +24,7 @@ import {
 
 //Custom Components
 import ContentHeader from '../../../components/customContentHeader';
-import Carousel from '../../../components/customCorousel';
+import Carousel from '../../../components/carousel';
 import CustomFlatList from '../../../components/customFlatlist';
 import CustomHeader from '../../../components/customHeader';
 import CustomSearchBar from '../../../components/customSearchBar';
@@ -35,7 +35,7 @@ import styles from './styles';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {BottomTabParamList} from '../../../utils/types';
 import {ScreenNames} from '../../../utils/screenNames';
-import {vw} from '../../../utils/dimension';
+import {vh, vw} from '../../../utils/dimension';
 
 interface HomeProps {
   navigation: BottomTabNavigationProp<BottomTabParamList>;
@@ -50,33 +50,33 @@ interface Item {
 
 // Main Component
 const Home = ({navigation}: HomeProps) => {
-  const [currentStep, setCurrentStep] = useState(0);
+  // const [currentStep, setCurrentStep] = useState(0);
   const [searchText, setSearchText] = useState('');
 
-  const handleScrollEnd = (event: {
-    nativeEvent: {contentOffset: {x: number}};
-  }) => {
-    const newIndex = Math.round(
-      event.nativeEvent.contentOffset.x / styles.slide.width,
-    );
-    setCurrentStep(newIndex);
-  };
+  // const handleScrollEnd = (event: {
+  //   nativeEvent: {contentOffset: {x: number}};
+  // }) => {
+  //   const newIndex = Math.round(
+  //     event.nativeEvent.contentOffset.x / styles.slide.width,
+  //   );
+  //   setCurrentStep(newIndex);
+  // };
 
-  const corouselRenderItem = ({item}: {item: Item}) => (
-    <View style={styles.slide}>
-      <View style={styles.corouselItemContainer}>
-        <View style={styles.itemTextContainer}>
-          <ContentHeader
-            headerText="Lorem Ispum"
-            detailText="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
-            headerTextStyle={styles.itemHeaderText}
-            detailTextStyle={styles.itemDetailsText}
-          />
-        </View>
-        <Image source={item.image} style={styles.image} />
-      </View>
-    </View>
-  );
+  // const corouselRenderItem = ({item}: {item: Item}) => (
+  //   <View style={styles.slide}>
+  //     <View style={styles.corouselItemContainer}>
+  //       <View style={styles.itemTextContainer}>
+  //         <ContentHeader
+  //           headerText="Lorem Ispum"
+  //           detailText="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
+  //           headerTextStyle={styles.itemHeaderText}
+  //           detailTextStyle={styles.itemDetailsText}
+  //         />
+  //       </View>
+  //       <Image source={item.image} style={styles.image} />
+  //     </View>
+  //   </View>
+  // );
 
   const ImageHeaderRenderItem = ({item}: {item: Item}) => (
     <TouchableOpacity style={styles.itemContainer} activeOpacity={0.5}>
@@ -145,16 +145,18 @@ const Home = ({navigation}: HomeProps) => {
           value={searchText}
           onChangeText={text => setSearchText(text)}
           onSearchPress={handleSearchPress} // Search button action
+          searchContainerStyle={styles.searchContainer}
         />
-        <Carousel
+        <Carousel/>
+        {/* <Carousel
           data={steps}
           currentStep={currentStep}
           renderItem={corouselRenderItem}
           handleScrollEnd={handleScrollEnd}
           paginationStyle={styles.pagination}
           listContainerStyle={styles.corouselList}
-        />
-        <View style={{paddingHorizontal: vw(8)}}>
+        /> */}
+        <View style={{paddingHorizontal: vw(8),marginTop:vh(30)}}>
           <CustomFlatList
             data={Honda}
             renderItem={ImageHeaderRenderItem}
