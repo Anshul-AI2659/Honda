@@ -5,16 +5,16 @@ import {
   TouchableOpacity,
   Modal,
   Image,
-  StyleSheet,
   ScrollView,
   FlatList,
+  TouchableWithoutFeedback,
 } from 'react-native';
-// import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
-import ImagePicker from 'react-native-image-crop-picker';
+import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
+// import ImagePicker from 'react-native-image-crop-picker';
 import {Icons} from '../../assets';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {normalize, vh, vw} from '../../utils/dimension';
-import {Colors} from '../../utils/colors';
+import {vh} from '../../utils/dimension';
+import styles from './styles';
 import CustomButton from '../../components/customButton';
 import {
   requestCameraPermission,
@@ -26,11 +26,9 @@ import {StackParamList} from '../../utils/types';
 import CustomMobileInputBox from '../../components/CustomMobileInputBox';
 import {string} from '../../utils/strings';
 import CustomInput from '../../components/customInput';
-import {ROBOTO_MEDIUM, ROBOTO_SEMIBOLD} from '../../utils/Fonts';
 import {validateEmail, validateName} from '../../utils/validations';
 import CustomStatusBar from '../../components/statusBar';
 import CustomDateTimePicker from '../../components/customDateTimePicker';
-import {RadioButton} from 'react-native-paper';
 import {days} from '../../assets/data';
 
 interface profileProps {
@@ -43,80 +41,143 @@ const Profile = ({navigation}: profileProps) => {
   const [callingCode] = useState('+91');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [phoneError, setPhoneError] = useState(false);
-  const [name, setName] = useState('Mahesh Honda');
-  const [nameError, setNameError] = useState(false);
-  const [email, setEmail] = useState('maheshhonda@gmail.com');
-  const [emailError, setEmailError] = useState(false);
-  const [city, setCity] = useState('Noida');
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
-  //   const [checked, setChecked] = useState('');
   const [selectedDay, setSelectedDay] = useState(null);
+  const [isAllWeekSelected, setIsAllWeekSelected] = useState(false);
+  const [formData, setFormData] = useState({
+    name: 'Mahesh Honda',
+    email: 'maheshhonda@gmail.com',
+    city: 'Noida',
+  });
+  const [errors, setErrors] = useState({
+    nameError: false,
+    emailError: false,
+    cityError: false,
+  });
 
-  const handleEmailChange = (text: string) => {
-    setEmail(text);
-    if (text === '') {
-      setEmailError(false);
-    } else if (validateEmail(text)) {
-      setEmailError(false);
-    } else {
-      setEmailError(true);
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({...prev, [field]: value}));
+
+    switch (field) {
+      case 'name':
+        setErrors(prev => ({
+          ...prev,
+          nameError: value === '' ? false : !validateName(value),
+        }));
+        break;
+      case 'email':
+        setErrors(prev => ({
+          ...prev,
+          emailError: value === '' ? false : !validateEmail(value),
+        }));
+        break;
+
+      case 'city':
+        setErrors(prev => ({
+          ...prev,
+          cityError: value === '' ? false : !validateName(value),
+        }));
+        break;
+      default:
+        break;
     }
   };
 
-  const handleNameChange = (text: string) => {
-    setName(text);
-    if (text === '') {
-      setNameError(false);
-    } else if (validateName(text)) {
-      setNameError(false);
-    } else {
-      setNameError(true);
-    }
-  };
-  const handleCityChange = (text: string) => {
-    setCity(text);
-  };
+  // // Function to Open Phone's Gallery.
+  // const openGallery = async (): Promise<void> => {
+  //   const storagePermission = await requestStoragePermission();
 
-  // Function to Open Phone's Gallery.
+  //   if (storagePermission) {
+  //     ImagePicker.openPicker({
+  //       mediaType: 'photo',
+  //       cropping: true,
+  //       compressImageQuality: 1,
+  //     })
+  //       .then(image => {
+  //         setModalVisible(false);
+  //         setImageUri(image.path);
+  //       })
+  //       .catch(error => {
+  //         setModalVisible(false);
+  //         console.log('Error selecting image from gallery:', error);
+  //       });
+  //   }
+  // };
+
+  // // Function to open the camera.
+  // const handleTakePhoto = async (): Promise<void> => {
+  //   const cameraPermission = await requestCameraPermission();
+
+  //   if (cameraPermission) {
+  //     ImagePicker.openCamera({
+  //       mediaType: 'photo',
+  //       cropping: true,
+  //       compressImageQuality: 1,
+  //     })
+  //       .then(image => {
+  //         setImageUri(image.path);
+  //         setModalVisible(false);
+  //       })
+  //       .catch(error => {
+  //         console.log('Error taking photo:', error);
+  //         setModalVisible(false);
+  //       });
+  //   }
+  // };
+
   const openGallery = async (): Promise<void> => {
     const storagePermission = await requestStoragePermission();
 
     if (storagePermission) {
-      ImagePicker.openPicker({
-        mediaType: 'photo',
-        cropping: true,
-        compressImageQuality: 1,
-      })
-        .then(image => {
-          setModalVisible(false);
-          setImageUri(image.path);
-        })
-        .catch(error => {
-          setModalVisible(false);
-          console.log('Error selecting image from gallery:', error);
-        });
+      launchImageLibrary(
+        {
+          mediaType: 'photo',
+          includeBase64: false,
+          quality: 1,
+        },
+        response => {
+          if (response.didCancel) {
+            console.log('User cancelled image picker');
+          } else if (response.errorMessage) {
+            console.log('ImagePicker Error: ', response.errorMessage);
+          } else {
+            const imageUri = response.assets?.[0]?.uri;
+            if (imageUri) {
+              setModalVisible(false);
+              setImageUri(imageUri);
+            }
+          }
+        },
+      );
     }
   };
 
-  // Function to open the camera.
+  // Function to open the camera
   const handleTakePhoto = async (): Promise<void> => {
     const cameraPermission = await requestCameraPermission();
 
     if (cameraPermission) {
-      ImagePicker.openCamera({
-        mediaType: 'photo',
-        cropping: true,
-        compressImageQuality: 1,
-      })
-        .then(image => {
-          setImageUri(image.path);
-          setModalVisible(false);
-        })
-        .catch(error => {
-          console.log('Error taking photo:', error);
-          setModalVisible(false);
-        });
+      launchCamera(
+        {
+          mediaType: 'photo',
+          includeBase64: false,
+          quality: 1,
+        },
+        response => {
+          if (response.didCancel) {
+            console.log('User cancelled image picker');
+          } else if (response.errorMessage) {
+            console.log('Camera Error: ', response.errorMessage);
+          } else {
+            const imageUri = response.assets?.[0]?.uri;
+            if (imageUri) {
+              setModalVisible(false);
+              setImageUri(imageUri);
+            }
+          }
+        },
+      );
     }
   };
 
@@ -128,15 +189,26 @@ const Profile = ({navigation}: profileProps) => {
   const handleMoreOption = () => {
     setModalVisible(true);
   };
+
   const handleStartTimeChange = (text: string) => {
     setStartTime(text);
   };
+
   const handleEndTimeChange = (text: string) => {
     setEndTime(text);
   };
 
+  const handleAllWeekSelection = () => {
+    setIsAllWeekSelected(true);
+    setSelectedDay(null);
+  };
+
+  const handleCustomWeekSelection = () => {
+    setIsAllWeekSelected(false);
+  };
+
   const renderItem = ({item, index}) => {
-    const isSelected = selectedDay === index;
+    const isSelected = isAllWeekSelected;
 
     return (
       <TouchableOpacity
@@ -163,9 +235,7 @@ const Profile = ({navigation}: profileProps) => {
       />
       <ScrollView
         style={styles.subContainer}
-        showsVerticalScrollIndicator={false}
-        // contentContainerStyle={styles.subContainer}
-      >
+        showsVerticalScrollIndicator={false}>
         <View style={styles.profileSection}>
           <Image
             style={styles.profileImage}
@@ -179,26 +249,26 @@ const Profile = ({navigation}: profileProps) => {
           </TouchableOpacity>
         </View>
         <CustomInput
-          value={name}
+          value={formData.name}
           label="Name"
-          Error={nameError}
+          Error={errors.nameError}
           errorText={
             'Please use only alphabetical letters and minimum length is 3 characters.'
           }
           maxLength={20}
           keyboardType={'ascii-capable'}
-          onChangeText={handleNameChange}
+          onChangeText={text => handleInputChange('name', text)}
           inputContainerStyle={styles.inputContainer}
           textInputStyle={styles.textInput}
         />
         <CustomInput
-          value={email}
+          value={formData.email}
           label="Email Id"
-          Error={emailError}
+          Error={errors.emailError}
           errorText={'Please enter valid email'}
           maxLength={30}
           keyboardType={'email-address'}
-          onChangeText={handleEmailChange}
+          onChangeText={text => handleInputChange('email', text)}
           inputContainerStyle={styles.inputContainer}
           textInputStyle={styles.textInput}
         />
@@ -212,19 +282,59 @@ const Profile = ({navigation}: profileProps) => {
           errorText={string.Login.phoneNumberError}
         />
         <CustomInput
-          value={city}
+          value={formData.city}
           label="City"
+          Error={errors.cityError}
+          errorText={
+            'Please use only alphabetical letters and minimum length is 3 characters.'
+          }
           maxLength={20}
           keyboardType={'ascii-capable'}
-          onChangeText={handleCityChange}
+          onChangeText={text => handleInputChange('city', text)}
           inputContainerStyle={styles.inputContainer}
           textInputStyle={styles.textInput}
         />
         <View style={styles.serviceDaysContainer}>
           <Text style={styles.serviceDaysText}>{'Service Days'}</Text>
           <View style={styles.weekOptionsContainer}>
-            <View />
-            <View />
+            <TouchableOpacity
+              style={styles.singleWeekContainer}
+              activeOpacity={0.5}
+              onPress={handleAllWeekSelection}>
+              <Image
+                source={
+                  isAllWeekSelected
+                    ? Icons.radioSelected
+                    : Icons.radioUnselected
+                }
+                style={
+                  isAllWeekSelected
+                    ? styles.radioSelected
+                    : styles.radioUnselected
+                }
+              />
+              <Text style={styles.singleWeekOptionText}>{'All Week days'}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.singleWeekContainer}
+              activeOpacity={0.5}
+              onPress={handleCustomWeekSelection}>
+              <Image
+                source={
+                  !isAllWeekSelected
+                    ? Icons.radioSelected
+                    : Icons.radioUnselected
+                }
+                style={
+                  !isAllWeekSelected
+                    ? styles.radioSelected
+                    : styles.radioUnselected
+                }
+              />
+              <Text style={styles.singleWeekOptionText}>
+                {'Customise Week days'}
+              </Text>
+            </TouchableOpacity>
           </View>
           <FlatList
             data={days}
@@ -233,7 +343,7 @@ const Profile = ({navigation}: profileProps) => {
             horizontal
             showsHorizontalScrollIndicator={false}
             scrollEnabled={false}
-            contentContainerStyle={{flex: 1,marginTop:vh(16)}}
+            contentContainerStyle={{flex: 1, marginTop: vh(16)}}
           />
         </View>
         <View style={styles.serviceHoursContainer}>
@@ -244,12 +354,14 @@ const Profile = ({navigation}: profileProps) => {
               onDateChange={handleStartTimeChange}
               mode={'time'}
               containerStyle={styles.singleTimeContainer}
+              rightIcon={Icons.clock}
             />
             <CustomDateTimePicker
               label="Select To"
               onDateChange={handleEndTimeChange}
               mode={'time'}
               containerStyle={styles.singleTimeContainer}
+              rightIcon={Icons.clock}
             />
           </View>
         </View>
@@ -268,6 +380,9 @@ const Profile = ({navigation}: profileProps) => {
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}>
         <View style={styles.modalMainContainer}>
+          <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
+            <View style={styles.modalTopContainer} />
+          </TouchableWithoutFeedback>
           <View style={styles.modalContentContainer}>
             <TouchableOpacity style={styles.container2} onPress={openGallery}>
               <Image source={Icons.gallery} style={styles.iconImageSize} />
@@ -291,175 +406,5 @@ const Profile = ({navigation}: profileProps) => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    backgroundColor: Colors.White,
-  },
-  header: {
-    paddingVertical: vh(12),
-  },
-  backButton: {
-    backgroundColor: Colors.headerButton,
-  },
-  subContainer: {
-    flex: 1,
-    paddingVertical: vh(20),
-    paddingBottom: vh(40),
-  },
-  profileSection: {
-    alignItems: 'center',
-    marginBottom: vh(5),
-  },
-  profileImage: {
-    width: vw(118),
-    height: vw(118),
-    borderRadius: 56.57,
-  },
-  addButton: {
-    position: 'absolute',
-    top: vw(80),
-    right: vw(140),
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: Colors.White,
-    padding: vw(8),
-    borderRadius: 40,
-  },
-  addImg: {
-    width: vw(20),
-    height: vw(20),
-    resizeMode: 'contain',
-    tintColor: Colors.primary,
-  },
-  inputContainer: {
-    width: vw(380),
-    height: vw(56),
-    borderRadius: 16,
-    borderColor: Colors.tutorialInactiveDot,
-    paddingVertical: vh(2),
-    marginHorizontal: vw(16),
-    marginTop: vh(20),
-    backgroundColor: Colors.White,
-  },
-  textInput: {
-    width: '100%',
-    height: vw(54),
-    fontFamily: ROBOTO_MEDIUM,
-    fontSize: normalize(16),
-  },
-
-  serviceDaysContainer: {
-    marginTop: vh(28),
-    paddingHorizontal: vw(10),
-  },
-  serviceDaysText: {
-    fontSize: normalize(18),
-    fontFamily: ROBOTO_MEDIUM,
-    marginLeft: vw(6),
-  },
-  dayButton: {
-    width: vw(44),
-    height: vw(44),
-    backgroundColor: Colors.White,
-    borderRadius: 61.6,
-    marginHorizontal: vw(6),
-    borderWidth: 0.96,
-    borderColor: '#D9DFE6', // New Color
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  selectedDayButton: {
-    width: vw(44),
-    height: vw(44),
-    backgroundColor: Colors.Black,
-    borderRadius: 61.6,
-    marginHorizontal: vw(6), // New Color
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  dayText: {
-    fontSize: normalize(13.2),
-    fontFamily: ROBOTO_SEMIBOLD,
-    color: Colors.tutorialDescription,
-  },
-  selectedDayText: {
-    fontSize: normalize(13.2),
-    fontFamily: ROBOTO_SEMIBOLD,
-    color: Colors.White,
-  },
-  weekOptionsContainer: {},
-  serviceHoursContainer: {
-    marginTop: vh(28),
-    paddingHorizontal: vw(16),
-  },
-  serviceHoursText: {
-    fontSize: normalize(18),
-    fontFamily: ROBOTO_MEDIUM,
-  },
-  timeContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: vh(16),
-  },
-  singleTimeContainer: {
-    flexDirection: 'row',
-    width: vw(182),
-    height: vw(56),
-    paddingHorizontal: vw(16),
-    borderWidth: 1,
-    borderRadius: 16,
-    borderColor: Colors.tutorialInactiveDot,
-    justifyContent: 'center',
-  },
-  updateButton: {
-    width: vw(380),
-    alignSelf: 'center',
-    paddingVertical: vh(18),
-    marginVertical: vh(20),
-    borderRadius: 16,
-  },
-  disableUpdateButton: {
-    width: vw(380),
-    alignSelf: 'center',
-    paddingVertical: vh(18),
-    marginVertical: vh(20),
-    borderRadius: 16,
-  },
-  modalMainContainer: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    backgroundColor: 'rgba(51, 51, 51, 0.3)',
-  },
-  modalContentContainer: {
-    height: '30%',
-    backgroundColor: 'white',
-    borderRadius: 20,
-    paddingVertical: vw(16),
-    paddingHorizontal: vw(20),
-  },
-  container2: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: vh(10),
-    marginVertical: vh(10),
-  },
-  container1: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  iconImageSize: {
-    height: vw(30),
-    width: vw(30),
-    resizeMode: 'contain',
-  },
-  name: {
-    fontSize: 16,
-    fontWeight: '500',
-    color: 'black',
-    marginLeft: vw(20),
-  },
-});
 
 export default Profile;

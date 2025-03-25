@@ -22,6 +22,9 @@ const Icons = {
   gallery: require('../assets/icons/gallery.png'),
   delete: require('../assets/icons/delete.png'),
   changeProfilePhoto: require('../assets/icons/changeProfilePhoto.png'),
+  clock: require('../assets/icons/clock.png'),
+  radioUnselected:require('../assets/icons/radioUnselected.png'),
+  radioSelected:require('../assets/icons/radioSelected.png'),
 };
 
 const Images = {

@@ -57,6 +57,7 @@ const CustomInput = ({
         secureTextEntry={isPassword && !isPasswordVisible}
         placeholderTextColor={Colors.tutorialDescription}
         onChangeText={onChangeText}
+        selectionColor={Colors.tutorialDescription}
       />
     </View>
       {Error && <Text style={styles.errorText}>{errorText}</Text>}

@@ -1,22 +1,29 @@
 import {format} from 'date-fns';
 import React, {useState} from 'react';
-import {ImageSourcePropType, TextInput, TouchableOpacity} from 'react-native';
+import {
+  Image,
+  ImageSourcePropType,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {Colors} from '../../utils/colors';
 import styles from './styles';
 
 interface CustomDateTimePickerProps {
   label: string;
-  Icon: ImageSourcePropType;
-//   calendarIcon: ImageSourcePropType;
+  rightIcon: ImageSourcePropType;
+  rightIconStyle?: object;
+  //   calendarIcon: ImageSourcePropType;
   onDateChange: (date: Date | string) => void;
   mode: 'date' | 'time' | 'datetime';
-  containerStyle:object;
+  containerStyle: object;
 }
 
 const CustomDateTimePicker = ({
   label,
-//   calendarIcon,
+  rightIcon,
+  rightIconStyle,
   onDateChange,
   mode,
   containerStyle,
@@ -57,6 +64,12 @@ const CustomDateTimePicker = ({
           placeholderTextColor={Colors.placeHolderText}
           editable={false}
         />
+        {rightIcon && (
+          <Image
+            source={rightIcon}
+            style={[styles.rightIcon, rightIconStyle]}
+          />
+        )}
       </TouchableOpacity>
 
       <DateTimePickerModal

@@ -42,7 +42,7 @@ export const requestStoragePermission = async (): Promise<boolean> => {
       );
       return granted === PermissionsAndroid.RESULTS.GRANTED;
     } else {
-      // On iOS, permissions are handled in Info.plist
+
       return true;
     }
   } catch (err) {
@@ -51,7 +51,6 @@ export const requestStoragePermission = async (): Promise<boolean> => {
   }
 };
 
-// Optionally, you can create a helper to request both permissions
 export const requestCameraAndStoragePermissions = async (): Promise<boolean> => {
   const cameraPermission = await requestCameraPermission();
   const storagePermission = await requestStoragePermission();

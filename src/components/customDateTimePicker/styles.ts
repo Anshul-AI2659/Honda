@@ -27,11 +27,15 @@ const styles = StyleSheet.create({
     tintColor: 'grey',
   },
   phoneInput: {
-    width: '100%',
     height: vh(56),
     fontSize: normalize(16),
     fontFamily:ROBOTO_MEDIUM,
     color:Colors.blackText,
+  },
+  rightIcon:{
+    width:vw(24),
+    height:vw(24),
+    resizeMode:'contain',
   },
   errorContainer: {
     borderColor: 'red',
@@ -42,11 +46,6 @@ const styles = StyleSheet.create({
     marginTop: vw(4),
     textAlign: 'left',
   },
-  calendarImg: {
-    width: vw(22),
-    height: vw(22),
-    resizeMode: 'contain',
-    tintColor: 'grey',
-  },
+  
 });
 export default styles;

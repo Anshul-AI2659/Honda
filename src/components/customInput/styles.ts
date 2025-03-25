@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize: size.error,
     marginTop: vw(4),
+    marginHorizontal:vw(16),
     textAlign: 'left',
   },
   eyeImg: {
