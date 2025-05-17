@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {Colors} from '../../utils/colors';
-import {vw, vh} from '../../utils/dimension';
+import {vw, vh, normalize} from '../../utils/dimension';
 
 export const styles = StyleSheet.create({
   container: {
@@ -15,6 +15,6 @@ export const styles = StyleSheet.create({
     borderRadius: 16,
     textAlign: 'center',
     color: Colors.Black,
-    fontSize: 18,
+    fontSize: normalize(18),
   },
 });

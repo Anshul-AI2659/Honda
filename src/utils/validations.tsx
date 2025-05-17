@@ -13,7 +13,7 @@ export const validatePassword = (password: string) => {
 
 // Name Validation
 export const validateName = (text: string) => {
-  const nameRegex = /^[A-Za-z]{3,}$/;
+  const nameRegex = /^[A-Za-z\s]{3,}$/;
   return nameRegex.test(text);
 };
 

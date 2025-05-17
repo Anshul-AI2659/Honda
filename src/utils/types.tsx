@@ -1,4 +1,13 @@
 import {NavigatorScreenParams} from '@react-navigation/native';
+import {ScreenNames} from './screenNames';
+
+// Top Tab Param List
+export type TopTabParamList = {
+  All: undefined;
+  Inverter: undefined;
+  SilentSeries: undefined;
+  HandySeries: undefined;
+};
 
 // Bottom Tab Param List
 export type BottomTabParamList = {
@@ -12,18 +21,28 @@ export type BottomTabParamList = {
 
 //Stack Param List
 export type StackParamList = {
-  SplashScreen: undefined;
-  TutorialScreen: undefined;
-  Congratulation:undefined;
-  SelectRole: undefined;
-  SignUp: undefined;
-  Login: undefined;
-  ForgotPassword: undefined;
-  VerifyOtp: {phoneNumber:string};
-  BottomNavigation: undefined;
+  [ScreenNames.Splash]: undefined;
+  [ScreenNames.Tutorial]: undefined;
+  [ScreenNames.RoleSelect]: undefined;
+  [ScreenNames.Login]: undefined;
+  [ScreenNames.VerifyOtp]: {phoneNumber: string};
+  [ScreenNames.Congratulation]: undefined;
+  [ScreenNames.Home]: undefined;
+  [ScreenNames.ProductDetail]: undefined;
+  [ScreenNames.honda_Category]: undefined;
+  [ScreenNames.Generators]: undefined;
+  [ScreenNames.NewArrivals]: undefined;
+  [ScreenNames.All]: undefined;
+  [ScreenNames.Notification]: undefined;
+  [ScreenNames.NewHondaCategory]: undefined;
+  [ScreenNames.NewGenerators]:undefined;
+  [ScreenNames.Tillers]:undefined;
+  [ScreenNames.Profile]:undefined;
 };
 
-export type AppNavigatorParamList = {
+export type RootStackParamList = {
   BottomTabNavigator: NavigatorScreenParams<BottomTabParamList>;
   StackNavigator: NavigatorScreenParams<StackParamList>;
+  [ScreenNames.RoleSelect]: undefined;
+  [ScreenNames.Profile]:undefined;
 };

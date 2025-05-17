@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 import {vh, vw} from '../../utils/dimension';
 import {Colors} from '../../utils/colors';
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   singleTabContainer: {
     alignItems: 'center',
   },
@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   tabBarLabel: {
-    width:vw(72.8),
-    textAlign:'center',
+    width: vw(72.8),
+    textAlign: 'center',
     marginTop: vh(8),
   },
   focusedDot: {

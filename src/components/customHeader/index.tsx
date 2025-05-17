@@ -3,23 +3,20 @@ import {
   View,
   Image,
   TouchableOpacity,
-  StyleSheet,
   ImageSourcePropType,
   Text,
 } from 'react-native';
-import {Icons, Images} from '../../assets';
-import {vh, vw} from '../../utils/dimension';
-import { Colors } from '../../utils/colors';
+import {Images} from '../../assets';
+import styles from './styles';
 
 interface HeaderProps {
   headerStyle?: object;
-  backButton?: boolean;
-  backIcon?: ImageSourcePropType;
-  onBackPress?: () => void;
-  backButtonStyle?: object;
-  backIconStyle?: object;
+  leftIcon?: ImageSourcePropType;
+  onleftPress?: () => void;
+  leftButtonStyle?: object;
+  leftIconStyle?: object;
   headerImgStyle?: object;
-  rightButton?: boolean;
+  textHeading?: string;
   rightIcon?: ImageSourcePropType;
   onRightPress?: () => void;
   rightButtonStyle?: object;
@@ -27,14 +24,13 @@ interface HeaderProps {
 }
 
 const CustomHeader = ({
-  backButton = false,
-  backIcon,
-  onBackPress,
   headerStyle,
-  backButtonStyle,
-  backIconStyle,
+  leftIcon,
+  onleftPress,
+  leftButtonStyle,
+  leftIconStyle,
   headerImgStyle,
-  rightButton = false,
+  textHeading,
   rightIcon,
   onRightPress,
   rightButtonStyle,
@@ -43,70 +39,35 @@ const CustomHeader = ({
   return (
     <View style={[styles.header, headerStyle]}>
       {/* Left Back Button */}
-      {backButton && (
-        <TouchableOpacity
-          style={[styles.backButton, backButtonStyle]}
-          onPress={onBackPress}>
-          {backIcon && (
-            <Image source={backIcon} style={[styles.backIcon, backIconStyle]} />
-          )}
-        </TouchableOpacity>
-      )}
-
+      <TouchableOpacity
+        style={[styles.leftButton, leftButtonStyle]}
+        onPress={onleftPress}>
+        {leftIcon && (
+          <Image source={leftIcon} style={[styles.leftIcon, leftIconStyle]} />
+        )}
+      </TouchableOpacity>
       {/* Logo */}
-      <Image source={Images.logo} style={[styles.headerImg, headerImgStyle]} />
+      <View style={{alignItems: 'center'}}>
+        <Image
+          source={Images.logo}
+          style={[styles.headerImg, headerImgStyle]}
+        />
+        {textHeading && <Text style={styles.textHeading}>{textHeading}</Text>}
+      </View>
 
       {/* Right Button */}
-      {rightButton && (
-        <TouchableOpacity
-          style={[styles.rightButton, rightButtonStyle]}
-          onPress={onRightPress}>
-          {rightIcon && (
-            <Image
-              source={Icons.notification}
-              style={[styles.rightIcon, rightIconStyle]}
-            />
-          )}
-        </TouchableOpacity>
-      )}
+      <TouchableOpacity
+        style={[styles.rightButton, rightButtonStyle]}
+        onPress={onRightPress}>
+        {rightIcon && (
+          <Image
+            source={rightIcon}
+            style={[styles.rightIcon, rightIconStyle]}
+          />
+        )}
+      </TouchableOpacity>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  header: {
-    paddingVertical: vh(24),
-    paddingHorizontal: vw(16),
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  headerImg: {
-    width: vw(131.86),
-    height: vw(16),
-    resizeMode: 'contain',
-    alignSelf: 'center',
-    flex: 1,
-  },
-  backButton: {
-    padding: vw(8),
-    borderRadius: 100,
-    backgroundColor: Colors.headerButton,
-  },
-  backIcon: {
-    width: vw(24),
-    height: vw(24),
-    resizeMode: 'contain',
-  },
-  rightButton: {
-    padding: vw(8),
-    borderRadius: 100,
-    backgroundColor: Colors.headerButton,
-  },
-  rightIcon: {
-    width: vw(24),
-    height: vw(24),
-    resizeMode: 'contain',
-  },
-});
 
 export default CustomHeader;

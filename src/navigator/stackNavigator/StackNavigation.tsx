@@ -6,13 +6,17 @@ import {NavigationContainer} from '@react-navigation/native';
 import {StackParamList} from '../../utils/types';
 
 // Screens
-import SplashScreen from '../../screens/splash';
-import Login from '../../screens/login';
-import VerifyOtp from '../../screens/verifyOtp';
-import TutorialScreen from '../../screens/tutorialScreen';
-import SelectRole from '../../screens/selectRole';
-import BottomNavigation from '../bottomNavigation';
-import CongratulationScreen from '../../screens/congratulation';
+
+import SplashScreen from '../../modules/splash';
+import Login from '../../modules/auth/login';
+import VerifyOtp from '../../modules/auth/verifyOtp';
+import CongratulationScreen from '../../modules/congratulation';
+import TutorialScreen from '../../modules/tutorialScreen';
+import SelectRole from '../../modules/auth/selectRole';
+import { ScreenNames } from '../../utils/screenNames';
+import BottomNavigation from '../bottomNavigation/bottomNavigation';
+
+
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
@@ -20,15 +24,15 @@ const StackNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="SplashScreen"
+        initialRouteName={ScreenNames.Splash}
         screenOptions={{headerShown: false}}>
-        <Stack.Screen name="SplashScreen" component={SplashScreen} />
-        <Stack.Screen name="TutorialScreen" component={TutorialScreen} />
-        <Stack.Screen name="SelectRole" component={SelectRole} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="VerifyOtp" component={VerifyOtp} />
-        <Stack.Screen name="BottomNavigation" component={BottomNavigation} />
-        <Stack.Screen name="Congratulation" component={CongratulationScreen} />
+        <Stack.Screen name={ScreenNames.Splash} component={SplashScreen} />
+        <Stack.Screen name={ScreenNames.Tutorial} component={TutorialScreen} />
+        <Stack.Screen name={ScreenNames.RoleSelect} component={SelectRole} />
+        <Stack.Screen name={ScreenNames.Login} component={Login} />
+        <Stack.Screen name={ScreenNames.VerifyOtp} component={VerifyOtp} />
+        <Stack.Screen name={ScreenNames.BottomNavigation} component={BottomNavigation} />
+        <Stack.Screen name={ScreenNames.Congratulation} component={CongratulationScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

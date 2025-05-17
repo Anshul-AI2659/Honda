@@ -1,57 +1,31 @@
 import {StyleSheet} from 'react-native';
-import {vw, vh} from '../../utils/dimension';
-import { size } from '../../utils/size';
-import { Colors } from '../../utils/colors';
-type Theme = {
-  backgroundColor: string;
-  textColor: string;
-};
+import {Colors} from '../../utils/colors';
+import {normalize, vh, vw} from '../../utils/dimension';
 
-export const Styles = (theme: Theme) =>
-  StyleSheet.create({
-    inputContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginTop: vh(16),
-      borderWidth: 1,
-      borderRadius: 10,
-      borderColor: Colors.border,
-      width: '100%',
-    },
-    iconButton: {
-      paddingHorizontal: vw(14),
-      borderColor: Colors.border,
-      borderRightWidth: 1,
-      marginRight: vw(4),
-    },
-    iconStyle: {
-      width: vw(20),
-      height: vw(20),
-      resizeMode: 'contain',
-    },
-    phoneInput: {
-      width: '100%',
-      height: vh(50),
-      fontSize: size.inputLabel,
-      color:theme.backgroundColor,
-      marginTop: vh(10),
-      overflow: 'hidden',
-    },
-    errorContainer: {
-      borderColor: 'red',
-    },
-    errorText: {
-      color: 'red',
-      fontSize: size.error,
-      marginTop: vw(4),
-      textAlign: 'left',
-    },
-    rightIcon: {
-      width: vw(24),
-      height: vw(24),
-      resizeMode: 'contain',
-    },
-    textColor: {
-      color: theme.textColor,
-    },
-  });
+const styles = StyleSheet.create({
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: Colors.tutorialInactiveDot,
+    borderRadius: 16,
+    paddingHorizontal: vw(16),
+    marginHorizontal: vw(16),
+    marginTop: vh(20),
+    backgroundColor: Colors.lightGrey,
+  },
+  searchIcon: {
+    width: vw(20),
+    height: vw(20),
+    resizeMode: 'contain',
+  },
+  searchInput: {
+    flex: 1,
+    height: vh(56),
+    borderRadius: 16,
+    paddingLeft: vw(10),
+    fontSize: normalize(16),
+    color: Colors.Black,
+  },
+});
+export default styles;
