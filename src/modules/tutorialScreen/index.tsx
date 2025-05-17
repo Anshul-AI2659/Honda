@@ -152,3 +152,7 @@ const TutorialScreen = ({navigation}: TutorialScreenProps) => {
 };
 
 export default TutorialScreen;
+
+
+
+

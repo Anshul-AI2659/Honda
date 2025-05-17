@@ -20,6 +20,15 @@ export const styles = StyleSheet.create({
     justifyContent:'space-between',
     paddingHorizontal: vw(20),
   },
+  inputContainer:{
+    // backgroundColor:'red',
+    marginTop:vh(20),
+  },
+  phoneInputMobile:{
+    // backgroundColor:'blue',
+    height:vh(52),
+    fontSize:normalize(16),
+  },
   getOtpDisableButton:{
     width:'100%',
     paddingVertical: vh(16),
@@ -55,7 +64,7 @@ export const styles = StyleSheet.create({
     ...Platform.select({
       android: {
         textDecorationLine: 'underline',
-      },
+  },
     }),
   },
 });

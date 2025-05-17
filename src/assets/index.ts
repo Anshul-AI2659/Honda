@@ -25,8 +25,11 @@ const Icons = {
   clock: require('../assets/icons/clock.png'),
   radioUnselected:require('../assets/icons/radioUnselected.png'),
   radioSelected:require('../assets/icons/radioSelected.png'),
+  homeActive:require('../assets/icons/homeActive.png'),
+  findEventsActive:require('../assets/icons/findEventsActive.png'),
+  calendarActive:require('../assets/icons/calendarActive.png'),
+  moreActive:require('../assets/icons/favouritesActive.png'),
 };
-
 const Images = {
   dashboardImage: require('../assets/images/dashboardImage.png'),
   splash: require('../assets/icons/splash.png'),

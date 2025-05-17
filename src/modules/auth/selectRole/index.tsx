@@ -1,30 +1,28 @@
+import { StackNavigationProp } from '@react-navigation/stack';
+import React from 'react';
 import {
   FlatList,
   Image,
   ImageSourcePropType,
+  SafeAreaView,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
-import React from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {StackNavigationProp} from '@react-navigation/stack';
-
-// Custom Components
-import CustomHeader from '../../../components/customHeader';
-import ContentHeader from '../../../components/customContentHeader';
 import CustomStatusBar from '../../../components/statusBar';
+import { ScreenNames } from '../../../utils/screenNames';
+import { StackParamList } from '../../../utils/types';
 
 // Utils
-import {string} from '../../../utils/strings';
-import {StackParamList} from '../../../utils/types';
-import {ScreenNames} from '../../../utils/screenNames';
+import { string } from '../../../utils/strings';
 
 // Assets
-import {roles} from '../../../assets/data';
+import { roles } from '../../../assets/data';
 
 // Styles
 import styles from './styles';
+import ContentHeader from '../../../components/customContentHeader';
+import CustomHeader from '../../../components/customHeader';
 
 interface SelectRoleProps {
   navigation: StackNavigationProp<StackParamList>;
@@ -44,7 +42,7 @@ const SelectRole = ({navigation}: SelectRoleProps) => {
       activeOpacity={0.5}
       onPress={() => {
         if (item.title === 'Dealer') {
-          navigation.navigate(ScreenNames.Login);
+    navigation.navigate(ScreenNames.Login);
         }
       }}>
       <View style={styles.imageContainer}>
@@ -53,6 +51,7 @@ const SelectRole = ({navigation}: SelectRoleProps) => {
       <Text style={styles.itemTitle}>{item.title}</Text>
     </TouchableOpacity>
   );
+
   return (
     <SafeAreaView style={styles.mainContainer}>
       <CustomStatusBar />

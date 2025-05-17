@@ -16,6 +16,8 @@ enum ScreenNames {
   NewGenerators='NewGenerators',
   Tillers = 'Tillers',
   Profile = 'Profile',
+  VerifyEmailOtp='VerifyEmailOtp',
+  BottomNavigation = 'BottomNavigation',
 }
 
 export {ScreenNames};

@@ -20,8 +20,10 @@ const styles = StyleSheet.create({
   },
   subContainer: {
     flex: 1,
+    backgroundColor: Colors.White,
     paddingVertical: vh(20),
     paddingBottom: vh(40),
+    paddingHorizontal: vw(16),
   },
   profileSection: {
     alignItems: 'center',
@@ -54,14 +56,16 @@ const styles = StyleSheet.create({
     tintColor: Colors.primary,
   },
   inputContainer: {
-    width: vw(380),
+    width: '100%',
     height: vw(56),
     borderRadius: 16,
     borderColor: Colors.tutorialInactiveDot,
     paddingVertical: vh(2),
-    marginHorizontal: vw(16),
+    paddingHorizontal: vw(16),
     marginTop: vh(20),
     backgroundColor: Colors.White,
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   textInput: {
     width: '100%',
@@ -69,22 +73,60 @@ const styles = StyleSheet.create({
     fontFamily: ROBOTO_MEDIUM,
     fontSize: normalize(16),
   },
-
+  emailTextInput: {
+    // width: '75%',
+    height: vw(54),
+    fontFamily: ROBOTO_MEDIUM,
+    fontSize: normalize(16),
+  },
+  verifyNowText: {
+    fontSize: normalize(14),
+    fontFamily: ROBOTO_MEDIUM,
+    color: Colors.primary,
+  },
+  mobileInputContainer: {
+    paddingVertical: vh(2),
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: vh(20),
+    borderWidth: 1,
+    borderRadius: 16,
+    borderColor: Colors.tutorialInactiveDot,
+    backgroundColor: Colors.White,
+  },
+  mobileInput: {
+    width: '78%',
+    height: vh(52),
+    fontSize: normalize(16),
+    fontFamily: ROBOTO_MEDIUM,
+    marginLeft: vw(10),
+    borderBottomRightRadius: 16,
+    borderTopRightRadius: 16,
+    backgroundColor: Colors.White,
+  },
+  mobileErrorContainer: {
+    borderColor: Colors.red,
+  },
+  mobileErrorText: {
+    marginLeft: vw(16),
+  },
   serviceDaysContainer: {
     marginTop: vh(28),
-    paddingHorizontal: vw(10),
   },
   serviceDaysText: {
     fontSize: normalize(18),
     fontFamily: ROBOTO_MEDIUM,
-    marginLeft: vw(6),
+  },
+  daysListContainer: {
+    flex: 1,
+    marginTop: vh(16),
+    columnGap: vw(12),
   },
   dayButton: {
     width: vw(44),
     height: vw(44),
     backgroundColor: Colors.White,
     borderRadius: 61.6,
-    marginHorizontal: vw(6),
     borderWidth: 0.96,
     borderColor: '#D9DFE6', // New Color
     alignItems: 'center',
@@ -95,7 +137,6 @@ const styles = StyleSheet.create({
     height: vw(44),
     backgroundColor: Colors.Black,
     borderRadius: 61.6,
-    marginHorizontal: vw(6), // New Color
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -113,7 +154,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginHorizontal: vw(6),
     marginTop: vh(16),
   },
   singleWeekContainer: {
@@ -140,7 +180,6 @@ const styles = StyleSheet.create({
   },
   serviceHoursContainer: {
     marginTop: vh(28),
-    paddingHorizontal: vw(16),
   },
   serviceHoursText: {
     fontSize: normalize(18),

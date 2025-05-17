@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.White,
   },
   textInput:{
-    paddingHorizontal:vw(16),
+    // paddingHorizontal:vw(16),
   },
   iconButton: {
     width: 55,

@@ -6,6 +6,8 @@ import React, {useEffect, useState} from 'react';
 import {
   Alert,
   Keyboard,
+  KeyboardAvoidingView,
+  Platform,
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
@@ -118,7 +120,10 @@ const VerifyOtp = ({navigation, route}: VerifyOtpProps) => {
   const isButtonDisabled = otp.length !== 6;
 
   return (
-    <>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'position'}
+      style={{flex: 1}}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 0}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <SafeAreaView style={styles.container}>
           <CustomStatusBar />
@@ -132,7 +137,7 @@ const VerifyOtp = ({navigation, route}: VerifyOtpProps) => {
               <ContentHeader
                 headerText={string.VerifyOtp.title}
                 detailText={`${string.VerifyOtp.subTitle} ${phoneNumber}` + '.'}
-                changeNumber
+                changeText={'Change Number?'}
               />
               <OTPInput
                 otpLength={6}
@@ -149,14 +154,13 @@ const VerifyOtp = ({navigation, route}: VerifyOtpProps) => {
                   {timer === 0 ? (
                     <Text style={[styles.resendLink]}>Send code again</Text>
                   ) : (
-                  <View style={styles.timerContainer}>
-                  <Text style={styles.timerText}>
-                    <Text style={styles.resendText}>Resend Code in </Text>
-                    00:{timer < 10 ? `0${timer}` : timer}s
-                  </Text>
-                </View>
-                  )
-                }
+                    <View style={styles.timerContainer}>
+                      <Text style={styles.timerText}>
+                        <Text style={styles.resendText}>Resend Code in </Text>
+                        00:{timer < 10 ? `0${timer}` : timer}s
+                      </Text>
+                    </View>
+                  )}
                 </TouchableOpacity>
               </View>
             </View>
@@ -172,7 +176,7 @@ const VerifyOtp = ({navigation, route}: VerifyOtpProps) => {
           </View>
         </SafeAreaView>
       </TouchableWithoutFeedback>
-    </>
+    </KeyboardAvoidingView>
   );
 };
 

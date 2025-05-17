@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
   },
   alertHeader: {
     flexDirection: 'row',
+    alignItems:'center',
   },
   infoImg: {
     width: vw(16),

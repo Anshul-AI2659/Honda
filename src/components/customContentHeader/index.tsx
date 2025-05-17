@@ -7,7 +7,7 @@ interface ContentHeaderProps {
   detailText: string;
   headerTextStyle?: object;
   detailTextStyle?: object;
-  changeNumber?:boolean
+  changeText?:string;
 }
 
 const ContentHeader = ({
@@ -15,14 +15,14 @@ const ContentHeader = ({
   detailText,
   headerTextStyle,
   detailTextStyle,
-  changeNumber,
+  changeText,
 }: ContentHeaderProps) => {
   return (
     <View style={[styles.contentHeader]}>
       <Text style={[styles.headerText, headerTextStyle]}>{headerText}</Text>
       <Text style={[styles.detailText, detailTextStyle]}>{detailText}</Text>
-      {changeNumber && (
-        <Text style={styles.changeNumberText}>{'Change Number?'}</Text>
+      {changeText && (
+        <Text style={styles.changeNumberText}>{changeText}</Text>
       )}
     </View>
   );

@@ -1,35 +1,32 @@
 import React, {useState} from 'react';
 import {
-  View,
+  FlatList,
+  Image,
+  Modal,
+  ScrollView,
   Text,
   TouchableOpacity,
-  Modal,
-  Image,
-  ScrollView,
-  FlatList,
   TouchableWithoutFeedback,
+  View,
 } from 'react-native';
-import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
-// import ImagePicker from 'react-native-image-crop-picker';
-import {Icons} from '../../assets';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {vh} from '../../utils/dimension';
-import styles from './styles';
-import CustomButton from '../../components/customButton';
-import {
-  requestCameraPermission,
-  requestStoragePermission,
-} from '../../components/customPermissions';
-import CustomHeader from '../../components/customHeader';
+import ImagePicker from 'react-native-image-crop-picker';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {StackParamList} from '../../utils/types';
-import CustomMobileInputBox from '../../components/CustomMobileInputBox';
-import {string} from '../../utils/strings';
-import CustomInput from '../../components/customInput';
-import {validateEmail, validateName} from '../../utils/validations';
-import CustomStatusBar from '../../components/statusBar';
-import CustomDateTimePicker from '../../components/customDateTimePicker';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {Icons} from '../../assets';
 import {days} from '../../assets/data';
+import CustomButton from '../../components/customButton';
+import CustomDateTimePicker from '../../components/customDateTimePicker';
+import CustomHeader from '../../components/customHeader';
+import CustomInput from '../../components/customInput';
+import CustomMobileInputBox from '../../components/CustomMobileInputBox';
+// import {launchImageLibrary,launchCamera} from 'react-native-image-picker';
+import CustomStatusBar from '../../components/statusBar';
+import {vh} from '../../utils/dimension';
+import {string} from '../../utils/strings';
+import {StackParamList} from '../../utils/types';
+import {validateEmail, validateName} from '../../utils/validations';
+import styles from './styles';
+import {requestCameraPermission} from '../../components/customPermissions';
 
 interface profileProps {
   navigation: StackNavigationProp<StackParamList>;
@@ -43,7 +40,7 @@ const Profile = ({navigation}: profileProps) => {
   const [phoneError, setPhoneError] = useState(false);
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
-  const [selectedDay, setSelectedDay] = useState(null);
+  const [selectedDays, setSelectedDays] = useState([]);
   const [isAllWeekSelected, setIsAllWeekSelected] = useState(false);
   const [formData, setFormData] = useState({
     name: 'Mahesh Honda',
@@ -55,7 +52,7 @@ const Profile = ({navigation}: profileProps) => {
     emailError: false,
     cityError: false,
   });
-
+  // Handling Changes in Input Fields
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({...prev, [field]: value}));
 
@@ -84,100 +81,61 @@ const Profile = ({navigation}: profileProps) => {
     }
   };
 
-  // // Function to Open Phone's Gallery.
-  // const openGallery = async (): Promise<void> => {
-  //   const storagePermission = await requestStoragePermission();
-
-  //   if (storagePermission) {
-  //     ImagePicker.openPicker({
-  //       mediaType: 'photo',
-  //       cropping: true,
-  //       compressImageQuality: 1,
+  // Function to Open Phone's Gallery.
+  // const openGallery = () => {
+  //   ImagePicker.openPicker({
+  //     width: 300,
+  //     height: 300,
+  //     cropping: true,
+  //   })
+  //     .then(image => {
+  //       console.log(image);
+  //       setImageUri(image.path);
+  //       setModalVisible(false);
   //     })
-  //       .then(image => {
-  //         setModalVisible(false);
-  //         setImageUri(image.path);
-  //       })
-  //       .catch(error => {
-  //         setModalVisible(false);
-  //         console.log('Error selecting image from gallery:', error);
-  //       });
-  //   }
+  //     .catch(error => {
+  //       console.log('Error selecting image: ', error);
+  //       setModalVisible(false); // Close modal even in case of an error
+  //     });
   // };
 
-  // // Function to open the camera.
-  // const handleTakePhoto = async (): Promise<void> => {
-  //   const cameraPermission = await requestCameraPermission();
-
-  //   if (cameraPermission) {
-  //     ImagePicker.openCamera({
-  //       mediaType: 'photo',
-  //       cropping: true,
-  //       compressImageQuality: 1,
-  //     })
-  //       .then(image => {
-  //         setImageUri(image.path);
-  //         setModalVisible(false);
-  //       })
-  //       .catch(error => {
-  //         console.log('Error taking photo:', error);
-  //         setModalVisible(false);
-  //       });
-  //   }
-  // };
-
-  const openGallery = async (): Promise<void> => {
-    const storagePermission = await requestStoragePermission();
-
-    if (storagePermission) {
-      launchImageLibrary(
-        {
-          mediaType: 'photo',
-          includeBase64: false,
-          quality: 1,
-        },
-        response => {
-          if (response.didCancel) {
-            console.log('User cancelled image picker');
-          } else if (response.errorMessage) {
-            console.log('ImagePicker Error: ', response.errorMessage);
-          } else {
-            const imageUri = response.assets?.[0]?.uri;
-            if (imageUri) {
-              setModalVisible(false);
-              setImageUri(imageUri);
-            }
-          }
-        },
-      );
-    }
+  const openGallery = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 300,
+      cropping: true,
+    })
+      .then(image => {
+        console.log(image);
+        setImageUri(image.path);
+        setModalVisible(false);
+      })
+      .catch(error => {
+        console.log('Error selecting image: ', error);
+        setModalVisible(false);
+      });
   };
 
-  // Function to open the camera
-  const handleTakePhoto = async (): Promise<void> => {
-    const cameraPermission = await requestCameraPermission();
+  const handleTakePhoto = async () => {
+    const hasPermissions = await requestCameraPermission();
 
-    if (cameraPermission) {
-      launchCamera(
-        {
-          mediaType: 'photo',
-          includeBase64: false,
-          quality: 1,
-        },
-        response => {
-          if (response.didCancel) {
-            console.log('User cancelled image picker');
-          } else if (response.errorMessage) {
-            console.log('Camera Error: ', response.errorMessage);
-          } else {
-            const imageUri = response.assets?.[0]?.uri;
-            if (imageUri) {
-              setModalVisible(false);
-              setImageUri(imageUri);
-            }
-          }
-        },
-      );
+    if (hasPermissions) {
+      ImagePicker.openCamera({
+        width: 300,
+        height: 300,
+        cropping: true,
+      })
+        .then(image => {
+          console.log(image);
+          setImageUri(image.path);
+          setModalVisible(false);
+        })
+        .catch(error => {
+          console.log('Error taking photo: ', error);
+          setModalVisible(false);
+        });
+    } else {
+      console.log('Permission denied for camera access.');
     }
   };
 
@@ -200,20 +158,35 @@ const Profile = ({navigation}: profileProps) => {
 
   const handleAllWeekSelection = () => {
     setIsAllWeekSelected(true);
-    setSelectedDay(null);
+    setSelectedDays([]);
   };
 
   const handleCustomWeekSelection = () => {
     setIsAllWeekSelected(false);
   };
+  const toggleDaySelection = (index: number): void => {
+    // If already selected, remove it; if not, add it
+    if (selectedDays.includes(index)) {
+      setSelectedDays(
+        selectedDays.filter((dayIndex: number) => dayIndex !== index),
+      );
+    } else {
+      setSelectedDays([...selectedDays, index]);
+    }
+  };
 
-  const renderItem = ({item, index}) => {
-    const isSelected = isAllWeekSelected;
+  const renderItem = ({item, index}: {item: string; index: number}) => {
+    // const isSelected = isAllWeekSelected;
+    const isSelected = isAllWeekSelected || selectedDays.includes(index);
 
     return (
       <TouchableOpacity
         style={[styles.dayButton, isSelected && styles.selectedDayButton]}
-        onPress={() => setSelectedDay(index)}>
+        onPress={() => {
+          if (!isAllWeekSelected) {
+            toggleDaySelection(index); // Toggle selection only if custom week is selected
+          }
+        }}>
         <Text style={[styles.dayText, isSelected && styles.selectedDayText]}>
           {item}
         </Text>
@@ -228,7 +201,7 @@ const Profile = ({navigation}: profileProps) => {
       <CustomStatusBar />
       <CustomHeader
         leftIcon={Icons.back}
-        textHeading="Profile"
+        textHeading={'Profile'}
         leftButtonStyle={styles.backButton}
         onleftPress={navigation.goBack}
         headerStyle={styles.header}
@@ -270,7 +243,9 @@ const Profile = ({navigation}: profileProps) => {
           keyboardType={'email-address'}
           onChangeText={text => handleInputChange('email', text)}
           inputContainerStyle={styles.inputContainer}
-          textInputStyle={styles.textInput}
+          textInputStyle={styles.emailTextInput}
+          rightText={'Verify Now'}
+          rightTextStyle={styles.verifyNowText}
         />
         <CustomMobileInputBox
           label={'Phone Number'}
@@ -280,6 +255,10 @@ const Profile = ({navigation}: profileProps) => {
           error={phoneError}
           setError={setPhoneError}
           errorText={string.Login.phoneNumberError}
+          inputContainerStyle={styles.mobileInputContainer}
+          textInputStyle={styles.mobileInput}
+          errorContainerStyle={styles.mobileErrorContainer}
+          errorTextStyles={styles.mobileErrorText}
         />
         <CustomInput
           value={formData.city}
@@ -343,7 +322,7 @@ const Profile = ({navigation}: profileProps) => {
             horizontal
             showsHorizontalScrollIndicator={false}
             scrollEnabled={false}
-            contentContainerStyle={{flex: 1, marginTop: vh(16)}}
+            contentContainerStyle={styles.daysListContainer}
           />
         </View>
         <View style={styles.serviceHoursContainer}>
@@ -373,7 +352,6 @@ const Profile = ({navigation}: profileProps) => {
         isButtonDisabled={isButtonDisabled}
         disabledButtonStyle={styles.disableUpdateButton}
       />
-
       <Modal
         animationType="slide"
         transparent={true}
@@ -381,14 +359,13 @@ const Profile = ({navigation}: profileProps) => {
         onRequestClose={() => setModalVisible(false)}>
         <View style={styles.modalMainContainer}>
           <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
-            <View style={styles.modalTopContainer} />
+            <View style={styles.modalTopContainer}></View>
           </TouchableWithoutFeedback>
           <View style={styles.modalContentContainer}>
             <TouchableOpacity style={styles.container2} onPress={openGallery}>
               <Image source={Icons.gallery} style={styles.iconImageSize} />
               <Text style={styles.name}>{'Upload From Gallery'}</Text>
             </TouchableOpacity>
-
             <TouchableOpacity
               style={styles.container2}
               onPress={handleTakePhoto}>

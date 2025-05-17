@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
   },
   subContainer: {
     flex: 1,
-    paddingHorizontal: vw(20),
+    paddingHorizontal: vw(16),
     paddingBottom: vh(20),
     marginTop: vh(20),
     justifyContent: 'space-between',

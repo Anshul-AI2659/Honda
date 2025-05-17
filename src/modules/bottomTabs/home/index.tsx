@@ -92,7 +92,10 @@ const Home = ({navigation}: HomeProps) => {
       style={styles.textHeaderItemContainer}
       activeOpacity={0.5}
       onPress={() => {
-        navigation.navigate(ScreenNames.ProductDetail);
+        navigation.navigate({
+          name: 'ProductDetail',
+          params: undefined
+        });
       }}>
       <View style={styles.textHeaderImageContainer}>
         <Image source={item.image} style={styles.textHeaderItemImage} />
@@ -125,7 +128,7 @@ const Home = ({navigation}: HomeProps) => {
   return (
     <>
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-    <SafeAreaView style={styles.mainContainer}>
+    <View style={styles.mainContainer}>
       <CustomStatusBar />
       <ScrollView
         style={styles.scrollView}
@@ -225,7 +228,7 @@ const Home = ({navigation}: HomeProps) => {
           />
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
     </TouchableWithoutFeedback>
     </>
   );

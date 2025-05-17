@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
     fontFamily:ROBOTO_MEDIUM,
     fontWeight: '500',
     width: vw(108),
-    height: vw(20),
     marginTop: vh(20),
     textAlign: 'center',
     color:Colors.Black,
