@@ -1,18 +1,19 @@
 import {StyleSheet} from 'react-native';
-import {vw, vh} from '../../utils/dimension';
-import {size} from '../../utils/size';
-import {Colors} from '../../utils/colors';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { normalize, vh, vw } from '../../styles';
+import { ROBOTO_MEDIUM } from '../../styles/Fonts';
+
 
 export const styles = StyleSheet.create({
   inputContainer: {
-    width: '100%',
-    height:vw(56),
+    paddingVertical:vh(2),
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: vh(16),
+    marginTop: vh(20),
+    marginHorizontal:vw(16),
     borderWidth: 1,
     borderRadius: 16,
-    borderColor: Colors.primary,
+    borderColor: Colors.tutorialInactiveDot,
     backgroundColor: Colors.White,
   },
 
@@ -22,19 +23,18 @@ export const styles = StyleSheet.create({
     paddingVertical: vh(8),
     paddingLeft: vw(16),
     paddingRight: vw(12),
-    borderRightColor: Colors.borderRight,
+    borderRightColor: Colors.tutorialInactiveDot,
     alignItems: 'center',
   },
   countryCodeText: {
     fontSize: vh(16),
-    color: Colors.Black,
-    fontWeight: '500',
+    color: Colors.tutorialDescription,
   },
   phoneInputMobile: {
-    width: vw(260),
-    height: vw(54),
+    width: vh(300),
+    height: vh(52),
     fontSize: vw(16),
-    fontWeight: '500',
+    fontFamily:ROBOTO_MEDIUM,
     marginLeft: vw(10),
     borderBottomRightRadius: 16,
     borderTopRightRadius: 16,
@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
   },
   errorText: {
     color: Colors.red,
-    fontSize: size.error,
+    fontSize: normalize(16),
     marginTop: vh(4),
     textAlign: 'left',
   },
@@ -70,14 +70,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: vw(20),
     borderBottomWidth: 0.2,
   },
-  countryText: {
-    fontSize: size.itemTitle,
-    marginRight: vw(10),
-  },
-  countryName: {
-    fontSize: size.description,
-    color: Colors.Black,
-  },
+
   closeButton: {
     marginTop: vh(20),
     marginHorizontal: vw(20),
@@ -98,7 +91,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: vw(20),
   },
   modalText: {
-    fontSize: size.headerTitle,
+    fontSize: normalize(16),
     fontWeight: 'bold',
   },
 });

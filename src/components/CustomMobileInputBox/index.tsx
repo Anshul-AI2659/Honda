@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useState} from 'react';
 import {
-  FlatList,
   Modal,
   SafeAreaView,
   Text,
@@ -10,16 +9,8 @@ import {
   View,
 } from 'react-native';
 import {styles} from './styles';
-import {countries} from '../../assets/countries';
-import {Colors} from '../../utils/colors';
-import {validatePhoneNumber} from '../../utils/validations';
+import colors from '../../utils/colors';
 
-interface Country {
-  flag: string;
-  code: string;
-  name: string;
-  calling_code: string;
-}
 
 interface CustomMobileInputBoxProps {
   countryCode?: String;
@@ -27,11 +18,10 @@ interface CustomMobileInputBoxProps {
   label: string;
   phoneNumber: string;
   setPhoneNumber: (text: string) => void;
-  onSelect?: (country: Country) => void;
-  setPickerVisible?: boolean;
   error: boolean;
   setError: (hasError: boolean) => void;
   errorText?: string;
+  autoFocus?:boolean;
 }
 
 const CustomMobileInputBox = ({
@@ -41,32 +31,23 @@ const CustomMobileInputBox = ({
   error,
   setError,
   errorText,
+  autoFocus = false,
 }: CustomMobileInputBoxProps) => {
   const [showModal, setShowModal] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState(
-    countries.countries[0],
-  );
 
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filterCountries = countries.countries.filter(country =>
-    country.name.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
+  
 
   const handlePhoneNumberChange = (text: string) => {
     setPhoneNumber(text);
     if (text === '') {
       setError(false);
-    } else if (validatePhoneNumber(text)) {
-      setError(false);
-    } else {
-      setError(true);
-    }
-  };
-
-  const handleSelectCountry = (country: Country) => {
-    setSelectedCountry(country);
-    setShowModal(false);
+    // } else if (validatePhoneNumber(text)) {
+    //   setError(false);
+    // } else {
+    //   setError(true);
+    // }
   };
 
   return (
@@ -86,12 +67,12 @@ const CustomMobileInputBox = ({
           style={styles.phoneInputMobile}
           placeholder={label}
           keyboardType="phone-pad"
-          placeholderTextColor={Colors.placeHolderText}
+          placeholderTextColor={colors.descritptionText}
           maxLength={13}
           value={phoneNumber}
           onChangeText={handlePhoneNumberChange}
-          autoFocus={true}
-          selectionColor={Colors.primary}
+          autoFocus={autoFocus}
+          // selectionColor={colors.primary}
           underlineColorAndroid="transparent"
         />
       </View>
@@ -104,28 +85,27 @@ const CustomMobileInputBox = ({
             <Text style={styles.modalText}>Select Country</Text>
           </View>
           <TextInput
+            //  selectionColor={colors.primary}
             style={styles.searchInput}
             placeholder="Search country..."
             value={searchQuery}
             onChangeText={text => {
               setSearchQuery(text);
-              filterCountries;
             }}
           />
-          <FlatList
-            data={filterCountries}
+          {/* <FlatList
             keyExtractor={item => item.name}
             renderItem={({item}: {item: any}) => (
               <TouchableOpacity
                 style={styles.countryButton}
-                onPress={() => handleSelectCountry(item)}>
+                >
                 <Text style={styles.countryText}>{item.flag}</Text>
                 <Text style={styles.countryName}>
                   {item.name} ({item.calling_code})
                 </Text>
               </TouchableOpacity>
             )}
-          />
+          /> */}
           <TouchableOpacity
             style={styles.closeButton}
             onPress={() => setShowModal(false)}>
@@ -136,5 +116,6 @@ const CustomMobileInputBox = ({
     </>
   );
 };
+}
 
 export default CustomMobileInputBox;

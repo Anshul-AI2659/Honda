@@ -17,26 +17,33 @@ interface CustomButtonProps {
   buttonText: string;
   iconSource?: ImageSourcePropType;
   buttonStyle?: StyleProp<ViewStyle>;
+  disabledButtonStyle?: StyleProp<ViewStyle>;
+  disabledButtonTextStyle?: StyleProp<TextStyle>;
   iconStyle?: StyleProp<ImageStyle>;
   textStyle?: StyleProp<TextStyle>;
   isButtonDisabled?: boolean;
+  style?: StyleProp<ViewStyle>;
 }
 
 const CustomButton = ({
   buttonText,
   buttonStyle,
   textStyle,
+  disabledButtonStyle,
+  disabledButtonTextStyle,
   iconSource,
   iconStyle,
   onPress,
   isButtonDisabled = false,
+  style,
 }: CustomButtonProps) => {
   return (
     <TouchableOpacity
       style={[
         styles.submitButton,
         buttonStyle,
-        isButtonDisabled && [styles.disabledButton],
+        style,
+        isButtonDisabled && [styles.disabledButton, disabledButtonStyle],
       ]}
       onPress={onPress}
       activeOpacity={0.7}
@@ -48,7 +55,10 @@ const CustomButton = ({
         style={[
           styles.submitButtonText,
           textStyle,
-          isButtonDisabled && [styles.disabledButtonText],
+          isButtonDisabled && [
+            styles.disabledButtonText,
+            disabledButtonTextStyle,
+          ],
         ]}>
         {buttonText}
       </Text>

@@ -1,38 +1,35 @@
 import {StyleSheet} from 'react-native';
-import {Colors} from '../../utils/colors';
-import {vh, vw} from '../../utils/dimension';
-import {size} from '../../utils/size';
+
+
+
+
+import { ROBOTO_BOLD } from '../../styles/Fonts';
+import colors from '../../utils/colors';
+import { vh, vw } from '../../styles';
 
 export const styles = StyleSheet.create({
   disabledButton: {
-    backgroundColor: Colors.lightGrey,
+    backgroundColor: colors.lightGrey,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
-    width: '100%',
-    marginTop: vh(44),
-    borderRadius: 16,
-    paddingVertical: vh(16),
   },
   submitButton: {
-    // width:'100%',
-    flexDirection: 'row',
-    backgroundColor: Colors.primary,
+    backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
-    marginTop: vh(44),
-    borderRadius: 16,
-    paddingVertical: vh(16),
   },
   submitButtonText: {
-    color: Colors.White,
-    fontSize: size.button,
+    color: colors.white,
+    fontSize: vh(16),
+    fontFamily:ROBOTO_BOLD,
     fontWeight: '800',
   },
   disabledButtonText: {
-    color: Colors.greyText,
-    fontSize: size.button,
+    color: colors.grey,
+    fontSize: vh(16),
+    fontFamily:ROBOTO_BOLD,
     fontWeight: '800',
   },
   icon: {

@@ -1,12 +1,16 @@
-import {View, StatusBar} from 'react-native';
 import React from 'react';
+import { View, StatusBar, StatusBarStyle } from 'react-native';
 
-const CustomStatusBar = () => {
+interface CustomStatusBarProps {
+  barStyle?: StatusBarStyle;
+}
+
+const CustomStatusBar: React.FC<CustomStatusBarProps> = ({ barStyle = 'dark-content' }) => {
   return (
     <View>
       <StatusBar
-        backgroundColor={'transparent'}
-        barStyle={'dark-content'}
+        backgroundColor="transparent"
+        barStyle={barStyle}
         translucent={true}
       />
     </View>

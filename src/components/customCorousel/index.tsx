@@ -1,8 +1,7 @@
 import React, {JSX, useRef} from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
-import {Colors} from '../../utils/colors';
-import {SCREEN_WIDTH, vh, vw} from '../../utils/dimension';
-import {size} from '../../utils/size';
+import colors from '../../utils/colors';
+import { normalize, screenWidth, vh, vw } from '../../styles';
 
 interface CarouselProps {
   data: any[];
@@ -38,6 +37,7 @@ const Carousel: React.FC<CarouselProps> = ({
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         onMomentumScrollEnd={handleScrollEnd}
+        removeClippedSubviews={false}
       />
 
       {/* Fixed Pagination Dots */}
@@ -62,7 +62,7 @@ const Carousel: React.FC<CarouselProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.White,
+    backgroundColor: colors.white,
   },
   image: {
     width: vw(340),
@@ -75,18 +75,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: vw(35),
     marginTop: vh(30),
     alignItems: 'center',
-    backgroundColor: Colors.White,
+    backgroundColor: colors.white,
   },
   title: {
-    fontSize: size.headerTitle,
+    // fontSize: si.headerTitle,
     fontWeight: '700',
-    color: Colors.Black,
+    color: colors.black,
     marginTop: vh(10),
     textAlign: 'center',
   },
   description: {
-    fontSize: size.description,
-    color: Colors.tutorialDescription,
+    // fontSize: size.description,
+    // color: colors.tutorialDescription,
     fontWeight: '400',
     marginTop: vh(10),
     paddingHorizontal: vw(20),
@@ -107,12 +107,12 @@ const styles = StyleSheet.create({
     marginHorizontal: vw(3),
   },
   activeDot: {
-    backgroundColor: Colors.primary,
+    backgroundColor: colors.primary,
     width: vw(24),
     height: vw(8),
   },
   inactiveDot: {
-    backgroundColor: Colors.tutorialInactiveDot,
+    backgroundColor: colors.inactiveDot,
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     // marginTop: vh(20),
   },
   nextButton: {
-    backgroundColor: Colors.primary,
+    backgroundColor: colors.primary,
     paddingVertical: vw(14),
     paddingHorizontal: vw(27),
     borderRadius: 16,
@@ -130,28 +130,28 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   nextButtonText: {
-    color: Colors.White,
-    fontSize: size.button,
+    color: colors.white,
+    fontSize: normalize(16),
     fontWeight: '800',
     textAlign: 'center',
   },
   skipButton: {
     paddingVertical: vw(14),
     paddingHorizontal: vw(16),
-    backgroundColor: Colors.White,
+    backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
   },
   skipButtonText: {
-    color: Colors.primary,
-    fontSize: size.button,
+    color: colors.primary,
+    // fontSize: size.button,
     fontWeight: '700',
   },
   getStartedButtonContainer: {
     paddingHorizontal: vw(24),
   },
   getStartedButton: {
-    backgroundColor: Colors.primary,
+    backgroundColor: colors.primary,
     marginHorizontal: vw(24),
     width: '100%',
     marginTop: vh(40),
@@ -162,8 +162,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   getStartedButtonText: {
-    color: Colors.White,
-    fontSize: size.button,
+    color: colors.white,
+    // fontSize: .button,
     fontWeight: '800',
     textAlign: 'center',
   },
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   slide: {
-    width: SCREEN_WIDTH,
+    width: screenWidth,
   },
 });
 
