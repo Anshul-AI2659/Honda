@@ -1,11 +1,24 @@
+<<<<<<< HEAD
 import {Platform, StyleSheet} from 'react-native';
 import { ROBOTO_BOLD, ROBOTO_MEDIUM, ROBOTO_REGULAR } from '../../styles/Fonts';
 import colors from '../../utils/colors';
 import { vh, vw, normalize } from '../../styles';
+=======
+import {StyleSheet} from 'react-native';
+import {Colors} from '../../utils/colors';
+import {normalize, vh, vw} from '../../utils/dimension';
+import {
+  ROBOTO_BOLD,
+  ROBOTO_MEDIUM,
+  ROBOTO_REGULAR,
+  ROBOTO_SEMIBOLD,
+} from '../../utils/Fonts';
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
 
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+<<<<<<< HEAD
     backgroundColor: colors.white,
   },
 
@@ -43,6 +56,25 @@ header: {
     marginTop: vh(10),
     marginBottom: vh(4),
     paddingHorizontal: vw(4),
+=======
+    backgroundColor: Colors.White,
+  },
+  header: {
+    paddingVertical: vh(14),
+    borderBottomWidth: 1,
+    borderBottomColor: '#00000012',
+  },
+  backButton: {
+    backgroundColor: Colors.headerButton,
+  },
+  searchContainer: {
+    marginHorizontal: vw(16),
+  },
+  choiceContainer: {
+    marginTop: vh(16),
+    marginBottom: vh(4),
+    paddingHorizontal: vw(12),
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
     flexDirection: 'row',
   },
   Button: {
@@ -52,13 +84,20 @@ header: {
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
+<<<<<<< HEAD
     borderColor: colors.inactiveDot,
     borderRadius: 16,
     backgroundColor: colors.white,
+=======
+    borderColor: Colors.tutorialInactiveDot,
+    borderRadius: 16,
+    backgroundColor: '#fff',
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
   },
   selectedButton: {
     paddingVertical: vh(10),
     paddingHorizontal:vw(16),
+<<<<<<< HEAD
     marginHorizontal: vw(14),
     alignItems: 'center',
     justifyContent: 'center',
@@ -66,26 +105,51 @@ header: {
     borderColor: colors.primary,
     backgroundColor: 'rgba(228, 29, 45, 0.1)',
     borderRadius: normalize(16),
+=======
+    marginHorizontal: vw(4),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: Colors.primary,
+    backgroundColor: 'rgba(228, 29, 45, 0.1)',
+    borderRadius: 16,
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
   },
   buttonText: {
     fontSize: normalize(14),
     fontFamily: ROBOTO_MEDIUM,
+<<<<<<< HEAD
     color: '#7C8585',
+=======
+    color: Colors.description,
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
     fontWeight: '500',
   },
   selectedButtonText: {
     fontSize: normalize(14),
     fontFamily: ROBOTO_MEDIUM,
+<<<<<<< HEAD
     color: colors.primary,
   },
   customFlatListStyle: {
     paddingHorizontal: vw(8),
     paddingBottom:vh(150)
+=======
+    fontWeight: '500',
+    color: Colors.primary,
+  },
+  customFlatListStyle: {
+    paddingHorizontal: vw(8),
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
   },
   textHeaderItemContainer: {
     width: vw(182),
     height: vw(215),
+<<<<<<< HEAD
     backgroundColor: colors.white,
+=======
+    backgroundColor: Colors.White,
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
     borderRadius: 12,
     marginHorizontal: vw(8),
     marginVertical: vh(12),
@@ -93,6 +157,7 @@ header: {
   textHeaderImageContainer: {
     width: vw(182),
     height: vw(136),
+<<<<<<< HEAD
     flexDirection: 'row',
     borderRadius: 12,
     backgroundColor: '#F3F6FA',
@@ -117,6 +182,17 @@ header: {
   favouriteImg: {
     width: vw(16),
     height: vw(15.44),
+=======
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 12,
+    backgroundColor: Colors.lightGrey,
+  },
+  textHeaderItemImage: {
+    width: vw(100),
+    height: vw(100),
+    alignSelf: 'center',
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
     resizeMode: 'contain',
   },
   textHeaderItemNumber: {
@@ -128,6 +204,7 @@ header: {
   textHeaderItemTitle: {
     fontSize: normalize(14),
     fontFamily: ROBOTO_REGULAR,
+<<<<<<< HEAD
     marginTop: vh(8),
     color: colors.descritptionText,
   },
@@ -169,3 +246,18 @@ header: {
   
 });
 export default styles;
+=======
+    fontWeight: '400',
+    marginTop: vh(8),
+    color: Colors.description,
+  },
+  textHeaderItemPrice: {
+    fontSize: normalize(14),
+    fontFamily: ROBOTO_SEMIBOLD,
+    fontWeight: '600',
+    marginTop: vh(8),
+    color: Colors.blackText,
+  },
+});
+export default styles;
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625

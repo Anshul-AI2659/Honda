@@ -5,6 +5,7 @@ import {
   ImageSourcePropType,
   TextInput,
   TouchableOpacity,
+<<<<<<< HEAD
   View,
 } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -17,6 +18,18 @@ interface CustomDateTimePickerProps {
   rightIcon: ImageSourcePropType;
   clearIcon: ImageSourcePropType;  // <-- NEW
   rightIconStyle?: object;
+=======
+} from 'react-native';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import {Colors} from '../../utils/colors';
+import styles from './styles';
+
+interface CustomDateTimePickerProps {
+  label: string;
+  rightIcon: ImageSourcePropType;
+  rightIconStyle?: object;
+  //   calendarIcon: ImageSourcePropType;
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
   onDateChange: (date: Date | string) => void;
   mode: 'date' | 'time' | 'datetime';
   containerStyle: object;
@@ -25,7 +38,10 @@ interface CustomDateTimePickerProps {
 const CustomDateTimePicker = ({
   label,
   rightIcon,
+<<<<<<< HEAD
   clearIcon,   // <-- NEW
+=======
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
   rightIconStyle,
   onDateChange,
   mode,
@@ -52,6 +68,7 @@ const CustomDateTimePicker = ({
       formattedDate = format(date, 'dd/MM/yyyy h:mm a');
     }
     setDob(formattedDate);
+<<<<<<< HEAD
     onDateChange(formattedDate);
     hideDatePicker();
   };
@@ -94,13 +111,40 @@ const CustomDateTimePicker = ({
           )
         )}
       </View>
+=======
+    onDateChange(date);
+    hideDatePicker();
+  };
+
+  return (
+    <>
+      <TouchableOpacity onPress={showDatePicker} style={containerStyle}>
+        <TextInput
+          style={styles.phoneInput}
+          placeholder={label}
+          value={dob}
+          onPress={showDatePicker}
+          placeholderTextColor={Colors.placeHolderText}
+          editable={false}
+        />
+        {rightIcon && (
+          <Image
+            source={rightIcon}
+            style={[styles.rightIcon, rightIconStyle]}
+          />
+        )}
+      </TouchableOpacity>
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
 
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode={mode}
         onConfirm={handleConfirmDate}
         onCancel={hideDatePicker}
+<<<<<<< HEAD
         pickerStyleIOS={{ alignContent:'center', justifyContent:'center', alignSelf:'center' }}
+=======
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
       />
     </>
   );

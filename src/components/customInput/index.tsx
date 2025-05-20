@@ -5,11 +5,17 @@ import {
   TextInput,
   View,
   TouchableOpacity,
+<<<<<<< HEAD
   Image,
   ImageSourcePropType,
 } from 'react-native';
 import styles from './styles';
 import colors from '../../utils/colors';
+=======
+} from 'react-native';
+import styles from './styles';
+import {Colors} from '../../utils/colors';
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
 
 interface CustomInputProps {
   value: string;
@@ -22,7 +28,10 @@ interface CustomInputProps {
   onFocus?: () => void;
   onBlur?: () => void;
   onRightTextPress?: () => void;
+<<<<<<< HEAD
   onRightImagePress?: () => void;
+=======
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
   isPassword?: boolean;
   isPasswordVisible?: boolean;
   togglePasswordVisibility?: () => void;
@@ -31,8 +40,11 @@ interface CustomInputProps {
   textInputStyle?: object;
   rightText?: string;
   rightTextStyle?: object;
+<<<<<<< HEAD
   imageStyle?: object;
   image: ImageSourcePropType
+=======
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
 }
 
 const CustomInput = ({
@@ -51,9 +63,12 @@ const CustomInput = ({
   rightText,
   rightTextStyle,
   onRightTextPress,
+<<<<<<< HEAD
   onRightImagePress,
   image,
   imageStyle
+=======
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
 }: CustomInputProps) => {
   return (
     <>
@@ -70,6 +85,7 @@ const CustomInput = ({
           value={value}
           maxLength={maxLength}
           secureTextEntry={isPassword && !isPasswordVisible}
+<<<<<<< HEAD
           placeholderTextColor={colors.descritptionText}
           onChangeText={onChangeText}
            selectionColor={colors.primary}
@@ -84,6 +100,17 @@ const CustomInput = ({
           </TouchableOpacity>
         ) : null}
 
+=======
+          placeholderTextColor={Colors.tutorialDescription}
+          onChangeText={onChangeText}
+          selectionColor={Colors.tutorialDescription}
+        />
+        {rightText && (
+          <TouchableOpacity activeOpacity={0.7} onPress={onRightTextPress}>
+            <Text style={rightTextStyle}>{rightText}</Text>
+          </TouchableOpacity>
+        )}
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
       </View>
       {Error && <Text style={styles.errorText}>{errorText}</Text>}
     </>

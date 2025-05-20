@@ -1,11 +1,19 @@
+<<<<<<< HEAD
 import {Platform, StyleSheet} from 'react-native';
 import colors from '../../utils/colors';
 import { vw, vh, normalize } from '../../styles';
 import { ROBOTO_BOLD, ROBOTO_REGULAR } from '../../styles/Fonts';
+=======
+import {StyleSheet} from 'react-native';
+import {Colors} from '../../utils/colors';
+import {normalize, vh, vw} from '../../utils/dimension';
+import {ROBOTO_BOLD, ROBOTO_REGULAR, ROBOTO_SEMIBOLD} from '../../utils/Fonts';
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
 
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+<<<<<<< HEAD
     backgroundColor: colors.white,
   },
   scrollView: {
@@ -33,6 +41,32 @@ const styles = StyleSheet.create({
   backIcon: {
     width: vw(40),
     height: vw(40),
+=======
+    backgroundColor: Colors.White,
+  },
+  scrollView: {
+    flex: 1,
+    backgroundColor: Colors.White,
+    paddingHorizontal: vw(8),
+    paddingVertical: vh(20),
+  },
+  header: {
+    paddingVertical: vh(14),
+    borderBottomWidth: 1,
+    borderBottomColor: '#00000012',
+    shadowColor: '#00000012',
+    shadowOffset: {width: 0, height: 1},
+    shadowOpacity: 0.9,
+    shadowRadius: 14,
+    elevation: 3,
+  },
+  backButton: {
+    backgroundColor: Colors.headerButton,
+  },
+  backIcon: {
+    width: vw(24),
+    height: vw(24),
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
     resizeMode: 'contain',
   },
   customFlatListStyle: {
@@ -42,7 +76,11 @@ const styles = StyleSheet.create({
   textHeaderItemContainer: {
     width: vw(140),
     height: vw(183),
+<<<<<<< HEAD
     backgroundColor: colors.white,
+=======
+    backgroundColor: Colors.White,
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
     borderRadius: 12,
     marginHorizontal: vw(8),
   },
@@ -52,7 +90,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 12,
+<<<<<<< HEAD
     backgroundColor: colors.backButtonBackground,
+=======
+    backgroundColor: Colors.lightGrey,
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
   },
   textHeaderItemImage: {
     width: vw(100),
@@ -71,6 +113,7 @@ const styles = StyleSheet.create({
     fontFamily: ROBOTO_REGULAR,
     fontWeight: '400',
     marginTop: vh(8),
+<<<<<<< HEAD
     color: colors.descritptionText,
   },
   textHeaderItemPrice: {
@@ -79,6 +122,16 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginTop: vh(8),
     color: colors.secondryBlack,
+=======
+    color: Colors.description,
+  },
+  textHeaderItemPrice: {
+    fontSize: normalize(14),
+    fontFamily: ROBOTO_SEMIBOLD,
+    fontWeight: '600',
+    marginTop: vh(8),
+    color: Colors.blackText,
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
   },
 });
 

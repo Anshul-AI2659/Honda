@@ -98,6 +98,7 @@ import {
   Image,
   Text,
 } from 'react-native';
+<<<<<<< HEAD
 import {StyleSheet} from 'react-native';
 import { Images } from '../../assets';
 import { FONTS, normalize, vh, vw } from '../../styles';
@@ -111,10 +112,21 @@ interface CustomSearchBarProps extends TextInputProps {
   onChangeText?: (text: string) => void;
   placeHolderText?: string
   isTextInput?:boolean
+=======
+import {Icons} from '../../assets';
+import styles from './styles';
+import {Colors} from '../../utils/colors';
+
+interface CustomSearchBarProps extends TextInputProps {
+  placeholder?: string;
+  onSearchPress?: () => void;
+  searchContainerStyle?: object;
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
 }
 
 const CustomSearch: React.FC<CustomSearchBarProps> = ({
   placeholder,
+<<<<<<< HEAD
   onTouchablePress,
   searchContainerStyle,
   value,
@@ -143,11 +155,21 @@ const CustomSearch: React.FC<CustomSearchBarProps> = ({
         {!isTextInput&& <View style={styles.searchInput}>
          <Text style={styles.inActiveTab}>{placeHolderText ? placeHolderText : 'Search Product'}</Text>
         </View>}
+=======
+  onSearchPress,
+  searchContainerStyle,
+}) => {
+  return (
+    <View style={[styles.searchContainer, searchContainerStyle]}>
+      <TouchableOpacity onPress={onSearchPress}>
+        <Image source={Icons.search} style={styles.searchIcon} />
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
       </TouchableOpacity>
     </View>
   );
 };
 
+<<<<<<< HEAD
 
 
 
@@ -185,3 +207,6 @@ const styles = StyleSheet.create({
   }
 });
 export default CustomSearch;
+=======
+export default CustomSearchBar;
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625

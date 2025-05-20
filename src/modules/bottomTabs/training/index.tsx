@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* eslint-disable react/no-unstable-nested-components */
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {ReactNode, useCallback, useEffect, useState} from 'react';
@@ -6,10 +7,18 @@ import {
   Image,
   ImageSourcePropType,
   ScrollView,
+=======
+// /* eslint-disable react/no-unstable-nested-components */
+import React, {useState} from 'react';
+import {
+  Image,
+  ImageSourcePropType,
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+<<<<<<< HEAD
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 // Custom Components
 import CustomHeader from '../../../components/customHeader';
@@ -34,6 +43,23 @@ interface EquipmentTrainingProps {
 }
 interface Item {
   name: ReactNode;
+=======
+import CustomStatusBar from '../../../components/statusBar';
+import CustomHeader from '../../../components/customHeader';
+import {Icons} from '../../../assets';
+import {ScreenNames} from '../../../utils/screenNames';
+import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
+import {BottomTabParamList} from '../../../utils/types';
+import {HIPlus, Honda, trainingButtonData} from '../../../assets/data';
+import CustomFlatList from '../../../components/customFlatlist';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import styles from './styles';
+
+interface TrainingProps {
+  navigation: BottomTabNavigationProp<BottomTabParamList>;
+}
+interface Item {
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
   id: number;
   title: string;
   image: ImageSourcePropType;
@@ -45,6 +71,7 @@ interface SimpleItem {
   title: string;
   image: ImageSourcePropType;
 }
+<<<<<<< HEAD
 const Training = ({navigation}: EquipmentTrainingProps) => {
   const insets = useSafeAreaInsets();
   const [trainingProductData, setTrainingProductdata] = useState();
@@ -202,11 +229,77 @@ const Training = ({navigation}: EquipmentTrainingProps) => {
         leftIcon={Images.hondaHqImage}
         leftIconStyle={styles.profileIcon}
         rightIcon={Images.notification}
+=======
+const GeneratorsRenderItem = ({item}: {item: SimpleItem}) => (
+  <TouchableOpacity
+    style={styles.ItemContainer}
+    activeOpacity={0.5}
+    onPress={() => {}}>
+    <View style={styles.ImageContainer}>
+      <Image source={item.image} style={styles.ItemImage} />
+    </View>
+    <Text style={styles.ItemTitle}>{item.title}</Text>
+  </TouchableOpacity>
+);
+const Training = ({navigation}: TrainingProps) => {
+  const [selected, setSelected] = useState(1);
+  const [currentData, setCurrentData] = useState(Honda);
+
+  const handleButtonPress = (categoryId: React.SetStateAction<number>) => {
+    setSelected(categoryId);
+
+    switch (categoryId) {
+      case 1:
+        setCurrentData(Honda);
+        break;
+      case 2:
+        setCurrentData(HIPlus);
+        break;
+      case 3:
+        setCurrentData(Honda);
+        break;
+      case 4:
+        setCurrentData(HIPlus);
+        break;
+      default:
+        setCurrentData(Honda);
+    }
+  };
+
+  const renderItem = ({item}: {item: Item}) => (
+    <View>
+      <TouchableOpacity
+        style={[
+          styles.Button,
+          selected === item.id ? styles.selectedButton : null,
+        ]}
+        onPress={() => handleButtonPress(item.id)}>
+        <Text
+          style={[
+            styles.buttonText,
+            selected === item.id ? styles.selectedButtonText : null,
+          ]}>
+          {item.title}
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+
+  return (
+    <SafeAreaView style={styles.mainContainer}>
+      <CustomStatusBar />
+      <CustomHeader
+        headerStyle={styles.header}
+        leftIcon={Icons.profile}
+        leftIconStyle={styles.profileIcon}
+        rightIcon={Icons.notification}
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
         rightButtonStyle={styles.notificationButton}
         onRightPress={() => {
           navigation.navigate(ScreenNames.Notification);
         }}
       />
+<<<<<<< HEAD
       <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
         <SectionHeader
           image={{uri: trainingProductData?.[0]?.image}}
@@ -276,6 +369,25 @@ const Training = ({navigation}: EquipmentTrainingProps) => {
         />
       </ScrollView>
     </View>
+=======
+      <View style={styles.choiceContainer}>
+        <CustomFlatList
+          data={trainingButtonData}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          horizontal={true}
+        />
+      </View>
+      <CustomFlatList
+        data={currentData}
+        renderItem={({item}) => <GeneratorsRenderItem item={item} />}
+        keyExtractor={item => item.id}
+        horizontal={false}
+        numColumn={2}
+        contentContainerStyle={styles.customFlatListStyle}
+      />
+    </SafeAreaView>
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
   );
 };
 

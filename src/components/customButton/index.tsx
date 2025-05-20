@@ -42,7 +42,10 @@ const CustomButton = ({
       style={[
         styles.submitButton,
         buttonStyle,
+<<<<<<< HEAD
         style,
+=======
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
         isButtonDisabled && [styles.disabledButton, disabledButtonStyle],
       ]}
       onPress={onPress}

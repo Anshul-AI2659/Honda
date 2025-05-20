@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 enum ScreenNames{
   SPLASH_SCREEN= 'Splash',
   ONBOARDING= 'Onboarding',
@@ -64,5 +65,29 @@ enum ScreenNames{
   commonDownloadScreen = 'commonDownloadScreen',
   yourProductsScreen = 'yourProductsScreen'
 } ;
+=======
+enum ScreenNames {
+  Splash = 'Splash',
+  Tutorial = 'TutorialScreen',
+  RoleSelect = 'SelectRole',
+  Login = 'Login',
+  VerifyOtp = 'VerifyOtp',
+  Home = 'BottomNavigation',
+  All = 'TobTabNavigation',
+  Congratulation = 'Congratulation',
+  ProductDetail='ProductDetailPage',
+  honda_Category='Honda_Category',
+  Generators='Generators',
+  NewArrivals='NewArrivals',
+  Notification='Notification',
+  NewHondaCategory='NewHondaCategory',
+  NewGenerators='NewGenerators',
+  Tillers = 'Tillers',
+  Profile = 'Profile',
+  VerifyEmailOtp='VerifyEmailOtp',
+  BottomNavigation = 'BottomNavigation',
+}
+
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
 export {ScreenNames};
 

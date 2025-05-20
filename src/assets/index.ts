@@ -1,4 +1,39 @@
+<<<<<<< HEAD
 
+=======
+const Icons = {
+  back: require('../assets/icons/back.png'),
+  homeFocused: require('../assets/icons/homeSelected.png'),
+  category:require('../assets/icons/category.png'),
+  promotion:require('../assets/icons/promotion.png'),
+  training:require('../assets/icons/training.png'),
+  more:require('../assets/icons/more.png'),
+  notification:require('../assets/icons/notification.png'),
+  seeMore:require('../assets/icons/seeMore.png'),
+  search:require('../assets/icons/search.png'),
+  congratulation:require('../assets/icons/tick.png'),
+  down:require('../assets/icons/down.png'),
+  info:require('../assets/icons/info.png'),
+  profile:require('../assets/icons/profile.png'),
+  sort:require('../assets/icons/sort.png'),
+  filter:require('../assets/icons/filter.png'),
+  calendar: require('../assets/icons/calendar.png'),
+  notificationBell: require('../assets/icons/notificationBell.png'),
+  notificationOn: require('../assets/icons/notificationOn.png'),
+  notificationOff: require('../assets/icons/notificationOff.png'),
+  camera: require('../assets/icons/camera.png'),
+  gallery: require('../assets/icons/gallery.png'),
+  delete: require('../assets/icons/delete.png'),
+  changeProfilePhoto: require('../assets/icons/changeProfilePhoto.png'),
+  clock: require('../assets/icons/clock.png'),
+  radioUnselected:require('../assets/icons/radioUnselected.png'),
+  radioSelected:require('../assets/icons/radioSelected.png'),
+  homeActive:require('../assets/icons/homeActive.png'),
+  findEventsActive:require('../assets/icons/findEventsActive.png'),
+  calendarActive:require('../assets/icons/calendarActive.png'),
+  moreActive:require('../assets/icons/favouritesActive.png'),
+};
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
 const Images = {
   back:require('./images/back.png'),
   backarrow:require('./images/backarrow.png'),

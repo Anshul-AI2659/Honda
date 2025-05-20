@@ -1,33 +1,40 @@
 import React, {JSX, useRef} from 'react';
+<<<<<<< HEAD
 import {View, FlatList, StyleSheet} from 'react-native';
 import colors from '../../utils/colors';
 import { normalize, screenWidth, vh, vw } from '../../styles';
+=======
+import {View, FlatList} from 'react-native';
+import styles from './styles';
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
 
 interface CarouselProps {
   data: any[];
   currentStep: number;
   renderItem: ({item, index}: {item: any; index: number}) => JSX.Element;
   handleScrollEnd: (event: any) => void;
+  listContainerStyle?: object;
   paginationStyle?: object;
   dotStyle?: object;
   activeDotStyle?: object;
   inactiveDotStyle?: object;
 }
 
-const Carousel: React.FC<CarouselProps> = ({
+const CustomCarousel = ({
   data,
   currentStep,
   renderItem,
   handleScrollEnd,
+  listContainerStyle,
   paginationStyle = {},
   dotStyle = {},
   activeDotStyle = {},
   inactiveDotStyle = {},
-}) => {
+}: CarouselProps) => {
   const flatListRef = useRef<FlatList>(null);
 
   return (
-    <View>
+    <View style={listContainerStyle}>
       <FlatList
         ref={flatListRef}
         data={data}
@@ -59,6 +66,7 @@ const Carousel: React.FC<CarouselProps> = ({
   );
 };
 
+<<<<<<< HEAD
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -177,3 +185,6 @@ const styles = StyleSheet.create({
 });
 
 export default Carousel;
+=======
+export default CustomCarousel;
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625

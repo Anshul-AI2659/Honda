@@ -1,15 +1,23 @@
+<<<<<<< HEAD
 import React, {useEffect, useMemo, useRef, useState} from 'react';
+=======
+import React, {useState} from 'react';
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
 import {
   FlatList,
   Image,
   Modal,
   ScrollView,
   Text,
+<<<<<<< HEAD
   TextInput,
+=======
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+<<<<<<< HEAD
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import CustomHeader from '../../components/customHeader';
@@ -53,10 +61,42 @@ const Profile = ({navigation, route}: profileProps) => {
   const {isEmailVerified, roleName} = route.params || {};
   const [imageUri, setImageUri] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
+=======
+import ImagePicker from 'react-native-image-crop-picker';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {Icons} from '../../assets';
+import {days} from '../../assets/data';
+import CustomButton from '../../components/customButton';
+import CustomDateTimePicker from '../../components/customDateTimePicker';
+import CustomHeader from '../../components/customHeader';
+import CustomInput from '../../components/customInput';
+import CustomMobileInputBox from '../../components/CustomMobileInputBox';
+// import {launchImageLibrary,launchCamera} from 'react-native-image-picker';
+import CustomStatusBar from '../../components/statusBar';
+import {vh} from '../../utils/dimension';
+import {string} from '../../utils/strings';
+import {StackParamList} from '../../utils/types';
+import {validateEmail, validateName} from '../../utils/validations';
+import styles from './styles';
+import {requestCameraPermission} from '../../components/customPermissions';
+
+interface profileProps {
+  navigation: StackNavigationProp<StackParamList>;
+}
+
+const Profile = ({navigation}: profileProps) => {
+  const [imageUri, setImageUri] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
+  const [callingCode] = useState('+91');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneError, setPhoneError] = useState(false);
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
   const [selectedDays, setSelectedDays] = useState([]);
   const [isAllWeekSelected, setIsAllWeekSelected] = useState(false);
+<<<<<<< HEAD
   const [phoneNumber, setPhoneNumber] = useState('');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [timeError, setTimeError] = useState<boolean>(false);
@@ -337,18 +377,121 @@ const isButtonDisabled = useMemo(() => {
    * Handles removal of the selected image.
    * Closes the modal and clears the current image URI.
    */
+=======
+  const [formData, setFormData] = useState({
+    name: 'Mahesh Honda',
+    email: 'maheshhonda@gmail.com',
+    city: 'Noida',
+  });
+  const [errors, setErrors] = useState({
+    nameError: false,
+    emailError: false,
+    cityError: false,
+  });
+  // Handling Changes in Input Fields
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({...prev, [field]: value}));
+
+    switch (field) {
+      case 'name':
+        setErrors(prev => ({
+          ...prev,
+          nameError: value === '' ? false : !validateName(value),
+        }));
+        break;
+      case 'email':
+        setErrors(prev => ({
+          ...prev,
+          emailError: value === '' ? false : !validateEmail(value),
+        }));
+        break;
+
+      case 'city':
+        setErrors(prev => ({
+          ...prev,
+          cityError: value === '' ? false : !validateName(value),
+        }));
+        break;
+      default:
+        break;
+    }
+  };
+
+  // Function to Open Phone's Gallery.
+  // const openGallery = () => {
+  //   ImagePicker.openPicker({
+  //     width: 300,
+  //     height: 300,
+  //     cropping: true,
+  //   })
+  //     .then(image => {
+  //       console.log(image);
+  //       setImageUri(image.path);
+  //       setModalVisible(false);
+  //     })
+  //     .catch(error => {
+  //       console.log('Error selecting image: ', error);
+  //       setModalVisible(false); // Close modal even in case of an error
+  //     });
+  // };
+
+  const openGallery = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 300,
+      cropping: true,
+    })
+      .then(image => {
+        console.log(image);
+        setImageUri(image.path);
+        setModalVisible(false);
+      })
+      .catch(error => {
+        console.log('Error selecting image: ', error);
+        setModalVisible(false);
+      });
+  };
+
+  const handleTakePhoto = async () => {
+    const hasPermissions = await requestCameraPermission();
+
+    if (hasPermissions) {
+      ImagePicker.openCamera({
+        width: 300,
+        height: 300,
+        cropping: true,
+      })
+        .then(image => {
+          console.log(image);
+          setImageUri(image.path);
+          setModalVisible(false);
+        })
+        .catch(error => {
+          console.log('Error taking photo: ', error);
+          setModalVisible(false);
+        });
+    } else {
+      console.log('Permission denied for camera access.');
+    }
+  };
+
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
   const handleRemove = () => {
     setModalVisible(false);
     setImageUri('');
   };
 
+<<<<<<< HEAD
   /**
    * Opens the modal to show more options (e.g., select image, take photo).
    */
+=======
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
   const handleMoreOption = () => {
     setModalVisible(true);
   };
 
+<<<<<<< HEAD
   /**
    * Updates the start time based on user input.
    * @param text - The input string representing the selected start time.
@@ -400,11 +543,22 @@ const isButtonDisabled = useMemo(() => {
    * Handles the selection of "All Week" option.
    * Sets the all-week flag to true and clears any custom selected days.
    */
+=======
+  const handleStartTimeChange = (text: string) => {
+    setStartTime(text);
+  };
+
+  const handleEndTimeChange = (text: string) => {
+    setEndTime(text);
+  };
+
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
   const handleAllWeekSelection = () => {
     setIsAllWeekSelected(true);
     setSelectedDays([]);
   };
 
+<<<<<<< HEAD
   /**
    * Handles the selection of "Custom Week" option.
    * Sets the all-week flag to false to allow custom day selection.
@@ -413,6 +567,11 @@ const isButtonDisabled = useMemo(() => {
     setIsAllWeekSelected(false);
   };
 
+=======
+  const handleCustomWeekSelection = () => {
+    setIsAllWeekSelected(false);
+  };
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
   const toggleDaySelection = (index: number): void => {
     // If already selected, remove it; if not, add it
     if (selectedDays.includes(index)) {
@@ -424,6 +583,7 @@ const isButtonDisabled = useMemo(() => {
     }
   };
 
+<<<<<<< HEAD
   console.log(
     'data for selectedDays and isAllWeekSelected',
     selectedDays,
@@ -560,6 +720,12 @@ const isButtonDisabled = useMemo(() => {
 
   const renderItem = ({item, index}: {item: string; index: number}) => {
     const isSelected = isAllWeekSelected || selectedDays.includes(index);
+=======
+  const renderItem = ({item, index}: {item: string; index: number}) => {
+    // const isSelected = isAllWeekSelected;
+    const isSelected = isAllWeekSelected || selectedDays.includes(index);
+
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
     return (
       <TouchableOpacity
         style={[styles.dayButton, isSelected && styles.selectedDayButton]}
@@ -575,14 +741,26 @@ const isButtonDisabled = useMemo(() => {
     );
   };
 
+<<<<<<< HEAD
+=======
+  const isButtonDisabled = !imageUri;
+
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
   return (
     <SafeAreaView style={styles.mainContainer}>
       <CustomStatusBar />
       <CustomHeader
+<<<<<<< HEAD
         leftIcon={Images.backarrow}
         textHeading="Profile"
         leftIconStyle={styles.backIcon}
         onleftPress={()=>navigation.replace(ScreenNames.BottomTab,{screen:ScreenNames.More})}
+=======
+        leftIcon={Icons.back}
+        textHeading={'Profile'}
+        leftButtonStyle={styles.backButton}
+        onleftPress={navigation.goBack}
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
         headerStyle={styles.header}
       />
       <ScrollView
@@ -591,12 +769,17 @@ const isButtonDisabled = useMemo(() => {
         <View style={styles.profileSection}>
           <Image
             style={styles.profileImage}
+<<<<<<< HEAD
             source={imageUri ? {uri: imageUri} : Images.hondaHqImage}
+=======
+            source={imageUri ? {uri: imageUri} : Icons.profile}
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
           />
           <TouchableOpacity
             style={styles.addButton}
             onPress={handleMoreOption}
             activeOpacity={1}>
+<<<<<<< HEAD
             <Image source={Images.pencilIcon} style={styles.addImg} />
           </TouchableOpacity>
         </View>
@@ -609,6 +792,19 @@ const isButtonDisabled = useMemo(() => {
             'Please enter a valid name'
           }
           maxLength={99}
+=======
+            <Image source={Icons.changeProfilePhoto} style={styles.addImg} />
+          </TouchableOpacity>
+        </View>
+        <CustomInput
+          value={formData.name}
+          label="Name"
+          Error={errors.nameError}
+          errorText={
+            'Please use only alphabetical letters and minimum length is 3 characters.'
+          }
+          maxLength={20}
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
           keyboardType={'ascii-capable'}
           onChangeText={text => handleInputChange('name', text)}
           inputContainerStyle={styles.inputContainer}
@@ -618,6 +814,7 @@ const isButtonDisabled = useMemo(() => {
           value={formData.email}
           label="Email Id"
           Error={errors.emailError}
+<<<<<<< HEAD
          // errorText={'Please enter valid email'}
           maxLength={30}
           keyboardType={'email-address'}
@@ -676,12 +873,44 @@ const isButtonDisabled = useMemo(() => {
         <CustomInput
           value={formData?.city}
           label={'City/Village'}
+=======
+          errorText={'Please enter valid email'}
+          maxLength={30}
+          keyboardType={'email-address'}
+          onChangeText={text => handleInputChange('email', text)}
+          inputContainerStyle={styles.inputContainer}
+          textInputStyle={styles.emailTextInput}
+          rightText={'Verify Now'}
+          rightTextStyle={styles.verifyNowText}
+        />
+        <CustomMobileInputBox
+          label={'Phone Number'}
+          callingCode={callingCode}
+          phoneNumber={phoneNumber}
+          setPhoneNumber={setPhoneNumber}
+          error={phoneError}
+          setError={setPhoneError}
+          errorText={string.Login.phoneNumberError}
+          inputContainerStyle={styles.mobileInputContainer}
+          textInputStyle={styles.mobileInput}
+          errorContainerStyle={styles.mobileErrorContainer}
+          errorTextStyles={styles.mobileErrorText}
+        />
+        <CustomInput
+          value={formData.city}
+          label="City"
+          Error={errors.cityError}
+          errorText={
+            'Please use only alphabetical letters and minimum length is 3 characters.'
+          }
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
           maxLength={20}
           keyboardType={'ascii-capable'}
           onChangeText={text => handleInputChange('city', text)}
           inputContainerStyle={styles.inputContainer}
           textInputStyle={styles.textInput}
         />
+<<<<<<< HEAD
         {uType == '2' ? (
           <View style={styles.serviceDaysContainer}>
             <Text style={styles.serviceDaysText}>{'Service Days'}</Text>
@@ -776,6 +1005,83 @@ const isButtonDisabled = useMemo(() => {
       <CustomButton
         buttonText={'UPDATE'}
         onPress={onUpdatePress}
+=======
+        <View style={styles.serviceDaysContainer}>
+          <Text style={styles.serviceDaysText}>{'Service Days'}</Text>
+          <View style={styles.weekOptionsContainer}>
+            <TouchableOpacity
+              style={styles.singleWeekContainer}
+              activeOpacity={0.5}
+              onPress={handleAllWeekSelection}>
+              <Image
+                source={
+                  isAllWeekSelected
+                    ? Icons.radioSelected
+                    : Icons.radioUnselected
+                }
+                style={
+                  isAllWeekSelected
+                    ? styles.radioSelected
+                    : styles.radioUnselected
+                }
+              />
+              <Text style={styles.singleWeekOptionText}>{'All Week days'}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.singleWeekContainer}
+              activeOpacity={0.5}
+              onPress={handleCustomWeekSelection}>
+              <Image
+                source={
+                  !isAllWeekSelected
+                    ? Icons.radioSelected
+                    : Icons.radioUnselected
+                }
+                style={
+                  !isAllWeekSelected
+                    ? styles.radioSelected
+                    : styles.radioUnselected
+                }
+              />
+              <Text style={styles.singleWeekOptionText}>
+                {'Customise Week days'}
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <FlatList
+            data={days}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => index.toString()}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            scrollEnabled={false}
+            contentContainerStyle={styles.daysListContainer}
+          />
+        </View>
+        <View style={styles.serviceHoursContainer}>
+          <Text style={styles.serviceHoursText}>{'Service Hours'}</Text>
+          <View style={styles.timeContainer}>
+            <CustomDateTimePicker
+              label={'Select From'}
+              onDateChange={handleStartTimeChange}
+              mode={'time'}
+              containerStyle={styles.singleTimeContainer}
+              rightIcon={Icons.clock}
+            />
+            <CustomDateTimePicker
+              label="Select To"
+              onDateChange={handleEndTimeChange}
+              mode={'time'}
+              containerStyle={styles.singleTimeContainer}
+              rightIcon={Icons.clock}
+            />
+          </View>
+        </View>
+      </ScrollView>
+      <CustomButton
+        buttonText={'UPDATE'}
+        onPress={() => {}}
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
         buttonStyle={styles.updateButton}
         isButtonDisabled={isButtonDisabled}
         disabledButtonStyle={styles.disableUpdateButton}
@@ -791,11 +1097,16 @@ const isButtonDisabled = useMemo(() => {
           </TouchableWithoutFeedback>
           <View style={styles.modalContentContainer}>
             <TouchableOpacity style={styles.container2} onPress={openGallery}>
+<<<<<<< HEAD
               <Image source={Images.galleryIcon} style={styles.iconImageSize} />
+=======
+              <Image source={Icons.gallery} style={styles.iconImageSize} />
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
               <Text style={styles.name}>{'Upload From Gallery'}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.container2}
+<<<<<<< HEAD
               onPress={openCamera}>
               <Image source={Images.cameraIcon} style={styles.iconImageSize} />
               <Text style={styles.name}>{'Open Camera'}</Text>
@@ -811,6 +1122,17 @@ const isButtonDisabled = useMemo(() => {
                 <Text style={styles.name}>{'Remove Image'}</Text>
               </TouchableOpacity>
             )}
+=======
+              onPress={handleTakePhoto}>
+              <Image source={Icons.camera} style={styles.iconImageSize} />
+              <Text style={styles.name}>{'Open Camera'}</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.container2} onPress={handleRemove}>
+              <Image source={Icons.delete} style={styles.iconImageSize} />
+              <Text style={styles.name}>{'Remove Icon'}</Text>
+            </TouchableOpacity>
+>>>>>>> f681a5d601d3bc1b5efad13d01dee80dbb697625
           </View>
         </View>
       </Modal>
