@@ -1,384 +1,194 @@
-import {View, Text, TouchableOpacity, Image, FlatList} from 'react-native';
-import React, {useState} from 'react';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RouteProp} from '@react-navigation/native';
-import moment from 'moment';
-import styles from './styles';
-import {Images} from '../../assets';
-import CustomHeader from '../../components/customHeader';
-import {notificationsData} from '../../staticData';
-import CustomStatusBar from '../../components/statusBar';
 import {
-  Dialog,
-  Portal,
-  Button,
-  Provider as PaperProvider,
-} from 'react-native-paper'; // 👈 updated imports
-import {Calendar} from 'react-native-calendars'; // 👈 added calendar
-import {Picker} from '@react-native-picker/picker'; // or use any dropdown/picker you like
-import {FONTS, normalize, vh, vw} from '../../styles';
-import colors from '../../utils/colors';
-import {LocaleConfig} from 'react-native-calendars';
-import DropDownPicker from 'react-native-dropdown-picker';
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  FlatList,
+  ImageSourcePropType,
+} from 'react-native';
+import React, {useState} from 'react';
+import styles from './style';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import CustomStatusBar from '../../components/statusBar';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {Icons} from '../../assets';
+import moment from 'moment';
+import CustomCalendar from '../../components/CustomCalendar';
+import { StackParamList } from '../../utils/types';
 
-type RootStackParamList = {
-  Notification: undefined;
-  AnotherScreen: undefined;
-};
-
-type NotificationScreenProps = {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'Notification'>;
-  route: RouteProp<RootStackParamList, 'Notification'>;
-};
-
-LocaleConfig.locales['custom'] = {
-  monthNames: [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
+const notificationsData: Record<
+  string,
+  {header: string; description: string; image?: ImageSourcePropType}[]
+> = {
+  '2025-03-11': [
+    {
+      header: 'Your Account created successfully',
+      description: 'Explore the  multiple products as per your requirement',
+      image: Icons.notificationOn,
+    },
+    {
+      header: 'Your Account created successfully',
+      description: 'Explore the  multiple products as per your requirement',
+      image: Icons.notificationOn,
+    },
+    {
+      header: 'Your Account created successfully',
+      description: 'Explore the  multiple products as per your requirement',
+      image: Icons.notificationOff,
+    },
+    {
+      header: 'Your Account created successfully',
+      description: 'Explore the  multiple products as per your requirement',
+      image: Icons.notificationOn,
+    },
+    {
+      header: 'Your Account created successfully',
+      description: 'Explore the  multiple products as per your requirement',
+      image: Icons.notificationOff,
+    },
   ],
-  monthNamesShort: [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
+  '2025-03-10': [
+    {
+      header: 'Your Account created successfully',
+      description: 'Explore the  multiple products as per your requirement',
+      image: Icons.notificationOn,
+    },
   ],
-  dayNames: [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
+  '2025-03-12': [
+    {
+      header: 'Your Account created successfully',
+      description: 'Explore the  multiple products as per your requirement',
+      image: Icons.notificationOn,
+    },
+    {
+      header: 'Your Account created successfully',
+      description: 'Explore the  multiple products as per your requirement',
+      image: Icons.notificationOn,
+    },
+    {
+      header: 'Your Account created successfully',
+      description: 'Explore the  multiple products as per your requirement',
+      image: Icons.notificationOff,
+    },
+    {
+      header: 'Your Account created successfully',
+      description: 'Explore the  multiple products as per your requirement',
+      image: Icons.notificationOn,
+    },
+    {
+      header: 'Your Account created successfully',
+      description: 'Explore the  multiple products as per your requirement',
+      image: Icons.notificationOff,
+    },
   ],
-  dayNamesShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-  today: 'Today',
 };
-LocaleConfig.defaultLocale = 'custom';
+interface NotificationProps {
+  navigation: StackNavigationProp<StackParamList>;
+}
 
-const Notification = ({navigation}: NotificationScreenProps) => {
+const Notification: React.FC<NotificationProps> = ({navigation}) => {
   const insets = useSafeAreaInsets();
   const [isCalendarVisible, setCalendarVisible] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(moment().toDate()); // using Date object
-  const [displayedDate, setDisplayedDate] = useState(selectedDate); // for calendar navigation
-  const [tempDate, setTempDate] = useState(selectedDate);
-  const [selectedDay, setSelectedDay] = useState(moment(selectedDate).format('YYYY-MM-DD'));
-  const [yearMenuVisible, setYearMenuVisible] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(
+    moment().format('YYYY-MM-DD'),
+  );
 
-  const showCalendar = () => {
-    setTempDate(selectedDate);
-    setCalendarVisible(true);
-  };
+  const showCalendar = () => setCalendarVisible(true);
   const hideCalendar = () => setCalendarVisible(false);
 
-  const handleConfirm = () => {
-    setSelectedDate(tempDate);
-    setCalendarVisible(false);
+  const handleConfirm = (date: string) => {
+    const formattedDate = moment(date).format('YYYY-MM-DD');
+    setSelectedDate(formattedDate);
+    hideCalendar();
   };
 
-  const formattedDateKey = moment(selectedDate).format('YYYY-MM-DD');
-  const formattedDisplayDate = moment(selectedDate).format('DD-MM-YYYY');
-
-  const notifications = notificationsData[formattedDateKey] || [];
-
-  const backPress = () => {
-    navigation.goBack();
-  };
-
-  const years = [];
-  for (let y = 2025; y <= 2125; y++) years.push(y);
-  const isAtMinMonth = moment(displayedDate).isSame('2025-01-01', 'month');
-  const isAtMaxMonth = moment(displayedDate).isSame('2125-12-01', 'month');
+  const notifications = notificationsData[selectedDate] || [];
+  const formattedDate = moment(selectedDate).format('MMMM DD, YYYY');
 
   return (
-    <PaperProvider>
-      <View style={[styles.container, {paddingTop: insets.top + 10}]}>
-        <CustomStatusBar />
-        <CustomHeader
-          textHeading="Notifications"
-          onleftPress={backPress}
-          leftIcon={Images.backarrow}
-          leftIconStyle={styles.imageWrapper}
-          headerStyle={styles.header}
-          rightIcon={Images.calanderIcon}
-          onRightPress={showCalendar}
-          rightIconStyle={styles.imageWrapper}
-        />
-
-        {notifications.length > 0 ? (
-          <View style={{paddingBottom: 35}}>
-            <FlatList
-              removeClippedSubviews={false}
-              data={notifications}
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={({item}) => (
-                <View
-                  style={[
-                    styles.notificationItem,
-                    {
-                      backgroundColor:
-                        item.image === Images.notificationOff
-                          ? 'white'
-                          : '#FFF6F7',
-                      borderColor:
-                        item.image === Images.notificationOff
-                          ? '#F2F3F3'
-                          : '#E41D2D33',
-                    },
-                  ]}>
+    <View style={[styles.container, {paddingTop: insets.top}]}>
+      <CustomStatusBar />
+      <View style={styles.header}>
+        <View style={styles.leftPart}>
+          <TouchableOpacity
+            style={styles.backContainer}
+            onPress={async () => {
+              navigation.goBack();
+            }}>
+            <Image
+              source={Icons.back}
+              style={styles.back}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+          <Text style={styles.headerText}>Notifications</Text>
+        </View>
+        <TouchableOpacity style={styles.backContainer} onPress={showCalendar}>
+          <Image
+            source={Icons.calendar}
+            style={styles.calendar}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+      </View>
+      {notifications.length > 0 ? (
+        <View style={{paddingBottom: 35}}>
+          <FlatList
+            data={notifications}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item}) => (
+              <View style={styles.notificationItem}>
+                <View style={styles.bellContainer}>
                   <Image
                     source={item.image}
                     style={styles.bell}
                     resizeMode="contain"
                   />
-                  <View style={styles.headerContainer}>
-                    <Text style={styles.notificationHeader}>{item.header}</Text>
-                    <Text style={styles.notificationDescription}>
-                      {item.description}
-                    </Text>
-                    <Text style={styles.notificationDate}>
-                      {formattedDisplayDate}
-                    </Text>
-                  </View>
                 </View>
-              )}
-              showsVerticalScrollIndicator={false}
-            />
-          </View>
-        ) : (
-          <View style={styles.contentEmptyView}>
-            <Image
-              source={Images.notificationHome}
-              style={styles.notificationBell}
-            />
-            <Text style={styles.text1}>You're up to date!</Text>
-            <View>
-              <Text style={styles.text2}>
-                There are no new notifications at this
-              </Text>
-              <Text style={styles.text2}>
-                time. Check again soon, and keep up
-              </Text>
-              <Text style={styles.text2}>the great work!</Text>
-            </View>
-          </View>
-        )}
-
-        {/* New Calendar Dialog */}
-        <Portal>
-          <Dialog
-            visible={isCalendarVisible}
-            onDismiss={hideCalendar}
-            style={{
-              borderRadius: vw(20),
-              backgroundColor: 'white',
-              //marginHorizontal: vw(26),
-            }}>
-            <Dialog.Title
-              style={{
-                // s
-                paddingVertical: vh(10),
-                fontSize: normalize(32),
-                borderBottomWidth: 1,
-                borderBottomColor: '#CAC4D0',
-              }}>
-              {moment(tempDate).format('ddd, MMM DD')}
-            </Dialog.Title>
-            <Dialog.Content>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  width: '100%',
-                  height: vh(40),
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}>
-                {/* Left Arrow */}
-
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                  {/* Month Name */}
-                  <View style={{flexDirection: 'row'}}>
-                    <Text
-                      style={{
-                        fontSize: normalize(16),
-                        fontFamily: FONTS?.ROBOTO_MEDIUM,
-                        color: '#49454F',
-                      }}>
-                      {moment(displayedDate).format('MMMM')}
-                    </Text>
-                  </View>
-                 
-
-                  <DropDownPicker
-                    open={yearMenuVisible}
-                    value={moment(displayedDate).year()}
-                    items={years.map(y => ({label: y.toString(), value: y}))}
-                    setOpen={setYearMenuVisible}
-                    setValue={val => {
-                      if (val) {
-                        const newDate = moment(displayedDate)
-                          .year(val())
-                          .toDate();
-                        setDisplayedDate(newDate);
-                        setTempDate(newDate);
-                      }
-                    }}
-                    setItems={() => {}} // no need to set items again dynamically
-                    containerStyle={{width: vw(90)}}
-                    style={{
-                      backgroundColor: 'white',
-                      borderWidth: 0, // 👈 remove border
-                      elevation: 0,
-                      height: vh(40),
-                    }}
-                    textStyle={{
-                      fontSize: normalize(16),
-                      fontFamily: FONTS?.ROBOTO_MEDIUM,
-                      color: '#49454F',
-                    }}
-                    dropDownContainerStyle={{
-                      backgroundColor: 'white',
-                      borderWidth: vw(0.4), 
-                      elevation: 0,
-                      borderColor:colors.inActiveTab
-                    }}
-                    listMode="SCROLLVIEW" // so it scrolls nicely
-                  />
+                <View style={{flex: 1, rowGap: 6}}>
+                  <Text style={styles.notificationHeader}>{item.header}</Text>
+                  <Text style={styles.notificationDescription}>
+                    {item.description}
+                  </Text>
+                  <Text style={styles.notificationDate}>{formattedDate}</Text>
                 </View>
-
-                {/* Right Arrow */}
-
-                {/* <View style={{flexDirection: 'row', right: vw(12)}}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      const newDate = moment(displayedDate)
-                        .subtract(1, 'month')
-                        .toDate();
-                      setDisplayedDate(newDate);
-                      setTempDate(newDate);
-                    }}>
-                    <Image
-                      source={Images.leftIcon}
-                      style={{marginEnd: vh(6)}}
-                    />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => {
-                      const newDate = moment(displayedDate)
-                        .add(1, 'month')
-                        .toDate();
-                      setDisplayedDate(newDate);
-                      setTempDate(newDate);
-                    }}>
-                    <Image
-                      source={Images.righttIcon}
-                      style={{marginStart: vh(6)}}
-                    />
-                  </TouchableOpacity>
-                </View> */}
-                <View style={{flexDirection: 'row', right: vw(12)}}>
-                <TouchableOpacity
-                  disabled={isAtMinMonth}
-                  onPress={() => {
-                    if (!isAtMinMonth) {
-                      const newDate = moment(displayedDate).subtract(1, 'month').toDate();
-                      setDisplayedDate(newDate);
-                      setTempDate(newDate);
-                    }
-                  }}
-                  style={{opacity: isAtMinMonth ? 0.3 : 1}} // visually indicate disabled
-                >
-                  <Image source={Images.leftIcon} style={{marginEnd: vh(6)}} />
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  disabled={isAtMaxMonth}
-                  onPress={() => {
-                    if (!isAtMaxMonth) {
-                      const newDate = moment(displayedDate).add(1, 'month').toDate();
-                      setDisplayedDate(newDate);
-                      setTempDate(newDate);
-                    }
-                  }}
-                  style={{opacity: isAtMaxMonth ? 0.3 : 1}} // visually indicate disabled
-                >
-                  <Image source={Images.righttIcon} style={{marginStart: vh(6)}} />
-                </TouchableOpacity>
               </View>
-
-              </View>
-
-              {/* Calendar */}
-              <Calendar
-                key={moment(displayedDate).format('YYYY-MM')}
-                current={moment(displayedDate).format('YYYY-MM-DD')}
-                onDayPress={day => {
-                  setSelectedDay(day.dateString); 
-                  const newDate = new Date(day.timestamp);
-                  setTempDate(newDate);
-                  setDisplayedDate(newDate);
-                }}
-                renderHeader={() => null}
-                onMonthChange={month => {
-                  setDisplayedDate(new Date(month.year, month.month - 1, 1));
-                }}
-                hideExtraDays={true}
-                hideArrows={true}
-                theme={{
-                  selectedDayBackgroundColor: colors?.primary,
-                  todayTextColor: colors?.primary,
-                  arrowColor: colors?.primary,
-                  textDayFontWeight: '500',
-                  textMonthFontWeight: 'bold',
-                  textDayHeaderFontWeight: '600',
-                  textSectionTitleColor: colors.dateTextColor,
-                }}
-                markedDates={{
-                  [selectedDay]: {
-                    selected: true,
-                    disableTouchEvent: true,
-                    selectedColor: colors?.primary,
-                    selectedTextColor: 'white',
-                  },
-                }}
-              />
-            </Dialog.Content>
-
-            <Dialog.Actions>
-              <Button
-                onPress={hideCalendar}
-                labelStyle={{color: colors.primary, fontSize: normalize(14)}}>
-                Cancel
-              </Button>
-              <Button
-                onPress={handleConfirm}
-                labelStyle={{color: colors.primary, fontSize: normalize(14)}}>
-                OK
-              </Button>
-            </Dialog.Actions>
-          </Dialog>
-        </Portal>
-      </View>
-    </PaperProvider>
+            )}
+            contentContainerStyle={{paddingHorizontal: 16}}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
+      ) : (
+        <View style={styles.contentEmptyView}>
+          <Image
+            source={Icons.notificationBell}
+            style={styles.notificationBell}
+          />
+          <Text style={styles.text1}>You're up to date!</Text>
+          <View>
+            <Text style={styles.text2}>
+              There are no new notifications at this
+            </Text>
+            <Text style={styles.text2}>
+              time. Check again soon, and keep up
+            </Text>
+            <Text style={styles.text2}>the great work!</Text>
+          </View>
+        </View>
+      )}
+      <CustomCalendar
+        visible={isCalendarVisible}
+        onClose={hideCalendar}
+        onConfirm={handleConfirm}
+        selectedDate={selectedDate}
+      />
+      {/* <CustomCalendar
+                visible={isCalendarVisible}
+                onClose={hideCalendar}
+                onConfirm={handleConfirm}
+                selectedDate={moment(selectedDate).toDate()}
+            /> */}
+    </View>
   );
 };
 
